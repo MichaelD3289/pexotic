@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import BreederShop from './pages/BreederShop/BreederShop'
 import UserProfile from './pages/UserProfile/UserProfile'
-import ShoppingCart from './pages/Checkout/ShoppingCart'
-import Listing from './pages/ProductListing/ProductListing'
+import ShoppingCart from './pages/ShoppingCart/ShoppingCart'
+import Listing from './pages/Listing/Listing'
 import ItemSearch from './pages/ItemSearch/ItemSearch'
 import BreederDashboard from './pages/BreederDashboard/BreederDashboard'
 
@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <div className='app'>
-        
+        <h1>App</h1>
       </div>
 
       <Routes>
