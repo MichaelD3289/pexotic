@@ -5,8 +5,15 @@ const app = express();
 // middleware
 app.use(express.json());
 
-// ENDPOINTS
+// controllers
+const {} = require('./controllers/userController');
 
+// Seed File
+const { seed } = require('./db/dbSeed')
+app.post(`/api/seed`, seed)
+
+// ENDPOINTS
+  // api/users
 
 
 
