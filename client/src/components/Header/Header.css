@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 125px;
+  width: 100vw;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.17);
+  padding: 0 4rem;
+}
+
+.header-logo {
+  width: 25%;
+  max-width: 250px;
+  min-width: 175px;
+}
+
+.sign-in {
+  width: 150px;
+  height: 45px;
+  border-radius: 20px;
+  background-color: #EA823E;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  font-size: 1.0rem;
+  cursor: pointer;
+  border: 3px solid rgba(0, 0, 0, 0.17);
+}
+
+.sign-in:hover {
+  border: 3px solid rgba(0, 0, 0, 0.22);
+  background-color: #EA823EE6;
+}
+
+.sign-in:active {
+  transform: scale(.99);
+}

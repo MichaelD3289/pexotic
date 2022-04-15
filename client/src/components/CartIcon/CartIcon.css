@@ -1,0 +1,51 @@
+.cart-icon-container {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: width .3s ease-in-out, height .3s ease-in-out, opacity .3s ease-in-out;
+  cursor: pointer;
+}
+
+.cart-icon-hover {
+  width: 1px;
+  height: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  transition: width .25s ease-in-out, height .25s ease-in-out, opacity .25s ease-in-out;
+}
+
+.cart-icon-container:hover  .cart-icon-hover {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.cart-icon {
+  width: 27px;
+  height: 27px;
+  cursor: pointer;
+}
+
+.cart-item-count {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  color: white;
+  top: 2px;
+  right: 0px;
+  background-color: #f44336;  
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: .75rem;
+  font-weight: bold;
+  border: 2px solid white;
+}
