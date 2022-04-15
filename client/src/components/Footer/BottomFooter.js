@@ -3,7 +3,10 @@ import './BottomFooter.css'
 
 function BottomFooter() {
   return (
-    <div>BottomFooter</div>
+    <div className='bottomFooter'>
+      <p>&copy; 2022 Pexotic, Inc</p>
+      <p>All Rights Reserved</p>
+    </div>
   )
 }
 

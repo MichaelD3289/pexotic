@@ -1,0 +1,10 @@
+.footer {
+  width: 100vw;
+  text-align: center;
+  background-color: #EA823E59;
+  height: 375px;
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px 20px 0 0;
+  border: 5px solid rgba(0, 0, 0, 0.17);
+}

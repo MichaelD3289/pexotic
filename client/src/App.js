@@ -11,14 +11,15 @@ import Listing from './pages/Listing/Listing'
 import ItemSearch from './pages/ItemSearch/ItemSearch'
 import BreederDashboard from './pages/BreederDashboard/BreederDashboard'
 
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+
 function App() {
   return (
     <Router>
       <div className='app'>
-        <h1>App</h1>
-      </div>
-
-      <Routes>
+        <Header />
+        <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/breeder/shop/:id/:name' element={<BreederShop />} />
           <Route path='/breeder/dashboard/:id/:name' element={<BreederDashboard />} />
@@ -27,6 +28,10 @@ function App() {
           <Route path='/product/listing/:id' element={<Listing />} />
           <Route path='/product/search' element={<ItemSearch />} />
       </Routes>
+        <Footer />
+      </div>
+
+     
     </Router>
   )
 }
