@@ -1,0 +1,38 @@
+.card-nav-top-b {
+  width:99vw;
+  height: 300px;
+  position: relative;
+  }
+  
+  .nav-name-b {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 2px;
+    word-spacing: 6px;
+    text-align: center;
+    font-size: 1.875rem;
+  }
+  
+  .color-bar-b {
+    background-color: #EA823E;
+    opacity: 0.85;
+    height: 60%;
+    width: 100%;
+    border-top: 5px solid rgba(0, 0, 0, 0.17);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.17);
+    position: absolute;
+    top: 135px;
+    z-index: -1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1.35rem;
+  }
+  
+  .nav-list-b {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: fit-content;
+  }
+  

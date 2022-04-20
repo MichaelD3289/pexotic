@@ -1,5 +1,14 @@
 .app {
-  position: relative;
+  width: 100vw;
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  
+}
+
+#root {
+  overflow: hidden;
 }

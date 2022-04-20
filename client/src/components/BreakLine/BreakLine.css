@@ -1,0 +1,9 @@
+.break-line {
+  width: 100%;
+  height: 14px;
+  background-color: #D3E4F0;
+  margin: 4.5rem 0;
+  box-shadow: 
+  inset 0px 3px 5px rgba(0, 0, 0, 0.20),
+  inset 0px -3px 5px rgba(0, 0, 0, 0.20);
+}

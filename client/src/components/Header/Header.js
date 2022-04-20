@@ -13,7 +13,7 @@ function Header() {
            alt="pexotic logo"
            />
           <SearchBar />
-          <button className='sign-in'>Sign In</button>
+          <button className='sign-in'><div className='btn-hover'>Sign In</div></button>
           <CartIcon />
           
           

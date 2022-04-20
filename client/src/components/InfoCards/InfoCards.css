@@ -1,0 +1,23 @@
+#learn-more {
+  width: 100%;
+  height: 600px;
+  background-color: #3CA83699;
+  border-top: 5px solid rgba(0, 0, 0, 0.17);
+  border-bottom: 5px solid rgba(0, 0, 0, 0.17);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-logo {
+  width: 300px;
+  margin-bottom: 2.5rem;
+}
+
+.info-container {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  justify-content: space-evenly;
+}

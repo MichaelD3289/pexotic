@@ -1,0 +1,33 @@
+.outline-btn {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #EA823E;
+  border-radius: 30px;
+  width: 150px;
+  height: 35px;
+  cursor: pointer;
+  padding: 0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  align-self: center;
+}
+
+.outline-hover-effect {
+  width: 100%;
+  height: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  transition: .3s ease-in-out;
+}
+
+.outline-btn:hover .outline-hover-effect {
+  background-color: #EA823E59;
+  height: 100%;
+}
+
+.outline-btn:active {
+  transform: scale(.98);
+}

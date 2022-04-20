@@ -1,12 +1,56 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Home.css'
 
+import CardNavBarTop from '../../components/CardNavBarTop/CardNavBarTop'
+import CardNavBarBottom from '../../components/CardNavBarBottom/CardNavBarBottom'
+import BreakLine from '../../components/BreakLine/BreakLine'
+import PopularListings from '../../components/PopularListings/PopularListings'
+import InfoCards from '../../components/InfoCards/InfoCards'
+
+import data from '../../data/content/home-page'
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../../redux/reducers/categoryReducer';
+
 function Home() {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    
+    dispatch(fetchCategories())
+  }, [])
+  
+  const categories = useSelector(state => state.categories.filter((c, index) => index < 5))
+
+
+
+  const {navTitles, navMoreText} = data
+
+
   return (
-    <>
-    <div>Home</div>
-    <section></section>
-    </>
+    <main className='home-page'>
+    <CardNavBarTop 
+    header={navTitles[0]} 
+    learnMore={navMoreText[0]}
+    cards={categories} 
+    />
+    <BreakLine />
+    <CardNavBarBottom 
+    header={navTitles[1]}
+    learnMore={navMoreText[1]} 
+    />
+    <BreakLine />
+    <CardNavBarTop 
+    header={navTitles[2]}
+    learnMore={navMoreText[2]}
+    cards={categories} 
+    />
+    <BreakLine />
+    <PopularListings />
+    <BreakLine />
+    <InfoCards />
+    <BreakLine />
+    </main>
   )
 }
 

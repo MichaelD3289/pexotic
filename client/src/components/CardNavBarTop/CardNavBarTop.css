@@ -1,0 +1,32 @@
+.card-nav-top {
+width: 99vw;
+height: 300px;
+position: relative;
+}
+
+.nav-name {
+  color: white;
+  font-weight: 700;
+  letter-spacing: 2px;
+  word-spacing: 6px;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.875rem;
+}
+
+.color-bar {
+  background-color: #3CA836;
+  opacity: 0.85;
+  height: 60%;
+  width: 100%;
+  border-top: 5px solid rgba(0, 0, 0, 0.17);
+  border-bottom: 5px solid rgba(0, 0, 0, 0.17);
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  position: absolute;
+  top: 75px;
+}
