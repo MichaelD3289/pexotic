@@ -22,8 +22,6 @@ function Home() {
   
   const categories = useSelector(state => state.categories.filter((c, index) => index < 5))
 
-
-
   const {navTitles, navMoreText} = data
 
 

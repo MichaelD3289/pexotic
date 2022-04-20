@@ -1,6 +1,5 @@
 import React from 'react'
 import './CardNavBarBottom.css'
-import shopImg from '../../assets/placeholders/shop-placeholder.png'
 import NavBarCard from './NavBarCard/NavBarCard'
 
 function CardNavBarBottom({header, learnMore}) {
