@@ -15,7 +15,7 @@ function CardNavBarTop({header, learnMore, cards}) {
 
       <ul className='nav-list'>
       {cards.map((card) => (
-        <NavBarCard key={card.id} cardInfo={card} />
+        <NavBarCard key={card.category_id} cardInfo={card} />
       ))
         }
  

@@ -1,0 +1,20 @@
+.register-form button {
+  margin: 0 auto;
+}
+
+
+#state > option:nth-child(odd) {
+  font-size: 1rem;
+  background-color: #3CA83633;
+  text-align: center;
+}
+
+#state > option:nth-child(even) {
+  font-size: 1rem;
+  background-color: #3CA8361A;
+  text-align: center;
+}
+
+#state > option:nth-child(1) {
+  text-align: left;
+}

@@ -4,7 +4,13 @@ import logo from '../../assets/images/pexotic.svg'
 import SearchBar from '../SearchBar/SearchBar'
 import CartIcon from '../CartIcon/CartIcon'
 
+import { useDispatch } from 'react-redux'
+import { toggleAccountPopUp } from '../../redux/reducers/accountPopUp' 
+
 function Header() {
+
+  const dispatch = useDispatch();
+
   return (
       <header className='header'>
           <img 
@@ -13,7 +19,10 @@ function Header() {
            alt="pexotic logo"
            />
           <SearchBar />
-          <button className='sign-in'><div className='btn-hover'>Sign In</div></button>
+          <button 
+          className='sign-in'
+          onClick={() => dispatch(toggleAccountPopUp())}
+          ><div className='btn-hover'>Sign In</div></button>
           <CartIcon />
           
           

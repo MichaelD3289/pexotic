@@ -6,27 +6,21 @@ require("dotenv").config();
 module.exports = {
   createUser: (req, res) => {
     const {
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       username,
       email,
       password,
-      phone,
-      address_line_one,
-      address_line_two,
       city,
       state,
       zipcode,
     } = req.body;
 
     // escape all inputs
-    const first_name_esc = sequelize.escape(first_name);
-    const last_name_esc = sequelize.escape(last_name);
+    const first_name_esc = sequelize.escape(firstName);
+    const last_name_esc = sequelize.escape(lastName);
     const username_esc = sequelize.escape(username);
     const email_esc = sequelize.escape(email);
-    const phone_esc = sequelize.escape(phone);
-    const address_line_one_esc = sequelize.escape(address_line_one);
-    const address_line_two_esc = sequelize.escape(address_line_two);
     const city_esc = sequelize.escape(city);
     const state_esc = sequelize.escape(state);
     const zipcode_esc = sequelize.escape(zipcode);
@@ -38,8 +32,8 @@ module.exports = {
       sequelize
         .query(
           `
-      INSERT INTO users (first_name, last_name, username, email, password_hash, phone, address_line_one, address_line_two, city, state, zipcode, modified_at)
-      VALUES (${first_name_esc}, ${last_name_esc}, ${username_esc}, ${email_esc}, '${hashedPassword}', ${phone_esc}, ${address_line_one_esc}, ${address_line_two_esc}, ${city_esc}, ${state_esc}, ${zipcode_esc}, NOW());
+      INSERT INTO users (first_name, last_name, username, email, password_hash, city, state, zipcode, modified_at)
+      VALUES (${first_name_esc}, ${last_name_esc}, ${username_esc}, ${email_esc}, '${hashedPassword}', ${city_esc}, ${state_esc}, ${zipcode_esc}, NOW());
       `
         )
         .then((dbRes) => res.status(200).send(dbRes[0]))

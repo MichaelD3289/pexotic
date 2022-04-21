@@ -1,7 +1,7 @@
 import React from 'react'
 import './NavBarCard.css'
 
-function NavBarCard({cardInfo: {id, image_url, image_alt, category_name: card_name}}) {
+function NavBarCard({cardInfo: {id, image_url, image_alt, category_name: card_name}, ...props}) {
   // max length of title before "..." is added
   const maxTitleLength = 18
 

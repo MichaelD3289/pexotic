@@ -20,7 +20,7 @@ app.post(`/api/seed`, seed)
 
 // ENDPOINTS
   // api/users
-  app.post(`/api/users`, createUser);
+  app.post(`/api/users/register`, createUser);
   app.post(`/api/users/login`, loginUser)
 
   // api/categories
