@@ -21,8 +21,19 @@ function SignIn() {
   }
   onSubmit={(values, { setSubmitting }) => {
     console.log(values)
-    setSubmitting(false)
-  }}
+      axios
+      .post('/api/users/login', values)
+      .then(res => {
+        console.log(res)
+        })
+      .catch(err => {
+        console.log(err)
+        })
+      .finally(() => {
+        setSubmitting(false)
+        })
+    }
+  }
   >
 
     <Form className="log-in-form">

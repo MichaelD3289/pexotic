@@ -16,6 +16,16 @@ module.exports = {
       zipcode,
     } = req.body;
 
+    // function to validate password with regex
+    const validatePassword = (password) => {
+      const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+      return regex.test(password);
+    };
+    if (!validatePassword(password)) {
+      return res.status(400).send({
+        message: "Password must contain at least 8 characters, 1 number, 1 special character and 1 letter",
+      });
+    }
     // escape all inputs
     const first_name_esc = sequelize.escape(firstName);
     const last_name_esc = sequelize.escape(lastName);
@@ -37,7 +47,7 @@ module.exports = {
       `
         )
         .then((dbRes) => res.status(200).send(dbRes[0]))
-        .catch((err) => res.send(err));
+        .catch((err) => res.send({message: err.errors[0].message}));
     })();
   },
   loginUser: (req, res) => {

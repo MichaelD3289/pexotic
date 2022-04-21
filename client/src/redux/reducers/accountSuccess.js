@@ -10,9 +10,27 @@ export const accountCreatedSuccess = () => {
   }
 }
 
-export const accountCreatedFailure = () => {
+export const accountCreatedFailure = (message) => {
+  
+  const keyword = message.split(' ')[0]
+  let messageUsed;
+
+  switch(keyword) {
+    case 'email':
+      messageUsed = 'Email already exists'
+      break;
+    case 'username':
+      messageUsed = 'Username already exists'
+      break;
+      case 'password':
+        messageUsed = message
+    default:
+      messageUsed = 'Something went wrong, please try again'
+  }
+
   return {
-    type: ACCOUNT_CREATED_FAILURE
+    type: ACCOUNT_CREATED_FAILURE,
+    payload: messageUsed
   }
 }
 
@@ -22,16 +40,30 @@ export const resetAccountCreated = () => {
   }
 }
 
+const initialState = {
+  type: '',
+  message: ''
+}
+
 // reducer function
-export default function accountSuccessReducer(state="error", action) {
+export default function accountSuccessReducer(state=initialState, action) {
   switch (action.type) {
     // case statements
     case ACCOUNT_CREATED_SUCCESS:
-      return "success"
+      return {
+        type: "success",
+        message: ''
+      }
     case ACCOUNT_CREATED_FAILURE:
-      return "error"
+      return {
+        type: "error",
+        message: action.payload
+      }
     case RESET_ACCOUNT_CREATED_STATUS:
-      return "default"
+      return {
+        type: "",
+        message: ''
+      }
     // default statement
     default:
       return state;

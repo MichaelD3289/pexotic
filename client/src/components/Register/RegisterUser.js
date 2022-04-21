@@ -47,18 +47,21 @@ function RegisterUser({setIsRegister}) {
       axios
       .post('/api/users/register', values)
       .then(res => {
-        console.log(res)
-        dispatch(accountCreatedSuccess())
-        setIsRegister()        
+        if(!res.data.message) {
+          setIsRegister(false)
+          dispatch(accountCreatedSuccess())
+        } else {
+          dispatch(accountCreatedFailure(res.data.message))
+        }
+        
+        
+        // setIsRegister()        
       })
       .catch(err => {
-        dispatch(accountCreatedFailure())
-        console.log(err)
+        dispatch(accountCreatedFailure(err.message))
+        
       })
-      .finally(() => {   
-        setTimeout(() => {
-          dispatch(resetAccountCreated())
-        }, 2000)       
+      .finally(() => {        
          
           setSubmitting(false)
 

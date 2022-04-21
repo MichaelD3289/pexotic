@@ -52,7 +52,7 @@ function LogInPopUp(props) {
           {isRegister ? <RegisterUser setIsRegister={handleisRegister} /> : <SignIn />}
         </div>
 
-        {accountSuccess === "success" && 
+        {accountSuccess.type === "success" && 
         <div className='popup-message'>
           <Success title="Success!">
             <h3>Your Account has been Created!</h3>
@@ -60,11 +60,11 @@ function LogInPopUp(props) {
           </Success>
           </div>}
 
-          {accountSuccess === "error" && 
+          {accountSuccess.type === "error" && 
         <div className='popup-message'>
           <Error title="Error">
             <h3>There was a problem on Submission</h3>
-            <p>Error Message From Server</p>
+            <p>{accountSuccess.message}</p>
           </Error>
           </div>}
       </div>
