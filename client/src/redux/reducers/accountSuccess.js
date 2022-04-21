@@ -24,6 +24,10 @@ export const accountCreatedFailure = (message) => {
       break;
       case 'password':
         messageUsed = message
+      break;
+      case 'Invalid':
+        messageUsed = 'Invalid Username or Password'
+      break;
     default:
       messageUsed = 'Something went wrong, please try again'
   }

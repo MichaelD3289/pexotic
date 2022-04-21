@@ -21,7 +21,10 @@ app.post(`/api/seed`, seed)
 // ENDPOINTS
   // api/users
   app.post(`/api/users/register`, createUser);
-  app.post(`/api/users/login`, loginUser)
+  app.post(`/api/users/login`, loginUser);
+  app.get('/api/users/verify', verifyToken, (req, res) => {
+    res.sendStatus(200);
+  });
 
   // api/categories
 app.get('/api/categories', fetchCategories)
@@ -36,6 +39,7 @@ function verifyToken(req, res, next) {
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
+    console.log(req.user)
     next();
 });
 }

@@ -7,7 +7,13 @@ import * as Yup from 'yup'
 
 import OutlineButton from '../Buttons/OutlineButton'
 
+import { useDispatch } from 'react-redux'
+import { saveCurrentUser } from '../../redux/reducers/currentUser'
+import {accountCreatedFailure} from '../../redux/reducers/accountSuccess'
+
 function SignIn() {
+
+  const dispatch = useDispatch()
 
   return (
 
@@ -24,10 +30,14 @@ function SignIn() {
       axios
       .post('/api/users/login', values)
       .then(res => {
-        console.log(res)
+        
+        dispatch(saveCurrentUser(res.data.token))
+        localStorage.setItem("access_token", res.data.token);
         })
       .catch(err => {
         console.log(err)
+        dispatch(accountCreatedFailure('Invalid'))
+      
         })
       .finally(() => {
         setSubmitting(false)
