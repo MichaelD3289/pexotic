@@ -1,9 +1,15 @@
 import React from 'react'
 import './Listing.css'
 
+import ListingDetails from '../../components/ListingDetails/ListingDetails'
+import BreakLine from '../../components/BreakLine/BreakLine'
+
 function Listing() {
   return (
-    <div>Listing</div>
+    <main id="listing-page">
+      <ListingDetails />
+      <BreakLine />
+    </main>
   )
 }
 

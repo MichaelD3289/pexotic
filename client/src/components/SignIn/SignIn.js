@@ -10,6 +10,7 @@ import OutlineButton from '../Buttons/OutlineButton'
 import { useDispatch } from 'react-redux'
 import { saveCurrentUser } from '../../redux/reducers/currentUser'
 import {accountCreatedFailure} from '../../redux/reducers/accountSuccess'
+import { toggleAccountPopUp } from '../../redux/reducers/accountPopUp'
 
 function SignIn() {
 
@@ -25,6 +26,7 @@ function SignIn() {
       password: Yup.string().required('Required Field')
     })
   }
+
   onSubmit={(values, { setSubmitting }) => {
     console.log(values)
       axios
@@ -33,6 +35,7 @@ function SignIn() {
         
         dispatch(saveCurrentUser(res.data.token))
         localStorage.setItem("access_token", res.data.token);
+        dispatch(toggleAccountPopUp())
         })
       .catch(err => {
         console.log(err)

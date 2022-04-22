@@ -1,0 +1,4 @@
+.listing-photo-gallery {
+  display: flex;
+  gap: 10px;
+}

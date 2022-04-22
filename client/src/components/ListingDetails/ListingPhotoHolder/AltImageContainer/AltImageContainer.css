@@ -1,0 +1,16 @@
+.alt-image-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.alt-image-container-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  background-color: goldenrod;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}

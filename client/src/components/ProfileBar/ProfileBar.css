@@ -1,0 +1,71 @@
+/* .outline {
+  border: 3px solid #EA823E;
+  border-radius: 20px;
+  padding: 15px 30px;
+} */
+
+.profile-bar {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.account-btn {
+  position:relative;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+}
+
+.hover-transparent {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 35%;
+  transition: all 0.25s ease-in-out;
+  position: absolute;
+}
+
+.account-btn:hover .hover-transparent {
+  background-color: rgba(0, 0, 0, 0.12);
+  height: 55px;
+  width: 65px;
+}
+
+.account-icon {
+  height: 40px;
+  width: 40px;
+  margin: 0 4px;
+}
+
+.down-arrow {
+  width: 12px;
+}
+
+.log-out-btn {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  height: 30px;
+  width: 50px;
+}
+
+.log-out-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.log-out-btn:hover p::before {
+  content: "Log Out";
+  font-weight: 600;
+  font-size: 0.75rem;
+}

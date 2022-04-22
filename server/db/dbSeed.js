@@ -62,6 +62,7 @@ module.exports = {
       CREATE TABLE sellers(
       seller_id SERIAL PRIMARY KEY,
       company_name VARCHAR(50) NOT NULL,
+      img_url VARCHAR(100) NOT NULL,
       user_id UUID NOT NULL REFERENCES users(user_id)
       );
       
@@ -81,7 +82,7 @@ module.exports = {
       );
       
       CREATE TABLE subcategory(
-      Subcategory_id SERIAL PRIMARY KEY,
+      subcategory_id SERIAL PRIMARY KEY,
       subcategory_name VARCHAR(50) NOT NULL,
       category_ref INT NOT NULL REFERENCES category(category_id)
       );
@@ -99,15 +100,17 @@ module.exports = {
       CREATE TABLE listings(
       listing_id SERIAL PRIMARY KEY,
       listing_name VARCHAR(50) NOT NULL,
-      description VARCHAR(750) NOT NULL,
+      description VARCHAR(1000) NOT NULL,
       price FLOAT NOT NULL,
       qty_in_stock INT NOT NULL,
-      sku VARCHAR(100),
+      sku VARCHAR(100) NULL,
       shipping_price FLOAT NOT NULL,
       current_discount BOOLEAN NOT NULL DEFAULT FALSE,
+      photo_url VARCHAR(150) NOT NULL,
       subcategory_id INT NOT NULL REFERENCES subcategory(subcategory_id),
-      seller_id UUID NOT NULL REFERENCES users(user_id),
+      seller_id INT NOT NULL REFERENCES sellers(seller_id),
       species_id INT NOT NULL REFERENCES species(species_id),
+      number_sold INT NOT NULL DEFAULT 0,
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL
       );

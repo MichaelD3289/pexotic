@@ -12,7 +12,7 @@ export const accountCreatedSuccess = () => {
 
 export const accountCreatedFailure = (message) => {
   
-  const keyword = message.split(' ')[0]
+  const keyword = message.toLowerCase().split(' ')[0]
   let messageUsed;
 
   switch(keyword) {
@@ -25,7 +25,7 @@ export const accountCreatedFailure = (message) => {
       case 'password':
         messageUsed = message
       break;
-      case 'Invalid':
+      case 'invalid':
         messageUsed = 'Invalid Username or Password'
       break;
     default:

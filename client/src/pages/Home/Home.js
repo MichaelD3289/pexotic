@@ -12,7 +12,6 @@ import data from '../../data/content/home-page'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../redux/reducers/categoryReducer';
 
-import LogInPopUp from '../../components/LogInPopUp/LogInPopUp'
 
 function Home() {
   
@@ -24,7 +23,7 @@ function Home() {
   
   const categories = useSelector(state => state.categories.filter((c, index) => index < 5))
 
-  const popUpToggle = useSelector(state => state.accountPopUp);
+
   
 
   const {navTitles, navMoreText} = data
@@ -53,7 +52,7 @@ function Home() {
     <BreakLine />
     <InfoCards />
     <BreakLine />
-    {popUpToggle && <LogInPopUp />}
+    
     </main>
   )
 }
