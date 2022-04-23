@@ -6,6 +6,8 @@ import currentUserReducer from './reducers/currentUser';
 import categoryReducer from './reducers/categoryReducer';
 import accountPopUpReducer from './reducers/accountPopUp';
 import accountSuccessReducer from './reducers/accountSuccess';
+import currentListingReducer from './reducers/currentListing'
+import currentListingReviewsReducer from './reducers/currentListingReviews'
 
 
 const rootReducer = combineReducers({
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   categories: categoryReducer,
   accountPopUp: accountPopUpReducer,
   accountSuccess: accountSuccessReducer,
+  currentListing: currentListingReducer,
+
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

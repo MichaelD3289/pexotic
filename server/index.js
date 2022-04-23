@@ -13,6 +13,7 @@ app.use('/static',express.static(path.join(__dirname, '/assets/static')));
 const { createUser, loginUser } = require('./controllers/userController');
 const {  } = require('./controllers/images/imgController');
 const { fetchCategories } = require('./controllers/categoryController');
+const { getListing } = require('./controllers/listingController');
 
 // Seed File
 const { seed } = require('./db/dbSeed')
@@ -25,6 +26,10 @@ app.post(`/api/seed`, seed)
   app.get('/api/users/verify', verifyToken, (req, res) => {
     res.sendStatus(200);
   });
+
+  // /api/listing
+
+  app.get(`/api/listings/:id`, getListing);
 
   // api/categories
 app.get('/api/categories', fetchCategories)

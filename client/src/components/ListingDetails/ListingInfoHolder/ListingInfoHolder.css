@@ -1,0 +1,132 @@
+.listing-info-holder {
+  /* background-color: lightgray; */
+  height: 550px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.listing-logo-container {
+  background-color: aliceblue;
+  width: 80%;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listing-guarantees-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.live-arrival, .overnight-shipping {
+border: 5px solid #EA823E;
+height: 115px;
+width: 175px;
+border-radius: 15px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 15px;
+font-size: 1.25rem;
+font-weight: 700;
+}
+
+.overnight-shipping {
+  border-color: #3CA836;
+}
+
+.listing-title-container {
+  font-size: 1.25rem;
+  font-weight: 500;
+  /* background-color: aquamarine; */
+  width: 100%;
+  padding: 5px 25px;
+}
+
+.listing-qty-stock-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 5px 60px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.green-check-mark, .red-x-circle {
+  width: 25px;
+}
+
+.listing-checkout-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 35px;
+}
+
+.listing-price-qty-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.listing-price-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 15px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dollar-sign {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.listing-qty-container {
+  text-align: center;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 15px;
+}
+
+#quantity {
+  outline: none;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.25);
+  width: 110px;
+  height: 35px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.1rem;
+  background-color: #E9ECF2;
+}
+
+.listing-btns-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.outline-btn.green:hover .outline-hover-effect {
+  background-color: #3CA83659;
+  height: 100%;
+}

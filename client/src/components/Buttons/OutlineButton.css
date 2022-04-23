@@ -31,3 +31,14 @@
 .outline-btn:active {
   transform: scale(.98);
 }
+
+.outline-btn:disabled {
+  background-color: rgb(227, 227, 227);
+  border-color: rgb(145, 145, 145);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.outline-btn:disabled:hover .outline-hover-effect {
+  height:0px;
+  background-color: rgb(227, 227, 227);
+}
