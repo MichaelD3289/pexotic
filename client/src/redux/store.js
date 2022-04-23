@@ -8,7 +8,7 @@ import accountPopUpReducer from './reducers/accountPopUp';
 import accountSuccessReducer from './reducers/accountSuccess';
 import currentListingReducer from './reducers/currentListing'
 import allFavoritesReducer from './reducers/allFavorites'
-
+import userCartReducer from './reducers/userCart'
 
 const rootReducer = combineReducers({
   // reducers go here
@@ -17,7 +17,8 @@ const rootReducer = combineReducers({
   accountPopUp: accountPopUpReducer,
   accountSuccess: accountSuccessReducer,
   currentListing: currentListingReducer,
-  allFavorites: allFavoritesReducer
+  allFavorites: allFavoritesReducer,
+  userCart: userCartReducer
 
 });
 

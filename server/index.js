@@ -45,7 +45,7 @@ app.get('/api/categories', fetchCategories)
 
 // Verify token
 function verifyToken(req, res, next) {
-  console.log(req.headers)
+  
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 

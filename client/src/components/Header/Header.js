@@ -4,6 +4,7 @@ import logo from '../../assets/images/pexotic.svg'
 import SearchBar from '../SearchBar/SearchBar'
 import CartIcon from '../CartIcon/CartIcon'
 import ProfileBar from '../ProfileBar/ProfileBar'
+import {Link} from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleAccountPopUp } from '../../redux/reducers/accountPopUp' 
@@ -14,11 +15,14 @@ function Header() {
 
   return (
       <header className='header'>
-          <img 
+          <Link 
+          className='logo-link'
+          to='/'
+          ><img 
            className='header-logo'
            src={logo}
            alt="pexotic logo"
-           />
+           /></Link>
           <SearchBar />
 
           {verified ? <ProfileBar /> : 
