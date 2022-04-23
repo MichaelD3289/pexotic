@@ -17,36 +17,41 @@ import Footer from './components/Footer/Footer'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { saveCurrentUser, unVerifyUser, verifyUser } from './redux/reducers/currentUser'
+import { getAllFavorites } from './redux/reducers/allFavorites'
 
 import LogInPopUp from './components/LogInPopUp/LogInPopUp'
 
 function App() {
+
+const token = useSelector(state => state.currentUser.token) || localStorage.getItem('access_token') || null
+
 const dispatch = useDispatch()
-
+console.log(token)
   useEffect(() => {
-    const token = localStorage.getItem('access_token')
 
+    
     if(!token) {
-
       dispatch(unVerifyUser())
       return
     }
+    
 
     axios.get('/api/users/verify', {
       headers: {
-        Authorization: `Bearer ${token}`
+        authorization: `Bearer ${token}`
         }
     })
     .then(res => {
+      axios.defaults.headers.common['authorization'] = `Bearer ${token}`
       dispatch(verifyUser())
       dispatch(saveCurrentUser(token))
-      axios.defaults.headers.common['authorization'] = `Bearer ${token}`
+      dispatch(getAllFavorites())
     })
     .catch(err => {
       dispatch(unVerifyUser())
       localStorage.removeItem('access_token')
     })
-  }, [dispatch])
+  }, [dispatch, token])
 
   const popUpToggle = useSelector(state => state.accountPopUp);
 

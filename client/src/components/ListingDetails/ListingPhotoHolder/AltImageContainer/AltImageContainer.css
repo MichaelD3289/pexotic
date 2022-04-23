@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-.alt-image-container-item {
+.alt-image-container-item, .alt-image-container-item.main-photo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,6 @@
 
 .alt-image-container-item.main-photo {
   border: 3px solid #EA823E;
-
 }
 
 .alt-image-container-item.main-photo img {
@@ -34,5 +33,5 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: inherit;
 }

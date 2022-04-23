@@ -12,13 +12,13 @@ function AltImageContainer() {
 
   const { photoUrls: {altImages, mainPhoto}, name } = listing
 
-  console.log(altImages)
   return (
 
     <div className='alt-image-container'>
 
       {altImages.map(image => (
-        <div 
+        <div
+        key={image} 
         className={`alt-image-container-item${image === mainPhoto ? ' main-photo' : ''}`}
         onClick={() => dispatch(setMainListingPhoto(image))}
         >

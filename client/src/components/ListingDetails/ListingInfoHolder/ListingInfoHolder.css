@@ -1,6 +1,22 @@
 .listing-info-holder {
-  /* background-color: lightgray; */
   height: 550px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.listing-info-holder-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+}
+
+.listing-info-holder-bottom {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,13 +25,33 @@
 }
 
 .listing-logo-container {
-  background-color: aliceblue;
   width: 80%;
-  height: 100px;
+  height: 150px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.listing-logo-link {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.listing-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.listing-logo:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  opacity: 80%;
 }
 
 .listing-guarantees-container {

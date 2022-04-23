@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './ListingInfoHolder.css'
+import { Link } from 'react-router-dom'
 
 import greenCheckMark from '../../../assets/icons/checkmark-circle-icon.svg'
 import redXIcon from '../../../assets/icons/red-x-circle-icon.svg'
@@ -8,14 +9,29 @@ import { useSelector } from 'react-redux'
 
 
 function ListingInfoHolder() {
-  let {
-    category, currentDiscount, price, qty, shippingPrice, speciesId, name
-  } = useSelector(state => state.currentListing)
+  const listing = useSelector(state => state.currentListing)
   
+  let { category, currentDiscount, price, qty, shippingPrice, speciesId, name, shopLogo, shopName, sellerId } = listing
 
+  // changing extension of image to .png for testing purposes
+
+  
   return (
     <div className='listing-info-holder'>
-      <div className='listing-logo-container'>Logo</div>
+      <div className='listing-info-holder-top'>
+      <div className='listing-logo-container'>
+        {shopLogo && 
+          <Link 
+            to={`/breeder/shop/${sellerId}/${shopName.replace(/\s+/g, '-').toLowerCase()}`}
+            className='listing-logo-link'
+            >
+            <img 
+            src={`/static/${shopLogo.replace('jpg', 'png')}`} className='listing-logo' 
+            alt={shopName}
+            />
+          </Link>
+          }
+      </div>
 
       <div className='listing-guarantees-container'>
         <div className='live-arrival'>
@@ -27,6 +43,8 @@ function ListingInfoHolder() {
           <h2>Shipping</h2>
         </div>
       </div>
+      </div>
+      <div className='listing-info-holder-bottom'>
 
       <div className='listing-title-container'>
         <h2>{name}</h2>
@@ -45,7 +63,7 @@ function ListingInfoHolder() {
         <div className='listing-price-qty-container'>
           <div className='listing-price-container'>
             <h2>
-              <span class="dollar-sign">$ </span>
+              <span className="dollar-sign">$ </span>
                {price}
                </h2>
             </div>
@@ -69,6 +87,7 @@ function ListingInfoHolder() {
           </OutlineButton>
         </div>
 
+      </div>
       </div>
     </div>
   )

@@ -10,7 +10,10 @@ app.use(express.json());
 app.use('/static',express.static(path.join(__dirname, '/assets/static')));
 
 // controllers
-const { createUser, loginUser } = require('./controllers/userController');
+const { 
+  createUser, loginUser, getAllFavorites,
+  addFavorite, removeFavorite 
+} = require('./controllers/userController');
 const {  } = require('./controllers/images/imgController');
 const { fetchCategories } = require('./controllers/categoryController');
 const { getListing } = require('./controllers/listingController');
@@ -24,19 +27,25 @@ app.post(`/api/seed`, seed)
   app.post(`/api/users/register`, createUser);
   app.post(`/api/users/login`, loginUser);
   app.get('/api/users/verify', verifyToken, (req, res) => {
-    res.sendStatus(200);
+    res.status(200).send(req.token);
   });
+
+  app.get(`/api/user/favorites`, verifyToken, getAllFavorites)
+  app.post(`/api/user/favorites`, verifyToken, addFavorite)
+  app.delete(`/api/user/favorites/:id`, verifyToken, removeFavorite)
+
 
   // /api/listing
 
   app.get(`/api/listings/:id`, getListing);
+  
 
   // api/categories
 app.get('/api/categories', fetchCategories)
 
 // Verify token
 function verifyToken(req, res, next) {
- 
+  console.log(req.headers)
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -44,7 +53,7 @@ function verifyToken(req, res, next) {
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
-    console.log(req.user)
+    req.token = token;
     next();
 });
 }

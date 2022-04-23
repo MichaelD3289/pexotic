@@ -10,7 +10,8 @@ export const getListing = (listingID) => dispatch => {
   axios
     .get(`/api/listings/${listingID}`)
     .then(({data}) => {
-      const {listing_id, listing_name, description, price, sku, shipping_price, current_discount, main_photo, subcategory_id, seller_id, species_id, number_sold, qty_in_stock, photo_two, photo_three, photo_four, photo_five} = data[0]
+      console.log(data)
+      const {listing_id, listing_name, description, price, sku, shipping_price, current_discount, main_photo, subcategory_id, seller_id, species_id, number_sold, qty_in_stock, photo_two, photo_three, photo_four, photo_five, shoplogo, shopname} = data[0]
       dispatch({
         type: GET_LISTING,
         payload: {
@@ -30,7 +31,9 @@ export const getListing = (listingID) => dispatch => {
           sellerId: seller_id,
           speciesId: species_id,
           numberSold: number_sold,
-          isFavorite: false
+          isFavorite: false,
+          shopLogo: shoplogo,
+          shopName: shopname
         }
       })
     })
@@ -45,6 +48,13 @@ export const setMainListingPhoto = (photoUrl) => {
     payload: photoUrl
   }
 }
+
+export const toggleIsFavorite = () =>  {
+  return {
+    type: 'TOGGLE_IS_FAVORITE'
+  }
+}
+
 
 //initial state
 
@@ -84,6 +94,11 @@ export default function currentListingReducer(state=initialState, action) {
           ...state.photoUrls,
           mainPhoto: action.payload
         }
+      }
+    case 'TOGGLE_IS_FAVORITE':
+      return {
+        ...state,
+        isFavorite: !state.isFavorite
       }
     // default statement
     default:

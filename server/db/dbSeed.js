@@ -8,7 +8,6 @@ module.exports = {
 
       DROP TABLE IF EXISTS users CASCADE;
       DROP TABLE IF EXISTS cart CASCADE;
-      DROP TABLE IF EXISTS wishlist CASCADE;
       DROP TABLE IF EXISTS sellers CASCADE;
       DROP TABLE IF EXISTS orders CASCADE;
       DROP TABLE IF EXISTS category CASCADE;
@@ -20,7 +19,7 @@ module.exports = {
       DROP TABLE IF EXISTS message CASCADE;
       DROP TABLE IF EXISTS reviews CASCADE;
       DROP TABLE IF EXISTS discounts_listings CASCADE;
-      DROP TABLE IF EXISTS wishlist_items CASCADE;
+      DROP TABLE IF EXISTS favorite_items CASCADE;
       DROP TABLE IF EXISTS order_items CASCADE;
       DROP TABLE IF EXISTS cart_item CASCADE;
       
@@ -164,9 +163,10 @@ module.exports = {
       discount_id INT NOT NULL REFERENCES discounts(discount_id)
       );
       
-      CREATE TABLE wishlist_items(
-      wishlist_items SERIAL PRIMARY KEY,
-      wishlist_id INT NOT NULL REFERENCES wishlist(wishlist_id),
+      CREATE TABLE favorite_items(
+      favorite_items_id SERIAL PRIMARY KEY,
+      is_favorite BOOLEAN NOT NULL DEFAULT TRUE,
+      user_id UUID NOT NULL REFERENCES users(user_id),
       listing_id INT NOT NULL REFERENCES listings(listing_id),
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL

@@ -99,4 +99,41 @@ module.exports = {
       })
       .catch((err) => res.send(err));
   },
+  getAllFavorites: (req, res) => {
+    const { user_id } = req.user;
+    
+    sequelize
+      .query(
+        `
+      SELECT listing_id FROM favorite_items WHERE user_id = '${user_id}';
+      `
+      )
+      .then((dbRes) => res.status(200).send(dbRes[0]))
+      .catch((err) => res.send(err));
+  },
+  addFavorite: (req, res) => {
+    const { user_id } = req.user;
+    const { listing_id } = req.body;
+    sequelize
+      .query(
+        `
+      INSERT INTO favorite_items (user_id, listing_id, modified_at)
+      VALUES ('${user_id}', '${listing_id}', NOW());
+      `
+      )
+      .then((dbRes) => res.status(200).send(dbRes[0]))
+      .catch((err) => res.send(err));
+  },
+  removeFavorite: (req, res) => {
+    const { user_id } = req.user;
+    const { id } = req.params;
+    sequelize
+      .query(
+        `
+      DELETE FROM favorite_items WHERE user_id = '${user_id}' AND listing_id = '${id}';
+      `
+      )
+      .then((dbRes) => res.status(200).send(dbRes[0]))
+      .catch((err) => res.send(err));
+  }
 };
