@@ -20,6 +20,7 @@ const { getListing, getPopularListings } = require('./controllers/listingControl
 const {
 getCart, addToCart, removeFromCart, updateCart
 } = require('./controllers/cartController');
+const { fetchViewShops } = require('./controllers/shopController');
 
 
 // Seed File
@@ -56,6 +57,10 @@ app.post(`/api/seed`, seed)
 
   // api/categories
 app.get('/api/categories', fetchCategories)
+
+// /api/shops
+app.get('/api/home/view/shops', fetchViewShops)
+
 
 // Verify token
 function verifyToken(req, res, next) {

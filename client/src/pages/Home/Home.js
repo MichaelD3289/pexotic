@@ -12,6 +12,7 @@ import data from '../../data/content/home-page'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../redux/reducers/categoryReducer';
 import { getPopularListings } from '../../redux/reducers/popularListing'
+import { fetchShops } from '../../redux/reducers/viewShops'
 
 function Home() {
 
@@ -19,11 +20,12 @@ function Home() {
   useEffect(() => {
     dispatch(getPopularListings())
     dispatch(fetchCategories())
+    dispatch(fetchShops())
     window.scrollTo(0, 0)
   }, [])
   
   const categories = useSelector(state => state.categories.filter((c, index) => index < 5))
-
+  const shops = useSelector(state => state.viewShops.filter((c, index) => index < 5))
 
   
 
@@ -40,7 +42,8 @@ function Home() {
     <BreakLine />
     <CardNavBarBottom 
     header={navTitles[1]}
-    learnMore={navMoreText[1]} 
+    learnMore={navMoreText[1]}
+    cards={shops} 
     />
     <BreakLine />
     <CardNavBarTop 

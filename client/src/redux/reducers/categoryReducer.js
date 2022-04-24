@@ -7,7 +7,7 @@ export const fetchCategories = () => dispatch => {
   dispatch({ type: `${FETCH_CATEGORIES}_PENDING` })
   axios.get('/api/categories')
     .then(res => {
-      console.log(res.data)
+     
       dispatch({ type: `${FETCH_CATEGORIES}_FULFILLED`, payload: res.data })
 })
 }

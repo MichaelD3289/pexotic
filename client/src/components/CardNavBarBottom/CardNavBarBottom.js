@@ -2,7 +2,7 @@ import React from 'react'
 import './CardNavBarBottom.css'
 import NavBarCard from './NavBarCard/NavBarCard'
 
-function CardNavBarBottom({header, learnMore}) {
+function CardNavBarBottom({header, learnMore, cards}) {
 
   learnMore = learnMore.split(' ')
   return (
@@ -16,11 +16,9 @@ function CardNavBarBottom({header, learnMore}) {
             {learnMore[1]}
         
         </li>
-        <NavBarCard />
-        <NavBarCard />
-        <NavBarCard />
-        <NavBarCard />
-        <NavBarCard />
+        {cards.map((card) => (
+          <NavBarCard key={card.seller_id} cardInfo={card} />
+        ))}
       </ul>
       <div className='color-bar-b'>
         <h2 className='nav-name-b'>{header}</h2>
