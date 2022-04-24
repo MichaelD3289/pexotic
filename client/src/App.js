@@ -27,7 +27,7 @@ function App() {
 const token = useSelector(state => state.currentUser.token) || localStorage.getItem('access_token') || null
 
 const dispatch = useDispatch()
-console.log(token)
+
   useEffect(() => {
 
     

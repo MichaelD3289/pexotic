@@ -11,13 +11,13 @@ import data from '../../data/content/home-page'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../redux/reducers/categoryReducer';
-
+import { getPopularListings } from '../../redux/reducers/popularListing'
 
 function Home() {
   
   const dispatch = useDispatch()
   useEffect(() => {
-    
+    dispatch(getPopularListings())
     dispatch(fetchCategories())
   }, [])
   

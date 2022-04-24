@@ -12,6 +12,7 @@
   position: absolute;
   top: 7px;
   right: 7px;
+  z-index: 100;
 }
 
 #heart-container:hover {

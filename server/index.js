@@ -16,7 +16,7 @@ const {
 } = require('./controllers/userController');
 const {  } = require('./controllers/images/imgController');
 const { fetchCategories } = require('./controllers/categoryController');
-const { getListing } = require('./controllers/listingController');
+const { getListing, getPopularListings } = require('./controllers/listingController');
 const {
 getCart, addToCart, removeFromCart, updateCart
 } = require('./controllers/cartController');
@@ -48,6 +48,10 @@ app.post(`/api/seed`, seed)
   // /api/listing
 
   app.get(`/api/listings/:id`, getListing);
+
+  // /api/listing/popular
+
+  app.get('/api/listing/popular', getPopularListings);
   
 
   // api/categories

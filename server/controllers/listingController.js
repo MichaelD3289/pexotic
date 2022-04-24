@@ -16,4 +16,20 @@ module.exports = {
           .then(dbRes => res.status(200).send(dbRes[0]))
           .catch(err => console.log(err));
     },
+    getPopularListings: (req, res) => {
+        const { limit } = req.query;
+
+        sequelize
+          .query(`
+          SELECT *
+          
+          FROM listings
+          
+          ORDER BY number_sold DESC
+          LIMIT ${limit}
+          ;          
+          `)
+          .then(dbRes => res.status(200).send(dbRes[0]))
+          .catch(err => console.log(err));
+    },
 }

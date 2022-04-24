@@ -9,11 +9,13 @@ import accountSuccessReducer from './reducers/accountSuccess';
 import currentListingReducer from './reducers/currentListing'
 import allFavoritesReducer from './reducers/allFavorites'
 import userCartReducer from './reducers/userCart'
+import popularListingReducer from './reducers/popularListing'
 
 const rootReducer = combineReducers({
   // reducers go here
   currentUser: currentUserReducer,
   categories: categoryReducer,
+  popularListings: popularListingReducer,
   accountPopUp: accountPopUpReducer,
   accountSuccess: accountSuccessReducer,
   currentListing: currentListingReducer,

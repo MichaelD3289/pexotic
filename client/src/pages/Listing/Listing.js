@@ -10,13 +10,16 @@ import FavoriteHeart from '../../components/FavoriteHeart/FavoriteHeart'
 
 
 function Listing() {
+
   const dispatch = useDispatch()
 
   const listing = useSelector(state => state.currentListing)
+
+  console.log(localStorage.getItem('listingID'))
+
   useEffect(() => {
-    console.log('ran')
-    dispatch(getListing(41))
-  }, [])
+    dispatch(getListing(parseInt(window.location.href.split('/')[5])))
+  }, [dispatch])
 
 
   return (
