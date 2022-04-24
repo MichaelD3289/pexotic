@@ -12,9 +12,6 @@
 .cart-icon-hover {
   width: 1px;
   height: 1px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 50%;
   position: absolute;
   transition: width .25s ease-in-out, height .25s ease-in-out, opacity .25s ease-in-out;

@@ -12,6 +12,7 @@ const CLEAR_CART = 'CLEAR_CART'
 export const getUserCart = () => dispatch => {
   axios.get('/api/user/cart')
     .then(res => {
+
       dispatch({
         type: GET_USER_CART,
         payload: res.data
@@ -25,14 +26,30 @@ export const getUserCart = () => dispatch => {
 export const addItemToCart = (listingID, qty) => dispatch => {
   axios.post('/api/user/cart', {listing_id: listingID, qty: qty})
     .then(res => {
+      
+      const {cartItem, listing} = res.data
+      const {listing_id, qty, cart_item_id} = cartItem
+      const {listing_name, main_photo, seller_id, shipping_price, current_discount, price} = listing
       dispatch({
         type: ADD_ITEM_TO_CART,
-        payload: res.data
-      })
+        payload:   {
+          cart_item_id: cart_item_id,
+          listing_id: listing_id,
+          listing_name: listing_name,
+          qty: qty,
+          price: price,
+          shipping_price: shipping_price,
+          seller_id: seller_id,
+          main_photo: main_photo,
+          current_discount: current_discount
+        
+      }
     })
+  })
     .catch(err => {
       console.log(err)
     })
+
 }
 
 export const updateItemInCart = (listingID, qty) => dispatch => {
@@ -74,6 +91,25 @@ export const clearCart = () => dispatch => {
     })
 }
 
+
+
+// initial state
+// cart object shape
+  /* 
+  {
+    cart_item_id: INT,
+    listing_id: INT,
+    listing_name: STRING,
+    qty: INT,
+    price: INT,
+    shipping_price: INT,
+    seller_id: INT,
+    main_photo: STRING,
+    current_discount: INT
+  },
+  */
+
+
 // reducer function
 export default function userCartReducer(state = [], action) {
   
@@ -82,7 +118,10 @@ export default function userCartReducer(state = [], action) {
       return action.payload
 
     case ADD_ITEM_TO_CART:
-      return [...state, action.payload]
+
+      const newState = state.filter(item => item.listing_id !== action.payload.listing_id)
+      
+      return  [...newState, action.payload]
 
     case UPDATE_ITEM_IN_CART:
       return state.map(item => {

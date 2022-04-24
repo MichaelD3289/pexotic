@@ -18,6 +18,7 @@ import Footer from './components/Footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveCurrentUser, unVerifyUser, verifyUser } from './redux/reducers/currentUser'
 import { getAllFavorites } from './redux/reducers/allFavorites'
+import { getUserCart } from './redux/reducers/userCart'
 
 import LogInPopUp from './components/LogInPopUp/LogInPopUp'
 
@@ -46,6 +47,7 @@ console.log(token)
       dispatch(verifyUser())
       dispatch(saveCurrentUser(token))
       dispatch(getAllFavorites())
+      dispatch(getUserCart())
     })
     .catch(err => {
       dispatch(unVerifyUser())

@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom'
 import greenCheckMark from '../../../assets/icons/checkmark-circle-icon.svg'
 import redXIcon from '../../../assets/icons/red-x-circle-icon.svg'
 import OutlineButton from '../../Buttons/OutlineButton'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { addItemToCart } from '../../../redux/reducers/userCart'
 
 function ListingInfoHolder() {
+  const [qtyInput, setQtyInput] = React.useState(1)
+  const dispatch = useDispatch();
   const listing = useSelector(state => state.currentListing)
   
-  let { category, currentDiscount, price, qty, shippingPrice, speciesId, name, shopLogo, shopName, sellerId } = listing
-
-  // changing extension of image to .png for testing purposes
+  let { id, category, currentDiscount, price, qty, shippingPrice, speciesId, name, shopLogo, shopName, sellerId } = listing
 
   
   return (
@@ -69,7 +69,14 @@ function ListingInfoHolder() {
             </div>
           <div className='listing-qty-container'>
             <p>Quantity</p>
-            <input type="number" min="1" max={qty} defaultValue="1" id="quantity" />
+            <input 
+            type="number" 
+            min="1" 
+            max={qty} 
+            value={qtyInput} 
+            id="quantity"
+            onChange={(e) => setQtyInput(e.target.value)}
+            />
             </div>
         </div>
 
@@ -82,6 +89,7 @@ function ListingInfoHolder() {
           </OutlineButton>
           <OutlineButton
           disabled={qty === 0}
+          onClick={() => dispatch(addItemToCart(id, qtyInput))}
           >
             {qty === 0 ? 'Out of Stock' : 'Add to Cart'}
           </OutlineButton>

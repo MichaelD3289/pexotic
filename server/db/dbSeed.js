@@ -45,7 +45,7 @@ module.exports = {
       
       CREATE TABLE cart(
       cart_id SERIAL PRIMARY KEY,
-      user_id UUID NOT NULL REFERENCES users(user_id),
+      user_id UUID UNIQUE NOT NULL REFERENCES users(user_id),
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL
       );
@@ -182,8 +182,9 @@ module.exports = {
       );
       
       CREATE TABLE cart_item(
-      cart_item SERIAL PRIMARY KEY,
-      user_id UUID NOT NULL REFERENCES users(user_id),
+      cart_item_id SERIAL PRIMARY KEY,
+      cart_id INT NOT NULL REFERENCES cart(cart_id),
+      qty INT NOT NULL,
       listing_id INT NOT NULL REFERENCES listings(listing_id),
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL

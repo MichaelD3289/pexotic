@@ -17,6 +17,10 @@ const {
 const {  } = require('./controllers/images/imgController');
 const { fetchCategories } = require('./controllers/categoryController');
 const { getListing } = require('./controllers/listingController');
+const {
+getCart, addToCart, removeFromCart, updateCart
+} = require('./controllers/cartController');
+
 
 // Seed File
 const { seed } = require('./db/dbSeed')
@@ -34,6 +38,12 @@ app.post(`/api/seed`, seed)
   app.post(`/api/user/favorites`, verifyToken, addFavorite)
   app.delete(`/api/user/favorites/:id`, verifyToken, removeFavorite)
 
+  // /api/users/cart
+
+  app.get('/api/user/cart', verifyToken, getCart)
+  app.post('/api/user/cart', verifyToken, addToCart)
+  app.put('/api/user/cart/:listingId', verifyToken, updateCart)
+  app.delete('/api/user/cart/:listingId', verifyToken, removeFromCart)
 
   // /api/listing
 
