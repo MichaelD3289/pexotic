@@ -6,8 +6,6 @@ import BreakLine from '../../components/BreakLine/BreakLine'
 import { useDispatch, useSelector} from 'react-redux'
 import { getListing } from '../../redux/reducers/currentListing'
 
-import FavoriteHeart from '../../components/FavoriteHeart/FavoriteHeart'
-
 
 function Listing() {
 
@@ -15,10 +13,9 @@ function Listing() {
 
   const listing = useSelector(state => state.currentListing)
 
-  console.log(localStorage.getItem('listingID'))
-
   useEffect(() => {
     dispatch(getListing(parseInt(window.location.href.split('/')[5])))
+    window.scrollTo(0, 0)
   }, [dispatch])
 
 

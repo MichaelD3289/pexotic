@@ -8,12 +8,10 @@ import FavoriteHeart from '../../../FavoriteHeart/FavoriteHeart'
 
 function MainProductPhoto() {
   const [isHovered, setIsHovered] = React.useState(false)
+  const listing = useSelector(state => state.currentListing)
+  const { id, photoUrls, name } = listing
 
   const dispatch = useDispatch()
-
-  const listing = useSelector(state => state.currentListing)
-
-  const { id, photoUrls, name, isFavorite } = listing
 
   return (
     <div 
@@ -21,12 +19,11 @@ function MainProductPhoto() {
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
     >
-      {isHovered && 
+
       <FavoriteHeart 
-      isFavorited={isFavorite} 
       id={id}
-      actionFunction={addOrDeleteFavorite}
-      />}
+      isHovered={isHovered}
+      />
       <img src={`/static/${photoUrls.mainPhoto}`} className='main-photo' alt={name}/>
     </div>
   )

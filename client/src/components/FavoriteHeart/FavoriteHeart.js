@@ -5,29 +5,35 @@ import emptyHeart from '../../assets/icons/heart-empty.svg'
 import filledHeart from '../../assets/icons/heart-filled.svg'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleIsFavorite } from '../../redux/reducers/currentListing'
+import { addOrDeleteFavorite } from '../../redux/reducers/allFavorites'
 
-function FavoriteHeart({isFavorited, id, actionFunction, ...props}) {
-  
-  const inFavoritesList = useSelector(state => state.allFavorites.includes(id))
-
-
-  const [isFavorite, setIsFavaorite] = React.useState(inFavoritesList || isFavorited)
-
-
-  const heartIcon = isFavorite ? filledHeart : emptyHeart
-  const action = isFavorite ? 'delete' : 'add'
+function FavoriteHeart({id, actionFunction, isHovered, style, ...props}) {
+  const [isFavorited, setIsFavorited] = React.useState(false)
   const dispatch = useDispatch()
+  const favoriteList = useSelector(state => state.allFavorites)
+
+  React.useEffect(() => {
+    setIsFavorited(favoriteList.includes(id))
+  }, [])
+
+  const toggleFavorite = (id, action) => {
+    setIsFavorited(!isFavorited)
+    dispatch(addOrDeleteFavorite(id, action))
+  }
+
+  const heartIcon = isFavorited ? filledHeart : emptyHeart
+  const action = isFavorited ? 'delete' : 'add'
+  
+  const display = isHovered ? 'flex' : 'none'
 
   return (
     <div
     id='heart-container'
      {...props}
      onClick={() => {
-       setIsFavaorite(!isFavorite)
-       dispatch(toggleIsFavorite())
-       dispatch(actionFunction(id, action))
+       toggleFavorite(id, action)
     }}
+    style={{...style, display: display}}
      >
       <img src={heartIcon} 
       alt="heart icon" 

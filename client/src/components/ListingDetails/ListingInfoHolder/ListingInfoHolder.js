@@ -64,7 +64,7 @@ function ListingInfoHolder() {
           <div className='listing-price-container'>
             <h2>
               <span className="dollar-sign">$ </span>
-               {price.toFixed(2)}
+               {price && price.toFixed(2)}
                </h2>
             </div>
           <div className='listing-qty-container'>

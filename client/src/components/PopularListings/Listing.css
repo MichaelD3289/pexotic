@@ -2,16 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 130px;
-  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .popular-listing-item {
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 130px;
   background-color: white;
   cursor: pointer;
+  position: relative;
 }
 
 .popular-listing-img {
@@ -43,7 +43,7 @@
   font-size: 20px;
   font-weight: 800;
   color: rgb(105, 105, 105);
-  content: "Out of Stock";
+  content: "Unavailable";
   position: absolute;
   top: 50%;
   left: 50%;

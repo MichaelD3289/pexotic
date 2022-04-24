@@ -14,11 +14,12 @@ import { fetchCategories } from '../../redux/reducers/categoryReducer';
 import { getPopularListings } from '../../redux/reducers/popularListing'
 
 function Home() {
-  
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getPopularListings())
     dispatch(fetchCategories())
+    window.scrollTo(0, 0)
   }, [])
   
   const categories = useSelector(state => state.categories.filter((c, index) => index < 5))

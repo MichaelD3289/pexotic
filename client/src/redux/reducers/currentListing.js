@@ -33,7 +33,6 @@ export const getListing = (listingID) => dispatch => {
           sellerId: seller_id,
           speciesId: species_id,
           numberSold: number_sold,
-          isFavorite: false,
           shopLogo: shoplogo,
           shopName: shopname
         }
