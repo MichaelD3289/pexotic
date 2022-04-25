@@ -12,6 +12,7 @@ import userCartReducer from './reducers/userCart'
 import popularListingReducer from './reducers/popularListing'
 import viewShopsReducer from './reducers/viewShops'
 import recentlyViewedReducer from './reducers/recentlyViewed'
+import currentShopReducer from './reducers/currentShop'
 
 const rootReducer = combineReducers({
   // reducers go here
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   allFavorites: allFavoritesReducer,
   userCart: userCartReducer,
   viewShops: viewShopsReducer,
-  recentlyViewed: recentlyViewedReducer
+  recentlyViewed: recentlyViewedReducer,
+  currentShop: currentShopReducer
 
 });
 

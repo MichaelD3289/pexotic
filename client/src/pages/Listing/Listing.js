@@ -11,6 +11,7 @@ import useAddToRecents from '../../hooks/useAddToRecents'
 
 function Listing() {
   
+
   const dispatch = useDispatch()
   
   
@@ -21,6 +22,7 @@ function Listing() {
     dispatch(getListing(parseInt(window.location.href.split('/')[5])))
     
     window.scrollTo(0, 0)
+    
   }, [dispatch])
 
 

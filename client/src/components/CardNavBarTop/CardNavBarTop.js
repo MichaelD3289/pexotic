@@ -1,6 +1,7 @@
 import React from 'react'
 import './CardNavBarTop.css'
 import NavBarCard from './NavBarCard/NavBarCard';
+import { Link } from 'react-router-dom'
 
 function CardNavBarTop({header, learnMore, cards}) {
 
@@ -14,8 +15,8 @@ function CardNavBarTop({header, learnMore, cards}) {
 
       <ul className='nav-list'>
       {cards.map((card) => (
-        <NavBarCard 
-        key={card.category_id || card.listing_id}
+<NavBarCard
+        key={card.category_id || card.listing_id} 
         id={card.category_id || card.listing_id}
         image_url={card.image_url || card.main_photo}
         image_alt={card.image_alt || card.listing_name}
@@ -26,11 +27,11 @@ function CardNavBarTop({header, learnMore, cards}) {
       ))
         }
  
-        <li className='nav-item see-more'>    
+        {cards.length > 4 && <li className='nav-item see-more'>    
             {learnMore[0]}
             <br/>
             {learnMore[1]}
-        </li>
+        </li>}
 
       </ul>
     </nav>

@@ -24,12 +24,13 @@ function Home() {
     dispatch(fetchCategories())
     dispatch(fetchShops())
     window.scrollTo(0, 0)
+    document.title = 'Pexotic | Home'
   }, [token])
   
   const categories = useSelector(state => state.categories.filter((c, index) => index < 5))
   const shops = useSelector(state => state.viewShops.filter((c, index) => index < 5))
   const recentlyViewed = useSelector(state => state.recentlyViewed.filter((c, index) => index < 5))
-  
+  const noRecents = recentlyViewed.length === 0
 
   const {navTitles, navMoreText} = data
 
@@ -48,12 +49,12 @@ function Home() {
     cards={shops} 
     />
     <BreakLine />
-    <CardNavBarTop 
+    {!noRecents && <><CardNavBarTop 
     header={navTitles[2]}
     learnMore={navMoreText[2]}
     cards={recentlyViewed} 
     />
-    <BreakLine />
+    <BreakLine /></>}
     <PopularListings />
     <BreakLine />
     <InfoCards />

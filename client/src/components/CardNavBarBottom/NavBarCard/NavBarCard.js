@@ -1,6 +1,6 @@
 import React from 'react'
 import './NavBarCard.css'
-import shopImg from '../../../assets/placeholders/shop-placeholder.png'
+import { Link } from 'react-router-dom'
 
 function NavBarCard({cardInfo}) {
   let {seller_id, img_url, company_name} = cardInfo
@@ -13,7 +13,10 @@ function NavBarCard({cardInfo}) {
 
   return (
     <li className='nav-item-b'>
-    <a className='nav-link-b' href='#'>
+    <Link 
+      className='nav-link-b' 
+      to='/breeder/shop/45/name'
+    >
       <h4 className='nav-item-title-b'>
         {company_name}
       </h4>
@@ -22,7 +25,7 @@ function NavBarCard({cardInfo}) {
         <img className='nav-item-img-b' src={`/static/${img_url.replace('jpg', 'png')}`} alt="" />
       </div>
       
-    </a>
+    </Link>
     
   </li>
   )

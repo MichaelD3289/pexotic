@@ -1,5 +1,6 @@
 import React from 'react'
 import './NavBarCard.css'
+import {Link} from 'react-router-dom'
 
 import FavoriteHeart from '../../FavoriteHeart/FavoriteHeart'
 import PriceBadge from '../../PriceBadge/PriceBadge'
@@ -22,18 +23,14 @@ function NavBarCard({id, image_url, image_alt, card_name, qty, price, ...props})
       <FavoriteHeart 
         id={id} 
         isHovered={isHovered}
-        // style={{
-        //   width: '40px',
-        //   height: '40px',
-        //   top: '5px',
-        //   right: '50%',
-        //   transform: 'translateX(50%)'
-        // }} 
       />}
-          <a className='nav-link' href='#'>
+          <Link
+            to={!price ? `/categories/${id}` : `/product/listing/${id}`}
+            className='nav-link'
+          >
             <img className='nav-item-img' src={`/static/${image_url}`} alt={image_alt} />
             <h4 className='nav-item-title'>{card_name}</h4>
-          </a>
+          </Link>
           {price && 
           <PriceBadge 
             price={price}

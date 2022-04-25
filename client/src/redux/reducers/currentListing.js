@@ -84,6 +84,7 @@ export default function currentListingReducer(state=initialState, action) {
   switch (action.type) {
     // case statements
    case GET_LISTING:
+    document.title = `Pexotic | Listing | ${action.payload.name.replace(/\s+/g, '-')} | ${action.payload.shopName}`
       return {
         ...state,
         ...action.payload

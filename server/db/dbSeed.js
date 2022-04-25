@@ -62,6 +62,7 @@ module.exports = {
       seller_id SERIAL PRIMARY KEY,
       company_name VARCHAR(50) NOT NULL,
       img_url VARCHAR(100) NOT NULL,
+      cover_img_url VARCHAR(100) NULL,
       user_id UUID NOT NULL REFERENCES users(user_id)
       );
       
