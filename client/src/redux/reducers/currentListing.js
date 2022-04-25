@@ -12,7 +12,7 @@ export const getListing = (listingID) => dispatch => {
     .get(`/api/listings/${listingID}`)
     .then(({data}) => {
       
-      const {listing_id, listing_name, description, price, sku, shipping_price, current_discount, main_photo, subcategory_id, seller_id, species_id, number_sold, qty_in_stock, photo_two, photo_three, photo_four, photo_five, shoplogo, shopname} = data[0]
+      const {listing_id, listing_name, description, price, sku, shipping_price, current_discount, main_photo, category_id, seller_id, species_id, number_sold, qty_in_stock, photo_two, photo_three, photo_four, photo_five, shoplogo, shopname} = data[0]
 
       dispatch({
         type: GET_LISTING,
@@ -29,7 +29,7 @@ export const getListing = (listingID) => dispatch => {
             mainPhoto: main_photo,
             altImages: [main_photo, photo_two, photo_three, photo_four, photo_five]
           },
-          category: subcategory_id,
+          category: category_id,
           sellerId: seller_id,
           speciesId: species_id,
           numberSold: number_sold,

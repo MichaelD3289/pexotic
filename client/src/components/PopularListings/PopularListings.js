@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux'
 function PopularListings() {
 
   const popularListings = useSelector(state => state.popularListings)
-
+  
   return (
     <section id='popular-listings'>
       <h2 
@@ -23,7 +23,7 @@ function PopularListings() {
           id={listing.listing_id}
           title={listing.listing_name}
           price={listing.price}
-          qty={listing.qty}
+          qty={listing.qty_in_stock}
           main_photo={listing.main_photo}
           isFavorite={listing.isFavorite}
           />

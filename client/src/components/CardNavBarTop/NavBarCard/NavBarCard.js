@@ -15,7 +15,7 @@ function NavBarCard({id, image_url, image_alt, card_name, qty, price, ...props})
   
   return (
     <li 
-    className='nav-item'
+    className={`nav-item ${qty === 0 ? 'out-of-stock' : ''}`}
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
     >
@@ -36,7 +36,9 @@ function NavBarCard({id, image_url, image_alt, card_name, qty, price, ...props})
             price={price}
             style={{
               padding: '6px 14px 6px',
-              fontSize: '1rem'
+              fontSize: '1rem',
+              bottom: '10px',
+              left: '0',
             }} 
           />}
         </li>

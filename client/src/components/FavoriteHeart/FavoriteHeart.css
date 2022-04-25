@@ -13,6 +13,21 @@
   top: 7px;
   right: 7px;
   z-index: 100;
+  animation: display 0.4s ease-in-out;
+}
+
+@keyframes display {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  
 }
 
 #heart-container:hover {

@@ -12,7 +12,7 @@ function Listing({ id, title, price, qty, main_photo, isFavorite, ...props }) {
   const [isHovered, setIsHovered] = React.useState(false)
   
   const dispatch = useDispatch()
-
+  
   return (
 
     <div 

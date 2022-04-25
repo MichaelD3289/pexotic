@@ -3,7 +3,6 @@ import './CardNavBarTop.css'
 import NavBarCard from './NavBarCard/NavBarCard';
 
 function CardNavBarTop({header, learnMore, cards}) {
-
   learnMore = learnMore.split(' ')
 
   return (

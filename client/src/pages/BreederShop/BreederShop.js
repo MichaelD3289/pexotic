@@ -12,16 +12,14 @@ import ShopListings from '../../components/ShopListings/ShopListings'
 function BreederShop() {
 
   const dispatch = useDispatch()
-  const {shop, shopsListings} = useSelector(state => state.currentShop)
-
-  const [shopCategories, setShopCategories] = React.useState([...new Set(shopsListings.map(l => l.category_name))] || [])
+  const {shop, shopsListings, shopCategories, searchCategory} = useSelector(state => state.currentShop)
   
   React.useEffect(() => {
  
     dispatch(getShop(parseInt(window.location.href.split('/')[5])))
-    setShopCategories([...new Set(shopsListings.map(l => l.category_name))])
+  
     window.scrollTo(0, 0)
-  },[])
+  },[dispatch])
   
   return (
     <main id="breederShop">
@@ -84,7 +82,8 @@ function BreederShop() {
       shopCategories={shopCategories}
       />
       <ShopListings 
-        shopsListings={shopsListings} 
+        shopsListings={shopsListings}
+        searchTerm={searchCategory} 
       />
 
       <BreakLine />

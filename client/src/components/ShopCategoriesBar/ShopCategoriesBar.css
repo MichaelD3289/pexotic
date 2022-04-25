@@ -47,3 +47,12 @@
 .shop-category-item:active {
   background-color: #328b2d;
 }
+
+.shop-category-item.all {
+  background-color: #EA823E;
+  padding: 13px 18px;
+}
+
+.shop-category-item.active {
+  transform: scale(1.2, 1.3);
+}
