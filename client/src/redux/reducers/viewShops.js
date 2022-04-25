@@ -7,7 +7,7 @@ export const fetchShops = () => dispatch => {
   dispatch({ type: `${FETCH_SHOPS}_PENDING` })
   axios.get('/api/home/view/shops?limit=5')
     .then(res => {
-      console.log(res.data)
+      
       dispatch({ type: `${FETCH_SHOPS}_FULFILLED`, payload: res.data })
 })
 }

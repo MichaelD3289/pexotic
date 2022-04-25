@@ -4,7 +4,6 @@ import NavBarCard from './NavBarCard/NavBarCard';
 
 function CardNavBarTop({header, learnMore, cards}) {
 
-
   learnMore = learnMore.split(' ')
 
   return (
@@ -15,7 +14,15 @@ function CardNavBarTop({header, learnMore, cards}) {
 
       <ul className='nav-list'>
       {cards.map((card) => (
-        <NavBarCard key={card.category_id} cardInfo={card} />
+        <NavBarCard 
+        key={card.category_id || card.listing_id}
+        id={card.category_id || card.listing_id}
+        image_url={card.image_url || card.main_photo}
+        image_alt={card.image_alt || card.listing_name}
+        card_name={card.category_name || card.listing_name}
+        qty={card.qty}
+        price={card.price}
+         />
       ))
         }
  

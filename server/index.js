@@ -16,7 +16,9 @@ const {
 } = require('./controllers/userController');
 const {  } = require('./controllers/images/imgController');
 const { fetchCategories } = require('./controllers/categoryController');
-const { getListing, getPopularListings } = require('./controllers/listingController');
+const { 
+  getListing, getPopularListings, fetchViewed, addViewed  
+} = require('./controllers/listingController');
 const {
 getCart, addToCart, removeFromCart, updateCart
 } = require('./controllers/cartController');
@@ -61,10 +63,12 @@ app.get('/api/categories', fetchCategories)
 // /api/shops
 app.get('/api/home/view/shops', fetchViewShops)
 
+// /api/home/recently/viewed
+app.get('/api/home/recently/viewed', verifyToken, fetchViewed)
+app.post('/api/home/recently/viewed', verifyToken, addViewed)
 
 // Verify token
 function verifyToken(req, res, next) {
-  
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 

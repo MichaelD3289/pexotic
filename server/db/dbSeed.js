@@ -189,6 +189,15 @@ module.exports = {
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL
       );
+
+      CREATE TABLE viewed_listings(
+      viewed_listings_id SERIAL PRIMARY KEY,
+      user_id UUID NOT NULL REFERENCES users(user_id),
+      listing_id INT NOT NULL REFERENCES listings(listing_id),
+      created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+      modified_at TIMESTAMP NOT NULL,
+      UNIQUE (user_id, listing_id)
+      );
       
       INSERT INTO category(category_name, image_url, image_alt, modified_at)
       VALUES

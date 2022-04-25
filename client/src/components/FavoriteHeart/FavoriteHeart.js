@@ -7,7 +7,7 @@ import filledHeart from '../../assets/icons/heart-filled.svg'
 import { useSelector, useDispatch } from 'react-redux'
 import { addOrDeleteFavorite } from '../../redux/reducers/allFavorites'
 
-function FavoriteHeart({id, actionFunction, isHovered, style, ...props}) {
+function FavoriteHeart({id, isHovered, style, ...props}) {
   const [isFavorited, setIsFavorited] = React.useState(false)
   const dispatch = useDispatch()
   const favoriteList = useSelector(state => state.allFavorites)

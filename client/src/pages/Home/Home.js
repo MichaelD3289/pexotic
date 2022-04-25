@@ -13,20 +13,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../../redux/reducers/categoryReducer';
 import { getPopularListings } from '../../redux/reducers/popularListing'
 import { fetchShops } from '../../redux/reducers/viewShops'
+import { fetchRecentlyViewed } from '../../redux/reducers/recentlyViewed'
 
 function Home() {
-
+  const token = useSelector(state => state.currentUser.token)
   const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(fetchRecentlyViewed())
     dispatch(getPopularListings())
     dispatch(fetchCategories())
     dispatch(fetchShops())
     window.scrollTo(0, 0)
-  }, [])
+  }, [token])
   
   const categories = useSelector(state => state.categories.filter((c, index) => index < 5))
   const shops = useSelector(state => state.viewShops.filter((c, index) => index < 5))
-
+  const recentlyViewed = useSelector(state => state.recentlyViewed.filter((c, index) => index < 5))
   
 
   const {navTitles, navMoreText} = data
@@ -49,7 +51,7 @@ function Home() {
     <CardNavBarTop 
     header={navTitles[2]}
     learnMore={navMoreText[2]}
-    cards={categories} 
+    cards={recentlyViewed} 
     />
     <BreakLine />
     <PopularListings />
