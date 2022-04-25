@@ -22,7 +22,7 @@ const {
 const {
 getCart, addToCart, removeFromCart, updateCart
 } = require('./controllers/cartController');
-const { fetchViewShops } = require('./controllers/shopController');
+const { fetchViewShops, fetchShop } = require('./controllers/shopController');
 
 
 // Seed File
@@ -62,6 +62,7 @@ app.get('/api/categories', fetchCategories)
 
 // /api/shops
 app.get('/api/home/view/shops', fetchViewShops)
+app.get('/api/shops/:shopId', fetchShop)
 
 // /api/home/recently/viewed
 app.get('/api/home/recently/viewed', verifyToken, fetchViewed)

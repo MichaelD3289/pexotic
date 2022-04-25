@@ -5,7 +5,7 @@ const VERIFY_USER = 'VERIFY_USER'
 
 // action functions
 export const saveCurrentUser = (token) => {
-  console.log(token)
+  
   return {
     type: SAVE_CURRENT_USER,
     payload: token

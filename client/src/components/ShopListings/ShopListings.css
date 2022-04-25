@@ -1,0 +1,11 @@
+#shop-listing-container {
+  width: 100%;
+}
+
+.listing-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}

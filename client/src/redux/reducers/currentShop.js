@@ -6,18 +6,37 @@ export const getShop = (shopId) => dispatch => {
   dispatch({ type: `${GET_SHOP}_PENDING` })
   axios.get(`/api/shops/${shopId}`)
     .then(res => {
-      dispatch({ type: `${GET_SHOP}_FULFILLED`, payload: res.data })
+      
+     let [shop, ...shopsListings] = res.data;
+     document.title = `Pexotic | Breeder Shop | ${shop.company_name}`
+      dispatch({ 
+        type: `${GET_SHOP}_FULFILLED`, 
+        payload: { shop, shopsListings }} 
+      )
     })
     .catch(err => {
       console.log(err)
     })
   }
 
-export default function currentShopReducer(state = {}, action) {
+  //initial state
+  const initialState = {
+    shop: {
+      seller_id: '',
+      company_name: '',
+      img_url: '',
+      cover_img_url: '',
+      city: '',
+      state: ''
+    },
+    shopsListings: []
+  }
+
+export default function currentShopReducer(state = initialState, action) {
   switch (action.type) {
-    case 'FETCH_CURRENT_SHOP_FULFILLED':
+    case `${GET_SHOP}_FULFILLED`:
       return action.payload;
-    case 'FETCH_CURRENT_SHOP_PENDING':
+    case `${GET_SHOP}_PENDING`:
       return state;
     default:
       return state;

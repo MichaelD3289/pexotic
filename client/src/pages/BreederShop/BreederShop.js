@@ -3,18 +3,30 @@ import './BreederShop.css'
 
 import BreakLine from '../../components/BreakLine/BreakLine'
 import OutlineButton from '../../components/Buttons/OutlineButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { getShop } from '../../redux/reducers/currentShop'
+
+import ShopCategoriesBar from '../../components/ShopCategoriesBar/ShopCategoriesBar'
+import ShopListings from '../../components/ShopListings/ShopListings'
 
 function BreederShop() {
+
+  const dispatch = useDispatch()
+  const {shop, shopsListings} = useSelector(state => state.currentShop)
+
+  const [shopCategories, setShopCategories] = React.useState([...new Set(shopsListings.map(l => l.category_name))] || [])
   
   React.useEffect(() => {
-    document.title = 'Pexotic | Breeder Shop'
+ 
+    dispatch(getShop(parseInt(window.location.href.split('/')[5])))
+    setShopCategories([...new Set(shopsListings.map(l => l.category_name))])
     window.scrollTo(0, 0)
-  })
-
+  },[])
+  
   return (
     <main id="breederShop">
       <div className='cover-img-holder'>
-        <img src="/static/cover-placeholder.jpg" alt="cover placeholder" className="cover-img" />
+        <img src={`/static/${shop.cover_img_url}`} alt="cover placeholder" className="cover-img" />
       </div>
 
       <div className='shop-info-bar'>
@@ -22,14 +34,22 @@ function BreederShop() {
 
           <div className='shop-info-left'>
             <div className='shop-info-logo-container'>
-               <img src="/static/shop-placeholder.png" alt="shop logo" className="shop-info-logo" />
+               <img src={`/static/${shop.img_url.replace('jpg', 'png')}`} alt="shop logo" className="shop-info-logo" />
             </div>
           </div>
 
           <div className='shop-info-right'>
-            <h2>The Shop Name</h2>
-            <h4>city, State</h4>
-            <h4>100 Sales</h4>
+            <h2>{shop.company_name}</h2>
+            <h4>{shop.city && shop.city},&nbsp;
+            {shop.state && shop.state.replace(
+              shop.state.charAt(0),   
+              shop.state.charAt(0).toUpperCase())}
+            </h4>
+            <h4>{
+                shopsListings.reduce((acc, listing) => {
+                  return acc + listing.number_sold
+                }, 0)
+              } Sales</h4>
             <h4 className='trusted-seller'>Trusted Seller</h4>
           </div>
         </div>
@@ -60,9 +80,15 @@ function BreederShop() {
 
       <BreakLine/>
 
-      <div className='shop-categories-container'>
+      <ShopCategoriesBar
+      shopCategories={shopCategories}
+      />
+      <ShopListings 
+        shopsListings={shopsListings} 
+      />
 
-      </div>
+      <BreakLine />
+
 
     </main>
   )

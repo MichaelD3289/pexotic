@@ -11,7 +11,6 @@ module.exports = {
       DROP TABLE IF EXISTS sellers CASCADE;
       DROP TABLE IF EXISTS orders CASCADE;
       DROP TABLE IF EXISTS category CASCADE;
-      DROP TABLE IF EXISTS subcategory CASCADE;
       DROP TABLE IF EXISTS species CASCADE;
       DROP TABLE IF EXISTS listings CASCADE;
       DROP TABLE IF EXISTS discounts CASCADE;
@@ -81,12 +80,6 @@ module.exports = {
       modified_at TIMESTAMP NOT NULL
       );
       
-      CREATE TABLE subcategory(
-      subcategory_id SERIAL PRIMARY KEY,
-      subcategory_name VARCHAR(50) NOT NULL,
-      category_ref INT NOT NULL REFERENCES category(category_id)
-      );
-      
       CREATE TABLE species(
       species_id SERIAL PRIMARY KEY,
       common_name VARCHAR(60) NOT NULL,
@@ -111,7 +104,7 @@ module.exports = {
       photo_three VARCHAR(150) NULL,
       photo_four VARCHAR(150) NULL,
       photo_five VARCHAR(150) NULL,
-      subcategory_id INT NOT NULL REFERENCES subcategory(subcategory_id),
+      category_id INT NOT NULL REFERENCES category(category_id),
       seller_id INT NOT NULL REFERENCES sellers(seller_id),
       species_id INT NOT NULL REFERENCES species(species_id),
       number_sold INT NOT NULL DEFAULT 0,

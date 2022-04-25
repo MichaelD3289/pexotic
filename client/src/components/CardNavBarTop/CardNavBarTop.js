@@ -1,7 +1,6 @@
 import React from 'react'
 import './CardNavBarTop.css'
 import NavBarCard from './NavBarCard/NavBarCard';
-import { Link } from 'react-router-dom'
 
 function CardNavBarTop({header, learnMore, cards}) {
 

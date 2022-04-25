@@ -5,11 +5,11 @@ const ADD_TO_RECENTLY_VIEWED = 'ADD_TO_RECENTLY_VIEWED'
 
 // action functions
 export const fetchRecentlyViewed = () => dispatch => {
-  console.log('fetch ran')
+  
   dispatch({ type: `${FETCH_RECENTLY_VIEWED}_PENDING` })
   axios.get('/api/home/recently/viewed?limit=5')
     .then(res => {
-      console.log(res.data)
+      
       dispatch({ type: `${FETCH_RECENTLY_VIEWED}_FULFILLED`, payload: res.data })
       })
       .catch(err => {
@@ -22,11 +22,11 @@ export const addToRecentlyViewed = (listingId) => dispatch => {
   dispatch({ type: `${ADD_TO_RECENTLY_VIEWED}_PENDING` })
   axios.post('/api/home/recently/viewed', {listingId})
     .then(res => {
-      console.log(res.data)
+      
       dispatch({ type: `${ADD_TO_RECENTLY_VIEWED}_FULFILLED`, payload: res.data })
   })
   .catch(err => {
-    console.log(err)
+    
     dispatch({ type: `${ADD_TO_RECENTLY_VIEWED}_REJECTED`, payload: err })
   })
 }
