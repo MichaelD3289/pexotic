@@ -67,7 +67,7 @@ const dispatch = useDispatch()
           <Route path='/breeder/shop/:id/:name' element={<BreederShop />} />
           <Route path='/breeder/dashboard/:id/:name' element={<BreederDashboard />} />
           <Route path='/user/profile/:id' element={<UserProfile />} />
-          <Route path='/checkout/cart/:id' element={<ShoppingCart />} />
+          <Route path='/checkout/cart' element={<ShoppingCart />} />
           <Route path='/product/listing/:id' element={<Listing />} />
           <Route path='/product/search' element={<ItemSearch />} />
       </Routes>

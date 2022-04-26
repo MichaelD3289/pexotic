@@ -1,6 +1,7 @@
 import React from 'react'
 import './CartIcon.css'
 import cartIcon from '../../assets/icons/cart-icon.svg'
+import { Link } from 'react-router-dom'
 
 import {useSelector} from 'react-redux'
 
@@ -12,7 +13,7 @@ function CartIcon() {
     }, 0)
     
   return (
-    <div className='cart-icon-container'>
+    <Link to='/checkout/cart'><div className='cart-icon-container'>
             <div className='cart-icon-hover'></div>
               <img className='cart-icon' src={cartIcon} alt="cart icon" />
             
@@ -22,7 +23,7 @@ function CartIcon() {
             >
               {numberOfItems}
             </div>}
-          </div>
+          </div></Link>
   )
 }
 

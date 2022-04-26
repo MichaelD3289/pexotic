@@ -1,0 +1,10 @@
+#cart-checkout-container {
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #3CA83680;
+  width: 60%;
+  min-width: 400px;
+  margin: auto;
+  height: auto;
+  margin-top: 50px;
+}
