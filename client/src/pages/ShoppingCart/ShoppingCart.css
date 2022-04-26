@@ -9,6 +9,7 @@
 .shopping-cart-page-left {
   width: 55%;
   height: 100%;
+  min-height: 400px;
   min-width: 500px;
 }
 
@@ -46,4 +47,15 @@
   background-color: rgba(0, 0, 0, 0.5);
     color: white;
     box-shadow: 0 0 15px rgb(0 0 0 / 40%);
+}
+
+.clear-cart-btn:active {
+  transform: scale(.95);
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  word-spacing: 2px;
 }

@@ -9,7 +9,7 @@ import BreederShop from './pages/BreederShop/BreederShop'
 import UserProfile from './pages/UserProfile/UserProfile'
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart'
 import Listing from './pages/Listing/Listing'
-import ItemSearch from './pages/ItemSearch/ItemSearch'
+import SearchPage from './pages/Search/SearchPage'
 import BreederDashboard from './pages/BreederDashboard/BreederDashboard'
 
 import Header from './components/Header/Header'
@@ -69,7 +69,7 @@ const dispatch = useDispatch()
           <Route path='/user/profile/:id' element={<UserProfile />} />
           <Route path='/checkout/cart' element={<ShoppingCart />} />
           <Route path='/product/listing/:id' element={<Listing />} />
-          <Route path='/product/search' element={<ItemSearch />} />
+          <Route path='/search' element={<SearchPage />} />
       </Routes>
         <Footer />
       </div>

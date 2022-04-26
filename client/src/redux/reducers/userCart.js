@@ -24,7 +24,7 @@ export const getUserCart = () => dispatch => {
 }
 
 export const addItemToCart = (listingID, qty) => dispatch => {
-  axios.post('/api/user/cart', {listing_id: listingID, qty: qty})
+  axios.post('/api/user/cart/item', {listing_id: listingID, qty: qty})
     .then(res => {
       
       const {cartItem, listing} = res.data
@@ -52,26 +52,29 @@ export const addItemToCart = (listingID, qty) => dispatch => {
 
 }
 
-export const updateItemInCart = (listingID, qty) => dispatch => {
-  axios.put(`/api/user/cart/${listingID}`, {qty: qty})
+export const updateItemInCart = (cartItemId, qty) => dispatch => {
+  axios.put(`/api/user/cart/item/${cartItemId}`, {qty: qty})
     .then(res => {
+      console.log(res.data)
       dispatch({
         type: UPDATE_ITEM_IN_CART,
         payload: res.data
       })
+      dispatch(getUserCart())
     })
     .catch(err => {
       console.log(err)
     })
 }
 
-export const removeItemFromCart = (listingID) => dispatch => {
-  axios.delete(`/api/user/cart/${listingID}`)
+export const removeItemFromCart = (cartItemId) => dispatch => {
+  axios.delete(`/api/user/cart/item/${cartItemId}`)
     .then(res => {
       dispatch({
         type: REMOVE_ITEM_FROM_CART,
-        payload: res.data
+        payload: res.data[0].cart_item_id
       })
+      dispatch(getUserCart())
     })
     .catch(err => {
       console.log(err)
@@ -85,6 +88,7 @@ export const clearCart = () => dispatch => {
         type: CLEAR_CART,
         payload: res.data
       })
+      dispatch(getUserCart())
     })
     .catch(err => {
       console.log(err)
@@ -125,15 +129,18 @@ export default function userCartReducer(state = [], action) {
 
     case UPDATE_ITEM_IN_CART:
       return state.map(item => {
-        if (item.listing_id === action.payload.listing_id) {
-          return action.payload
+        if (item.cart_item_id === action.payload.cart_item_id) {
+          return {
+            ...item,
+            qty: action.payload.qty
+          }
         } else {
           return item
         }
       })
 
     case REMOVE_ITEM_FROM_CART:
-      return state.filter(item => item.listing_id !== action.payload.listing_id)
+      return state.filter(item => item.cart_item_id !== action.payload)
 
     case CLEAR_CART:
       return []

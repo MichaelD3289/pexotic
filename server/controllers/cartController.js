@@ -23,7 +23,7 @@ module.exports = {
     SELECT cart_id
     FROM cart
     WHERE user_id = '${user_id}'
-  );
+  ) ORDER BY cart_item_id DESC;
     `)
       .then(cart => {
         res.status(200).send(cart[0]);
@@ -98,8 +98,20 @@ module.exports = {
     sequelize
       .query(`
       DELETE FROM cart_item
-      WHERE cart_item_id = ${req.params.cart_item_id};
+      WHERE cart_item_id = ${req.params.cartItemId}
+      RETURNING *;
+
+      UPDATE cart
+      SET modified_at = NOW()
+      WHERE user_id = '${req.user.user_id}';
       `)
+      .then(cart => {
+        res.status(200).send(cart[0]);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).send(err);
+      })
 
   },
   updateCart: (req, res) => {
@@ -107,13 +119,41 @@ module.exports = {
       .query(`
       UPDATE cart_item
       SET qty = ${req.body.qty}
-      WHERE cart_item_id = ${req.params.cart_item_id};`)
+      WHERE cart_item_id = ${req.params.cartItemId}
+      RETURNING *;
+      
+      UPDATE cart_item
+      SET modified_at = NOW()
+      WHERE cart_item_id = ${req.params.cartItemId};
+
+      UPDATE cart
+      SET modified_at = NOW()
+      WHERE cart_id = (SELECT cart_id FROM cart_item WHERE cart_item_id = ${req.params.cartItemId});
+      `)
       .then(cart => {
-        res.status(200).send(cart);
+        res.status(200).send(cart[0]);
       })
       .catch(err => {
         console.log(err);
         res.status(500).send(err);
       })
   },
+  clearCart: (req, res) => {
+    sequelize
+      .query(`
+      DELETE FROM cart_item
+      WHERE cart_id = (SELECT cart_id FROM cart WHERE user_id = '${req.user.user_id}');
+
+      UPDATE cart
+      SET modified_at = NOW()
+      WHERE user_id = '${req.user.user_id}';
+      `)
+      .then(cart => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).send(err);
+      })
+  }
 }
