@@ -1,5 +1,5 @@
 import React from 'react'
-import './ItemSearch.css'
+import './SearchPage.css'
 
 function ItemSearch() {
   return (

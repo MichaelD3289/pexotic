@@ -4,12 +4,13 @@ import {Link} from 'react-router-dom'
 import closeIcon from '../../assets/icons/close-icon.svg'
 
 import { useDispatch } from 'react-redux'
-import { updateCartItem, removeItemFromCart, clearCart } from '../../redux/reducers/userCart'
+import { updateItemInCart, removeItemFromCart, clearCart } from '../../redux/reducers/userCart'
 
 function CartListings(props) {
   const dispatch = useDispatch()
-  const { listing_id, listing_name, main_photo, price, qty, seller_id, shipping_price } = props.cart
-
+  const [updated, setUpdated] = React.useState(false)
+  const { cart_item_id, listing_id, listing_name, main_photo, price, qty, seller_id, shipping_price } = props.cart
+  
   const [isHovered, setisHovered] = React.useState(false)
 
   const [qtyInput, setQtyInput] = React.useState(qty)
@@ -28,7 +29,9 @@ function CartListings(props) {
         src={closeIcon} 
         alt="x icon to close pop up" 
         className='close-icon'
-        onClick={() => {}}
+        onClick={() => {
+          dispatch(removeItemFromCart(cart_item_id))
+        }}
         />}
 
       <div className="cart-listing-left">
@@ -57,7 +60,12 @@ function CartListings(props) {
               value={qtyInput}
               onChange={(e) => setQtyInput(e.target.value)}
             />
-            <button className='cart-listing-update-btn'>Update</button>
+            <button 
+             className='cart-listing-update-btn'
+             onClick={() => {
+               dispatch(updateItemInCart(cart_item_id, qtyInput))
+              }}
+            >Update</button>
           </div>
           <h3 className='total-price'>$ {((price * qty) + shipping_price).toFixed(2)}</h3>
         </div>

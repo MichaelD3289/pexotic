@@ -21,7 +21,8 @@ module.exports = {
       DROP TABLE IF EXISTS favorite_items CASCADE;
       DROP TABLE IF EXISTS order_items CASCADE;
       DROP TABLE IF EXISTS cart_item CASCADE;
-      
+      DROP TABLE IF EXISTS viewed_listings CASCADE;
+
       -- creating all db tables
       
       CREATE TABLE users(
@@ -191,6 +192,13 @@ module.exports = {
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL,
       UNIQUE (user_id, listing_id)
+      );
+
+      CREATE TABLE user_search_terms(
+      user_search_terms_id SERIAL PRIMARY KEY,
+      user_id UUID NOT NULL REFERENCES users(user_id),
+      search_term VARCHAR(150) NOT NULL,
+      created_at TIMESTAMP NOT NULL DEFAULT NOW()
       );
       
       INSERT INTO category(category_name, image_url, image_alt, modified_at)

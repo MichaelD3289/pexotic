@@ -38,12 +38,13 @@ function CartInfo() {
         </div>
         <OutlineButton
           className='outline-btn green'
-          style={{
+          style={cart.length > 0 ? {
             borderColor: "#3CA836",
             width: "100%",
             height: "40px",
             boxShadow: "inset 0 0 30px #3CA83680",
-          }}
+          } : {width: "100%", height: "40px"}}
+          disabled={cart.length === 0}
         >Checkout</OutlineButton>
       </div>
   )

@@ -20,7 +20,7 @@ const {
   getListing, getPopularListings, fetchViewed, addViewed  
 } = require('./controllers/listingController');
 const {
-getCart, addToCart, removeFromCart, updateCart
+getCart, addToCart, removeFromCart, updateCart, clearCart
 } = require('./controllers/cartController');
 const { fetchViewShops, fetchShop } = require('./controllers/shopController');
 
@@ -44,9 +44,10 @@ app.post(`/api/seed`, seed)
   // /api/users/cart
 
   app.get('/api/user/cart', verifyToken, getCart)
-  app.post('/api/user/cart', verifyToken, addToCart)
-  app.put('/api/user/cart/:listingId', verifyToken, updateCart)
-  app.delete('/api/user/cart/:listingId', verifyToken, removeFromCart)
+  app.post('/api/user/cart/item', verifyToken, addToCart)
+  app.put('/api/user/cart/item/:cartItemId', verifyToken, updateCart)
+  app.delete('/api/user/cart/item/:cartItemId', verifyToken, removeFromCart)
+  app.delete('/api/user/cart', verifyToken, clearCart)
 
   // /api/listing
 

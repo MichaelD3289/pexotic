@@ -8,3 +8,7 @@
   height: auto;
   margin-top: 50px;
 }
+
+#cart-checkout-container.cart-checkout-container-empty {
+  box-shadow: 0 0 15px rgb(145, 145, 145);
+}

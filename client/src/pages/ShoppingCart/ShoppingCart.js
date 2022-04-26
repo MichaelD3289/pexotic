@@ -5,6 +5,7 @@ import CartListings from '../../components/CartListings/CartListings'
 import CartCheckout from '../../components/CartCheckout/CartCheckout'
 
 import { useSelector, useDispatch } from 'react-redux'
+import { clearCart } from '../../redux/reducers/userCart'
 
 function ShoppingCart() {
 
@@ -14,7 +15,7 @@ function ShoppingCart() {
   React.useEffect(() => {
     document.title = 'Pexotic | Checkout | Cart'
     window.scrollTo(0, 0)
-  }, [])
+  }, [cart])
 
   return (
     <main id="shopping-cart-page">
@@ -25,11 +26,15 @@ function ShoppingCart() {
           {cart.length > 0 && 
           <button 
             className='clear-cart-btn'
+            onClick={() => dispatch(clearCart())}
           >
             Clear Cart
           </button>}
         </div>
-        {cart.length === 0 && <h2>Your cart is empty</h2>}
+        {cart.length === 0 && 
+        <h2 class='empty-cart'>
+          Your cart is empty
+        </h2>}
         {cart.length > 0 && cart.map(listing => (
           <CartListings 
             key={listing.listing_id + listing.listing_name + listing.cart_item_id}
