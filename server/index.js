@@ -14,7 +14,6 @@ const {
   createUser, loginUser, getAllFavorites,
   addFavorite, removeFavorite 
 } = require('./controllers/userController');
-const {  } = require('./controllers/images/imgController');
 const { fetchCategories } = require('./controllers/categoryController');
 const { 
   getListing, getPopularListings, fetchViewed, addViewed  
