@@ -210,7 +210,7 @@ function RegisterUser({setIsRegister}) {
           as="select"
           placeholder="State"
           > 
-            <option value="" disabled>Select a City</option>
+            <option value="" disabled>Select a State</option>
             {states.map(state => (
               <option key={state} value={state}>{state}</option>
             ))}

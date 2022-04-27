@@ -1,23 +1,39 @@
 import React from 'react'
 import './SearchPage.css'
+import PopularSearchTerms from '../../components/PopularSearchTerms/PopularSearchTerms'
+import filterIcon from '../../assets/icons/filter-icon.svg'
+import filterIconWhite from '../../assets/icons/filter-icon-white.svg'
+
+import FilterPopUp from '../../components/FilterPopUp/FilterPopUp'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleFilterPopUp } from '../../redux/reducers/filterPopUp'
 
 function SearchPage() {
+  const dispatch = useDispatch();
+  const filterPopUp = useSelector(state => state.filterPopUp);
+  const [filterButtonHovered, setFilterButtonHovered] = React.useState(false)
+
   return (
     <main>
-      <section className='popular-search-terms'>
-        <h2 className='popular-search-terms-title'>
-          Popular Search Terms
-        </h2>
-        <div className='search-term-container'>
+      {filterPopUp && <FilterPopUp />}
+      <PopularSearchTerms />
+      <div className='listing-filter-container'>
+        <button 
+          className='filter-btn'
+          onMouseEnter={() => setFilterButtonHovered(true)}
+          onMouseLeave={() => setFilterButtonHovered(false)}
+          onClick={() => dispatch(toggleFilterPopUp())}
+        >
+          <img
+            className='filter-icon' 
+            src={!filterButtonHovered ? filterIcon : filterIconWhite}
+            alt='filter-icon' 
+          />
+          Filters
+        </button>
+      </div>
 
-            <h3 className='search-term'>Search Term</h3>
-            <h3 className='search-term'>Search Term</h3>
-            <h3 className='search-term'>Search Term</h3>
-            <h3 className='search-term'>Search Term</h3>
-            <h3 className='search-term'>Search Term</h3>
-          </div>
-  
-      </section>
     </main>
   )
 }

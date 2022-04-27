@@ -1,0 +1,54 @@
+/* added filter container */
+
+.added-filters-contaner-ul {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  box-shadow: inset 0 0 8px rgb(0 0 0 / 25%);
+  border-radius: 15px;
+  padding: 12px 8px;
+}
+
+.added-filter-list-item {
+  background: white;
+  padding: 7px 9px;
+  border-radius: 10px;
+  box-shadow: 
+    inset 0 0 5px rgb(0 0 0 / 25%),
+    0 0 10px rgb(0 0 0 / 25%);
+    cursor: pointer;
+    position: relative;
+    transition: all .25s ease-in-out;
+}
+
+.added-filter-list-item:hover {
+  opacity: .8;
+}
+
+.added-filter-list-item:hover:after {
+  content: " x";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  animation: onItemHover .35s ease-in-out;
+}
+
+@keyframes onItemHover {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

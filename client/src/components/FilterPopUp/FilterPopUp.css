@@ -1,0 +1,79 @@
+#filter-pop-up-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1500;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeInAnimation 0.4s;
+}
+
+.filter-pop-up {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #f5f6f9;
+  height: 100%;
+  width: 30%;
+  min-width: 400px;
+  max-width: 500px;
+  padding: 50px 20px 0 50px;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.75),
+    inset 20px 0 10px -10px #3CA836,
+    inset -20px 0 10px -10px #EA823E,
+    inset 0 20px 10px -10px #3CA836,
+    inset 0 -20px 10px -10px #3CA836;
+  border-radius: 0 20px 20px 0;
+  overflow-y: auto;
+  /* border-left: 5px solid #3CA836; */
+  z-index: 1501;
+  animation: fadeInLeftAnimation 0.4s;
+}
+
+@keyframes fadeInLeftAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.filter-pop-up-title {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+.filter-pop-up-body {
+  padding: 20px;
+}
+
+.price-radio-input-container {
+  margin: 7px 0;
+  display: flex;
+  align-items: center;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
+.filter-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+/* filter category container styling */
+

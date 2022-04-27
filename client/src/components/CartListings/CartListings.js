@@ -27,7 +27,7 @@ function CartListings(props) {
       {isHovered &&
         <img 
         src={closeIcon} 
-        alt="x icon to close pop up" 
+        alt="x icon to close remove item from cart" 
         className='close-icon'
         onClick={() => {
           dispatch(removeItemFromCart(cart_item_id))

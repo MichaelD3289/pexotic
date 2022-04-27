@@ -36,7 +36,6 @@ const dispatch = useDispatch()
       return
     }
     
-
     axios.get('/api/users/verify', {
       headers: {
         authorization: `Bearer ${token}`
