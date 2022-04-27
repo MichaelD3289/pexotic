@@ -14,6 +14,10 @@ function SearchPage() {
   const filterPopUp = useSelector(state => state.filterPopUp);
   const [filterButtonHovered, setFilterButtonHovered] = React.useState(false)
 
+  React.useEffect(() => {
+    document.title = 'Pexotic | Search'
+  }, [])
+
   return (
     <main>
       {filterPopUp && <FilterPopUp />}

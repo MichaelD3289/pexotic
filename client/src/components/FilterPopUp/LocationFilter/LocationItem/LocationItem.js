@@ -6,7 +6,7 @@ import { states } from '../../../../data/content/home-page'
 function LocationItem({state, checked, setChecked, displayItem, ...props}) {
 
   const display = displayItem ? 'flex' : 'none'
-  console.log(state, display)
+
   return (
     <li 
     key={state}

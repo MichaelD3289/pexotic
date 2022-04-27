@@ -1,5 +1,6 @@
 import React from 'react'
 import './SearchBar.css'
+import { Link } from 'react-router-dom'
 
 import searchIcon from '../../assets/search-icon.svg'
 
@@ -15,9 +16,11 @@ function SearchBar() {
          value={searchTerm}
          onChange={e => setSearchTerm(e.target.value)} 
          />
-      <button className='search-icon-btn'>
-        <img className='search-icon' src={searchIcon} alt='search icon'/>
-      </button>
+      <Link to='search'>
+        <button className='search-icon-btn'>
+          <img className='search-icon' src={searchIcon} alt='search icon'/>
+        </button>
+      </Link>
     </div>
   )
 }
