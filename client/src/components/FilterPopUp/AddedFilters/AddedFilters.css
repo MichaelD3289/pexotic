@@ -1,5 +1,9 @@
 /* added filter container */
 
+.filter-title.added:hover {
+box-shadow: none;
+}
+
 .added-filters-contaner-ul {
   display: flex;
   gap: 5px;

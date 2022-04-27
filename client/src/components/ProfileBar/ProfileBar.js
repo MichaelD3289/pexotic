@@ -39,6 +39,7 @@ const dispatch = useDispatch()
             onClick={() => {
               dispatch(unVerifyUser())
               localStorage.removeItem("access_token")
+              window.location.reload()
             }}
             >
               <img 

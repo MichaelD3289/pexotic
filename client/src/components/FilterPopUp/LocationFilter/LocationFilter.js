@@ -14,22 +14,10 @@ function LocationFilter() {
     name: state,
     display: true
   })))
- console.log(selectedStates)
-  // const [allStatesCheckedStatus, setAllStatesCheckedStatus] = React.useState({})
-  // console.log(allStatesCheckedStatus)
+
+
   const { transition, remove, setDisplayed, downArrow } = useDropDownDisplay(300)
   
-
-  // React.useEffect(() => {
-  //   const statesElements = Array.from(
-  //     document.querySelectorAll('.location-filter-li-input'))
-
-  //  setAllStatesCheckedStatus(statesElements.map(state => (
-  //     [state.value]: true
-  //  )))        
-    
-  // }, [allStatesCheckedStatus])
-
   return (
     <div className='filter-pop-up-body-location'>
     <h3 
@@ -92,7 +80,7 @@ function LocationFilter() {
           setSelectedStates(prev => {
             
            return prev.map(state => {
-              console.log(state)
+       
               state[state.name] = !selectAll
               return state
             })

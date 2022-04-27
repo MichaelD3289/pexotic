@@ -28,7 +28,10 @@ function Header() {
           {verified ? <ProfileBar /> : 
           <button 
           className='sign-in'
-          onClick={() => dispatch(toggleAccountPopUp())}
+          onClick={() => {
+            dispatch(toggleAccountPopUp())
+            
+          }}
           ><div className='btn-hover'>Sign In</div></button>
           }
 

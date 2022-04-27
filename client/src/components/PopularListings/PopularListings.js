@@ -1,6 +1,7 @@
 import React from 'react'
 import './PopularListing.css'
-
+import { Link } from 'react-router-dom'
+ 
 import Listing from './Listing'
 import OutlineButton from '../Buttons/OutlineButton'
 
@@ -29,9 +30,11 @@ function PopularListings() {
           />
         ))}
       </div>
-      <OutlineButton>
-        More Listings
-      </OutlineButton>
+      <Link to='/search'>
+        <OutlineButton>
+          More Listings
+        </OutlineButton>
+      </Link>
       
     </section>
   )
