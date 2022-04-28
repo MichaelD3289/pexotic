@@ -83,13 +83,14 @@ module.exports = {
 
     },
     fetchListings: (req, res) => {
-      const { q } = req.query;
+      let { q } = req.query;
+
       const { price, category = [], location = [] } = req.body;
-      const checkedStates = location.filter(state => state[state.name]).map(state => state.name);
-      console.log(price);
+      const checkedStates = location.filter(state => state[state.name]).map(state => state.name.toLowerCase());
+      
 
       const stopCategory = category.length === 0 ? '--' : ''
-      const stopLocation = location.length !== 50 ? '--' : ''
+      const stopLocation = checkedStates.length !== 50 ? '--' : ''
       const stopSearch = q === '' ? '--' : ''
       sequelize
         .query(`
@@ -114,9 +115,9 @@ module.exports = {
         ON u.user_id = s.user_id
         JOIN species AS sp
         ON l.species_id = sp.species_id
-        WHERE l.listing_name LIKE '%${q}%'
+        WHERE LOWER(l.listing_name) LIKE LOWER('%${q}%')
         AND l.price BETWEEN ${price.min || 0} AND ${price.max || 9999999}
-        ${stopLocation}AND u.state IN ('${checkedStates.join("','")}')
+        ${stopLocation}AND LOWER(u.state) IN ('${checkedStates.join("','")}')
         ${stopCategory}AND l.category_id IN(SELECT category_id FROM category WHERE category_name IN ('${category.join("','")}'))
         ;
 
@@ -128,8 +129,9 @@ module.exports = {
         ;
         `)
         .then(dbRes => {
-        
-        
+          // if(dbRes[0].length === 0) {
+          //   res.status(200).send({'message': 'No results found'})
+          // } 
           res.status(200).send(dbRes[0])
         })
         .catch(err => {

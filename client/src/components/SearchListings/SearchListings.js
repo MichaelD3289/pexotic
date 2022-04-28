@@ -11,7 +11,7 @@ function SearchListings() {
   return (
     <section id='search-listings'>
       <div className='search-listings-listing-container'>
-       
+        {searchPageListings.length === 0 && <h2 className='no-listings-found'>No Listings Found.</h2>}
         {searchPageListings.map(listing => (
           <Listing key={listing.id} listing={listing} />
         ))}

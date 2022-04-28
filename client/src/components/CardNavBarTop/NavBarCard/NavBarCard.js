@@ -4,8 +4,11 @@ import {Link} from 'react-router-dom'
 
 import FavoriteHeart from '../../FavoriteHeart/FavoriteHeart'
 import PriceBadge from '../../PriceBadge/PriceBadge'
+import useFilteredSearch from '../../../hooks/useFilteredSearch'
+import { addFilterCategory } from '../../../redux/reducers/userFilters'
 
 function NavBarCard({id, image_url, image_alt, card_name, qty, price, ...props}) {
+  const [dispatch, setFilteredSearch, body] = useFilteredSearch(null, [card_name]);
   const [isHovered, setIsHovered] = React.useState(false)
   // max length of title before "..." is added
   const maxTitleLength = 17
@@ -18,6 +21,12 @@ function NavBarCard({id, image_url, image_alt, card_name, qty, price, ...props})
     className={`nav-item ${qty === 0 ? 'out-of-stock' : ''}`}
     onMouseEnter={() => setIsHovered(true)}
     onMouseLeave={() => setIsHovered(false)}
+    value={card_name}
+    onClick={() => {
+      if(!price){
+      dispatch(addFilterCategory(card_name))
+      dispatch(setFilteredSearch(body))}
+    }}
     >
       {price && 
       <FavoriteHeart 
@@ -25,7 +34,7 @@ function NavBarCard({id, image_url, image_alt, card_name, qty, price, ...props})
         isHovered={isHovered}
       />}
           <Link
-            to={!price ? `/categories/${id}` : `/product/listing/${id}`}
+            to={!price ? `/search` : `/product/listing/${id}`}
             className='nav-link'
           >
             <img className='nav-item-img' src={`/static/${image_url}`} alt={image_alt} />

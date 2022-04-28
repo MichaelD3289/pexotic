@@ -11,14 +11,14 @@ function Listing({listing, ...props}) {
   const {
     listing_id: id, main_photo: img_url, price, qty, listing_name: title
   } = listing;
-  
+
   const [isHovered, setIsHovered] = React.useState(false)
   const maxTitleLength = 30
   // adding "..." to the end of the card name if it is too long
   title.length > maxTitleLength && (title = title.slice(0, maxTitleLength) + '...')
 
   return (
-    <Link className='shop-listing-link' to={`/product/listing/${id}`}>
+    
     <div 
       id='search-listing'
       className={`${qty === 0 ? 'out-of-stock' : ''}`}
@@ -35,6 +35,7 @@ function Listing({listing, ...props}) {
           height: '40px',
         }} 
       />
+      <Link className='search-listing-link' to={`/product/listing/${id}`}>
       <img 
         className='search-listing-img' 
         src={`/static/${img_url}`} 
@@ -54,8 +55,8 @@ function Listing({listing, ...props}) {
           <p>In Stock</p>
         </div>
       </div>
-    
-    </div></Link>
+      </Link>
+    </div>
   )
 }
 

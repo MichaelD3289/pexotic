@@ -14,23 +14,24 @@ function Listing({id, img_url, price, qty, title, category, ...props}) {
   title.length > maxTitleLength && (title = title.slice(0, maxTitleLength) + '...')
 
   return (
-    <Link className='shop-listing-link' to={`/product/listing/${id}`}>
+  
     <div 
       id='shop-listing'
       className={`${qty === 0 ? 'out-of-stock' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-    >
-      <FavoriteHeart
-        id={id}
-        isHovered={isHovered}
-        style={{
-          top: '15px',
-          right: '15px',
-          width: '40px',
-          height: '40px',
-        }} 
-      />
+    >      <FavoriteHeart
+    id={id}
+    isHovered={isHovered}
+    style={{
+      top: '15px',
+      right: '15px',
+      width: '40px',
+      height: '40px',
+    }} 
+  />
+        <Link className='shop-listing-link' to={`/product/listing/${id}`}>
+
       <img 
         className='shop-listing-img' 
         src={`/static/${img_url}`} 
@@ -50,8 +51,8 @@ function Listing({id, img_url, price, qty, title, category, ...props}) {
           <p>In Stock</p>
         </div>
       </div>
-    
-    </div></Link>
+      </Link>
+    </div>
   )
 }
 

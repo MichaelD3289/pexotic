@@ -59,3 +59,9 @@
   height: 60%;
 }
 
+.no-listings-found {
+  font-size: 1.5rem;
+  color: #676767;
+  text-align: center;
+  margin-top: 10px;
+}
