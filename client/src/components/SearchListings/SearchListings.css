@@ -1,0 +1,13 @@
+#search-listings {
+  width: 100%;
+  padding: 0 30px;
+}
+
+.search-listings-listing-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* gap: 5px; */
+}

@@ -12,7 +12,7 @@ import OutlineButton from '../Buttons/OutlineButton'
 import Success from '../Messages/Success'
 import Error from '../Messages/Error'
 
-function LogInPopUp(props) {
+function LogInPopUp({show}) {
   const [isRegister, setIsRegister] = React.useState(false);
   const [isHovered, setisHovered] = React.useState(false)
   
@@ -24,7 +24,7 @@ function LogInPopUp(props) {
   }
   
   return (
-    <div className='popup'>
+    <div id={show ? 'fade-in' : 'fade-out'} className='popup'>
       <div 
       className={`popup-background`}
       onClick={() => dispatch(toggleAccountPopUp())}></div>

@@ -1,10 +1,11 @@
 import React from 'react'
 import './LocationItem.css'
 
-import { states } from '../../../../data/content/home-page'
+import { useDispatch } from 'react-redux'
+import { toggleLocationChecked } from '../../../../redux/reducers/userFilters'
 
-function LocationItem({state, checked, setChecked, displayItem, ...props}) {
-
+function LocationItem({state, checked, displayItem, ...props}) {
+  const dispatch = useDispatch()
   const display = displayItem ? 'flex' : 'none'
 
   return (
@@ -23,17 +24,8 @@ function LocationItem({state, checked, setChecked, displayItem, ...props}) {
       value={state}
       checked={checked}
       onChange={(e) => {
-        setChecked(prev => {
-          return prev.map(item => {
-            if (item.name === e.target.value) {
-              return {
-                ...item,
-                [e.target.value]: e.target.checked
-              }
-            }
-            return item
-          })
-      })}}
+        dispatch(toggleLocationChecked(e.target.value))
+    }}
     />
     <label className='state-label' htmlFor={state}>{state}</label>
   </li>

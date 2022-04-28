@@ -194,11 +194,12 @@ module.exports = {
       UNIQUE (user_id, listing_id)
       );
 
-      CREATE TABLE user_search_terms(
-      user_search_terms_id SERIAL PRIMARY KEY,
-      user_id UUID NOT NULL REFERENCES users(user_id),
-      search_term VARCHAR(150) NOT NULL,
-      created_at TIMESTAMP NOT NULL DEFAULT NOW()
+      CREATE TABLE search_terms(
+      search_terms_id SERIAL PRIMARY KEY,
+      search_term VARCHAR(150) UNIQUE NOT NULL,
+      times_searched INT NOT NULL DEFAULT 1,
+      created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+      MODIFIED_AT TIMESTAMP NOT NULL
       );
       
       INSERT INTO category(category_name, image_url, image_alt, modified_at)

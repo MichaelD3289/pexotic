@@ -9,10 +9,11 @@ import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleAccountPopUp } from '../../redux/reducers/accountPopUp' 
 
+
 function Header() {
   const verified = useSelector(state => state.currentUser.verified)
   const dispatch = useDispatch();
-
+  
   return (
       <header className='header'>
           <Link 

@@ -2,19 +2,25 @@ import React from 'react'
 import './LocationFilter.css'
 import LocationItem from './LocationItem/LocationItem'
 
+import { useDispatch, useSelector } from 'react-redux'
 import { states } from '../../../data/content/home-page'
 import useDropDownDisplay from '../../../hooks/useDropDownDisplay'
+import { 
+  filterLocationObjects, addLocationObjects, toggleAllLocationChecked 
+} from '../../../redux/reducers/userFilters'
 
 function LocationFilter() {
-
+  const dispatch = useDispatch()
+  
   const [selectAll, setSelectAll] = React.useState(true)
   const [searchInput, setSearchInput] = React.useState('')
-  const [selectedStates, setSelectedStates] = React.useState(states.map(state => ({
-    [state]: true,
-    name: state,
-    display: true
-  })))
 
+    const selectedStates = useSelector(state => state.userFilters.filters.location)
+
+  React.useEffect(() => {
+    if(selectedStates.length > 0) return
+    dispatch(addLocationObjects(states))
+  }, [])
 
   const { transition, remove, setDisplayed, downArrow } = useDropDownDisplay(300)
   
@@ -54,22 +60,7 @@ function LocationFilter() {
           value={searchInput}
           onChange={({target: {value}}) => {
             setSearchInput(value)
-            setSelectedStates(prev => {
-              return prev.map(state => {
-                if (!value) return {...state, display: true} 
-                if(state.name.toLowerCase().includes(value.toLowerCase())) {
-                  return {
-                    ...state,
-                    display: true
-                  }
-                } else {
-                  return {
-                    ...state,
-                    display: false
-                  }
-                }
-              })
-            })
+            dispatch(filterLocationObjects(value))
               }}
         />
        
@@ -77,14 +68,7 @@ function LocationFilter() {
         className='select-btns'
         onClick={() => {
           setSelectAll(!selectAll)
-          setSelectedStates(prev => {
-            
-           return prev.map(state => {
-       
-              state[state.name] = !selectAll
-              return state
-            })
-          })
+          dispatch(toggleAllLocationChecked(selectAll))
         }}
         >Select All<br/> / None
         </button>
@@ -96,7 +80,6 @@ function LocationFilter() {
             key={state.name + '-li'}
             state={state.name}
             checked={state[state.name]}
-            setChecked={setSelectedStates}
             displayItem={state.display}
           />
         ))}

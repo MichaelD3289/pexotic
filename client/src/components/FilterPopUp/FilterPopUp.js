@@ -10,11 +10,12 @@ import AddedFilters from './AddedFilters/AddedFilters'
 import CategoryFilter from './CategoryFilter/CategoryFilter'
 import LocationFilter from './LocationFilter/LocationFilter'
 import PriceFilter from './PriceFilter/PriceFilter'
+import useFilteredSearch from '../../hooks/useFilteredSearch'
 
 function FilterPopUp() {
   const dispatch = useDispatch()
   const [isHovered, setIsHovered] = React.useState(false)
-
+  const [dis, filterSearch, body ] = useFilteredSearch()
 
   return (
     <section 
@@ -65,6 +66,10 @@ function FilterPopUp() {
             margin: '0 auto 50px auto',
             width: '80%',
             height: '40px',
+          }}
+          onClick={() => {
+            dis(filterSearch(body))
+            dispatch(toggleFilterPopUp())
           }}
         >Submit</OutlineButton>  
       </div>

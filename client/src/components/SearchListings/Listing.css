@@ -1,0 +1,59 @@
+#search-listing {
+  flex: 1 0 200px;
+  max-width: 250px;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+}
+
+#search-listing:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.75);
+}
+
+.search-listing-link:hover {
+text-decoration: none;
+}
+
+.search-listing-img {
+  max-width: 100%;
+  aspect-ratio: 1 / .8;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 8px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#search-listing h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-indent: .5rem;
+}
+
+#search-listing h5 {
+  text-indent: .75rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.search-listing-price-qty-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-listing-stock-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+#search-listing.out-of-stock {
+  opacity: .6;
+}

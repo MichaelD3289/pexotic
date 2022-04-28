@@ -10,7 +10,7 @@
 .popular-search-terms-title {
   font-size: 1.5em;
   font-weight: bold;
-  margin: 1em;
+  margin: 1rem;
   text-align: center;
   margin: 0 0 1rem;
   letter-spacing: 1px;
@@ -23,15 +23,17 @@
   justify-content: center;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 70%;
+  margin: auto;
 }
 
 .search-term {
   border-right: 2px solid white;
   border-left: 2px solid white;
-  padding: 0.5em 0.75rem;
+  padding: 0.75em 0.75rem;
   cursor: pointer;
   margin-right: -2px;
+  margin-bottom: 12px;
   border-radius: 10px;
   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.12);
   transition: 

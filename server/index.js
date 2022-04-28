@@ -16,7 +16,7 @@ const {
 } = require('./controllers/userController');
 const { fetchCategories } = require('./controllers/categoryController');
 const { 
-  getListing, getPopularListings, fetchViewed, addViewed  
+  getListing, getPopularListings, fetchViewed, addViewed, fetchListings, getPopularSearchTerms  
 } = require('./controllers/listingController');
 const {
 getCart, addToCart, removeFromCart, updateCart, clearCart
@@ -55,7 +55,7 @@ app.post(`/api/seed`, seed)
   // /api/listing/popular
 
   app.get('/api/listing/popular', getPopularListings);
-  
+  app.post('/api/search', fetchListings)
 
   // api/categories
 app.get('/api/categories', fetchCategories)
@@ -67,6 +67,9 @@ app.get('/api/shops/:shopId', fetchShop)
 // /api/home/recently/viewed
 app.get('/api/home/recently/viewed', verifyToken, fetchViewed)
 app.post('/api/home/recently/viewed', verifyToken, addViewed)
+
+// /api/popular-search-terms
+app.get('/api/popular-search-terms', getPopularSearchTerms);
 
 // Verify token
 function verifyToken(req, res, next) {

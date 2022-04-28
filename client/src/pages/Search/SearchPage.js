@@ -4,18 +4,23 @@ import PopularSearchTerms from '../../components/PopularSearchTerms/PopularSearc
 import filterIcon from '../../assets/icons/filter-icon.svg'
 import filterIconWhite from '../../assets/icons/filter-icon-white.svg'
 
+import BreakLine from '../../components/BreakLine/BreakLine'
 import FilterPopUp from '../../components/FilterPopUp/FilterPopUp'
+import SearchListings from '../../components/SearchListings/SearchListings'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleFilterPopUp } from '../../redux/reducers/filterPopUp'
+import { fetchPopularSearchTerms } from '../../redux/reducers/popularSearchTerms'
 
 function SearchPage() {
   const dispatch = useDispatch();
   const filterPopUp = useSelector(state => state.filterPopUp);
   const [filterButtonHovered, setFilterButtonHovered] = React.useState(false)
+  
 
   React.useEffect(() => {
     document.title = 'Pexotic | Search'
+    dispatch(fetchPopularSearchTerms())
   }, [])
 
   return (
@@ -37,7 +42,8 @@ function SearchPage() {
           Filters
         </button>
       </div>
-
+      <SearchListings />
+      <BreakLine />
     </main>
   )
 }

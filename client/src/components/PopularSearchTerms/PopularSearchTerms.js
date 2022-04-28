@@ -1,19 +1,23 @@
 import React from 'react'
 import './PopularSearchTerms.css'
+import SearchTerm from './SearchTerm'
+
+import { useSelector } from 'react-redux'
+
 
 function PopularSearchTerms() {
+  const popularSearchTerms = useSelector(state => state.popularSearchTerms).map(term => term.search_term)
+ 
+
   return (
     <section className='popular-search-terms'>
     <h2 className='popular-search-terms-title'>
-      Popular Search Terms
+      Popular Searches
     </h2>
     <div className='search-term-container'>
-
-        <h3 className='search-term'>Search Term</h3>
-        <h3 className='search-term'>Search Term</h3>
-        <h3 className='search-term'>Search Term</h3>
-        <h3 className='search-term'>Search Term</h3>
-        <h3 className='search-term'>Search Term</h3>
+      {popularSearchTerms.map((term, i) => (
+        <SearchTerm key={i + term + i} term={term} />
+      ))}
       </div>
 
   </section>

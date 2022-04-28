@@ -60,7 +60,8 @@ const dispatch = useDispatch()
     <Router>
       <div className='app'>
         <Header />
-        {popUpToggle && <LogInPopUp />}
+        {/* {popUpToggle && <LogInPopUp />} */}
+        <LogInPopUp show={popUpToggle} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/breeder/shop/:id/:name' element={<BreederShop />} />

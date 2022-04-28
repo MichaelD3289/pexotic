@@ -11,23 +11,28 @@ import useDropDownDisplay from '../../../hooks/useDropDownDisplay'
 function CategoryFilter() {
   const dispatch = useDispatch()
   const { transition, remove, setDisplayed, downArrow } = useDropDownDisplay(300)
-  const categoriesDB = useSelector(state => state.categories.map(category => category.name))
+  
+  const categoriesDB = useSelector(state => state.categories.map(category => category.category_name))
 
   const [categories, setCategories] = React.useState([])
   const [filteredCategories, setFilteredCategories] = React.useState([])
   const [searchCategory, setSearchCategory] = React.useState('')
 
   React.useEffect(() => {
+    
     if(categoriesDB.length > 0) {
+      
       setCategories(categoriesDB)
+      setFilteredCategories(categoriesDB)
     }  else {
+      
       axios.get('/api/categories')
       .then(res => {
         setCategories(res.data.map(category => category.category_name))
         setFilteredCategories(res.data.map(category => category.category_name))
       })
     }
-
+   
   }, [])
   
   return (
