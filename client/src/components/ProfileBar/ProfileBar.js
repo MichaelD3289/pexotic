@@ -1,21 +1,35 @@
 import React from 'react'
 import './ProfileBar.css'
+import { Link } from 'react-router-dom'
 
 import logOutIcon from '../../assets/icons/log-out.svg'
 import accountIcon from '../../assets/icons/account-icon.svg'
 import downArrow from '../../assets/icons/down-arrow-icon.svg'
 import ProfileDropDown from './ProfileDropDown/ProfileDropDown'
+import shopIcon from '../../assets/icons/shop-icon.svg'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { unVerifyUser } from '../../redux/reducers/currentUser'
 
 function ProfileBar() {
 const dispatch = useDispatch()
 const [dropdown, setDropdown] = React.useState(false)
 
+const {userInfo: {isVendor}} = useSelector(state => state.currentUser)
+
   return (
     <div className='outline'>
       <div className='profile-bar'>
+        {isVendor && <Link to='/breeder/dashboard'><div className='profile-bar-shop-icon-container'>
+           <div 
+              className='hover-transparent'
+             ></div>
+          <img
+            src={shopIcon}
+            alt='shop icon'
+            className='profile-bar-shop-icon'
+          />
+        </div></Link>}
         <div className='profile-bar-left'>
           
             <button 

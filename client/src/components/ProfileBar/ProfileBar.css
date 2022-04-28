@@ -4,6 +4,25 @@
   padding: 15px 30px;
 } */
 
+.profile-bar-shop-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.profile-bar-shop-icon-container:hover .hover-transparent {
+  background-color: rgba(0, 0, 0, 0.12);
+  height: 55px;
+  width: 65px;
+  cursor: pointer;
+}
+
+.profile-bar-shop-icon {
+  width: 35px;
+  cursor: pointer;
+}
+
 .profile-bar {
   display: flex;
   align-items: center;

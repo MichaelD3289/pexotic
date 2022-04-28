@@ -42,9 +42,10 @@ const dispatch = useDispatch()
         }
     })
     .then(res => {
+      
       axios.defaults.headers.common['authorization'] = `Bearer ${token}`
       dispatch(verifyUser())
-      dispatch(saveCurrentUser(token))
+      dispatch(saveCurrentUser(token, res.data))
       dispatch(getAllFavorites())
       dispatch(getUserCart())
     })

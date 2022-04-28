@@ -48,5 +48,49 @@
   justify-content: center;
   align-items: center;
   width: 30%;
+  position: relative;
 }
 
+.user-profile-seller-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-profile-seller-link:hover {
+  text-decoration: none;
+}
+
+.user-profile-seller-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 50px;
+  gap: 10px;
+  cursor: pointer; 
+  box-shadow: 
+  inset 0 0 75px #3CA83666,
+  0 0 10px rgba(0,0,0,0.5);
+  margin-right: 100px; 
+  border-radius: 50px;
+}
+
+.user-profile-seller-dashboard:hover {
+  box-shadow: inset 0 0 75px #3CA83699,
+  0 0 15px rgba(0,0,0,0.7);
+}
+
+.user-profile-seller-dashboard:active {
+  transform: scale(.97);
+}
+
+.user-profile-seller-dashboard-icon {
+  width: 100px;
+}
+
+.user-profile-seller-dashboard h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}

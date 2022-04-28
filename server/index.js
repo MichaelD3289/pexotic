@@ -22,6 +22,7 @@ const {
 getCart, addToCart, removeFromCart, updateCart, clearCart
 } = require('./controllers/cartController');
 const { fetchViewShops, fetchShop } = require('./controllers/shopController');
+const { becomeSeller } = require('./controllers/sellerController');
 
 
 // Seed File
@@ -33,7 +34,12 @@ app.post(`/api/seed`, seed)
   app.post(`/api/users/register`, createUser);
   app.post(`/api/users/login`, loginUser);
   app.get('/api/users/verify', verifyToken, (req, res) => {
-    res.status(200).send(req.token);
+    
+    res.status(200).send({
+      token: req.token,
+      isVendor: req.user.isVendor,
+      username: req.user.username
+    });
   });
 
   app.get(`/api/user/favorites`, verifyToken, getAllFavorites)
@@ -47,6 +53,9 @@ app.post(`/api/seed`, seed)
   app.put('/api/user/cart/item/:cartItemId', verifyToken, updateCart)
   app.delete('/api/user/cart/item/:cartItemId', verifyToken, removeFromCart)
   app.delete('/api/user/cart', verifyToken, clearCart)
+
+  // /api/users/becomeSeller
+  app.post('/api/user/becomeSeller', verifyToken, becomeSeller)
 
   // /api/listing
 

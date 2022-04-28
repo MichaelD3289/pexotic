@@ -71,10 +71,12 @@ module.exports = {
               res.sendStatus(500);
             } else if (result) {
               // create token
+              const {username, isvendor} = dbRes[0][0];
+              
               const token = jwt.sign(
                 {
                   user_id: dbRes[0][0].user_id,
-                  username: dbRes[0][0].username,
+                  username: username,
                   email: dbRes[0][0].email,
                   first_name: dbRes[0][0].first_name,
                   last_name: dbRes[0][0].last_name,
@@ -84,13 +86,11 @@ module.exports = {
                   city: dbRes[0][0].city,
                   state: dbRes[0][0].state,
                   zipcode: dbRes[0][0].zipcode,
-                  created_at: dbRes[0][0].created_at,
-                  modified_at: dbRes[0][0].modified_at,
-                  isVender: dbRes[0][0].isVender,
+                  isVendor: isvendor,
                 },
                 process.env.JWT_SECRET
               );
-              res.status(200).send({ token });
+              res.status(200).send({ token, username, isvendor });
             } else {
               res.sendStatus(401);
             }
