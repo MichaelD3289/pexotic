@@ -10,7 +10,7 @@ import { addOrDeleteFavorite } from '../../redux/reducers/allFavorites'
 function FavoriteHeart({id, isHovered, style, ...props}) {
   const [isFavorited, setIsFavorited] = React.useState(false)
   const dispatch = useDispatch()
-  const favoriteList = useSelector(state => state.allFavorites)
+  const favoriteList = useSelector(state => state.allFavorites).map(favorite => favorite.listing_id)
 
   React.useEffect(() => {
     setIsFavorited(favoriteList.includes(id))

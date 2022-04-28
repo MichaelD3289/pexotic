@@ -3,8 +3,15 @@ import './UserProfile.css'
 import accountIcon from '../../assets/icons/account-icon.svg'
 import CameraIcon from '../../components/CameraIcon/CameraIcon'
 import OutlineButton from '../../components/Buttons/OutlineButton'
+import BreakLine from '../../components/BreakLine/BreakLine'
+import ProfileFavoriteListings from '../../components/ProfileFavoriteListings/ProfileFavoriteListings'
+
+import {useSelector} from 'react-redux'
 
 function UserProfile() {
+  
+  const favoriteListings = useSelector(state => state.allFavorites)
+
   return (
     <main id="user-profile-page">
       <div className='user-profile-page-top'>
@@ -35,6 +42,11 @@ function UserProfile() {
           </OutlineButton>
         </div>
       </div>
+      <BreakLine />
+      {favoriteListings.length > 0 && <><ProfileFavoriteListings
+        favoriteListings={favoriteListings}
+      />
+      <BreakLine /></>}
     </main>
   )
 }

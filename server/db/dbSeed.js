@@ -40,6 +40,7 @@ module.exports = {
       zipcode VARCHAR(5) NOT NULL,
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL,
+      profile_img VARCHAR(150) NULL,
       isVendor BOOLEAN NOT NULL DEFAULT FALSE
       );
       
@@ -61,8 +62,8 @@ module.exports = {
       CREATE TABLE sellers(
       seller_id SERIAL PRIMARY KEY,
       company_name VARCHAR(50) NOT NULL,
-      img_url VARCHAR(100) NOT NULL,
-      cover_img_url VARCHAR(100) NULL,
+      img_url VARCHAR(150) NULL,
+      cover_img_url VARCHAR(150) NULL,
       user_id UUID NOT NULL REFERENCES users(user_id)
       );
       

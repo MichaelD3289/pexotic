@@ -105,7 +105,17 @@ module.exports = {
     sequelize
       .query(
         `
-      SELECT listing_id FROM favorite_items WHERE user_id = '${user_id}';
+      SELECT
+       f.listing_id,
+       l.listing_name,
+       l.price,
+       l.qty_in_stock AS qty,
+       l.main_photo 
+      FROM favorite_items AS f
+      JOIN listings AS l 
+      ON f.listing_id = l.listing_id
+      WHERE 
+      user_id = '${user_id}';
       `
       )
       .then((dbRes) => res.status(200).send(dbRes[0]))
