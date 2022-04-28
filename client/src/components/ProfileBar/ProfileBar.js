@@ -11,7 +11,7 @@ import { unVerifyUser } from '../../redux/reducers/currentUser'
 
 function ProfileBar() {
 const dispatch = useDispatch()
-const [dropdown, setDropdown] = React.useState(true)
+const [dropdown, setDropdown] = React.useState(false)
 
   return (
     <div className='outline'>
@@ -22,7 +22,9 @@ const [dropdown, setDropdown] = React.useState(true)
               className='account-btn'
               onClick={() => setDropdown(prev => !prev)}
             >
-             <div className='hover-transparent'></div>
+             <div 
+              className={!dropdown ? 'hover-transparent' : ''}
+             ></div>
                <img 
                 className='account-icon' 
                 src={accountIcon} 

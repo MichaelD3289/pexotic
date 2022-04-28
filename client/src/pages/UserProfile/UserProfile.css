@@ -1,0 +1,47 @@
+.user-profile-page-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-avatar-section {
+  display: flex;
+  gap: 25px;
+  padding: 0 50px;
+  margin-top: -25px;
+}
+
+.user-avatar-image{
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
+#user-profile-img {
+  width: 100%;
+}
+
+.user-avatar-name {
+  padding: 55px 0;
+}
+
+.username-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.user-number-favorites, .user-number-reviews {
+  font-size: 1.25rem;
+  word-spacing: 3px;
+  margin-bottom: 15px;
+  text-indent: 0.6rem;
+}
+
+.become-seller-btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
