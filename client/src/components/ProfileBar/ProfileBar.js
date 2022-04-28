@@ -4,19 +4,24 @@ import './ProfileBar.css'
 import logOutIcon from '../../assets/icons/log-out.svg'
 import accountIcon from '../../assets/icons/account-icon.svg'
 import downArrow from '../../assets/icons/down-arrow-icon.svg'
+import ProfileDropDown from './ProfileDropDown/ProfileDropDown'
 
 import { useDispatch } from 'react-redux'
 import { unVerifyUser } from '../../redux/reducers/currentUser'
 
 function ProfileBar() {
 const dispatch = useDispatch()
+const [dropdown, setDropdown] = React.useState(true)
 
   return (
     <div className='outline'>
       <div className='profile-bar'>
         <div className='profile-bar-left'>
           
-            <button className='account-btn'>
+            <button 
+              className='account-btn'
+              onClick={() => setDropdown(prev => !prev)}
+            >
              <div className='hover-transparent'></div>
                <img 
                 className='account-icon' 
@@ -28,6 +33,7 @@ const dispatch = useDispatch()
                 src={downArrow} 
                 alt="down arrow" 
                 />
+                <ProfileDropDown show={dropdown} />
             </button>
           
         </div>
