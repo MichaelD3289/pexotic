@@ -31,10 +31,10 @@ function SignIn() {
     console.log(values)
       axios
       .post('/api/users/login', values)
-      .then(res => {
+      .then(({data}) => {
         
-        dispatch(saveCurrentUser(res.data.token))
-        localStorage.setItem("access_token", res.data.token);
+        dispatch(saveCurrentUser(data.token, data))
+        localStorage.setItem("access_token", data.token);
         dispatch(toggleAccountPopUp())
         })
       .catch(err => {

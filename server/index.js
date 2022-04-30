@@ -22,7 +22,7 @@ const {
 getCart, addToCart, removeFromCart, updateCart, clearCart
 } = require('./controllers/cartController');
 const { fetchViewShops, fetchShop } = require('./controllers/shopController');
-const { becomeSeller } = require('./controllers/sellerController');
+const { becomeSeller, getShopDashboardInfo } = require('./controllers/sellerController');
 
 
 // Seed File
@@ -80,6 +80,8 @@ app.post('/api/home/recently/viewed', verifyToken, addViewed)
 // /api/popular-search-terms
 app.get('/api/popular-search-terms', getPopularSearchTerms);
 
+app.get('/api/shop/dashboard/info', verifyShopToken, getShopDashboardInfo)
+
 // Verify token
 function verifyToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -88,6 +90,21 @@ function verifyToken(req, res, next) {
   if (token == null) return res.sendStatus(401);
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
+    req.user = user;
+    req.token = token;
+    next();
+});
+}
+
+function verifyShopToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) return res.sendStatus(401);
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+
+    if (!user.isVendor) return res.sendStatus(403);
     req.user = user;
     req.token = token;
     next();

@@ -17,6 +17,7 @@ import filterPopUpReducer from './reducers/filterPopUp'
 import userFiltersReducer from './reducers/userFilters'
 import searchPageListingsReducer from './reducers/searchPageListings'
 import popularSearchTermsReducer from './reducers/popularSearchTerms'
+import shopDashboardInfoReducer from './reducers/shopDashboardInfo'
 
 const rootReducer = combineReducers({
   // reducers go here
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
   filterPopUp: filterPopUpReducer,
   userFilters: userFiltersReducer,
   searchPageListings: searchPageListingsReducer,
-  popularSearchTerms: popularSearchTermsReducer
+  popularSearchTerms: popularSearchTermsReducer,
+  shopDashboardInfo: shopDashboardInfoReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

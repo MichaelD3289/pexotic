@@ -1,0 +1,23 @@
+.dashboard-info-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 250px;
+  aspect-ratio: 1;
+  box-shadow: inset 0px 0px 10px #E9ECF2;
+  max-width: 300px;
+}
+
+.dashboard-info-block > h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.dashboard-info-block > h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}

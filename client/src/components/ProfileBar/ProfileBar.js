@@ -20,7 +20,7 @@ const {userInfo: {isVendor}} = useSelector(state => state.currentUser)
   return (
     <div className='outline'>
       <div className='profile-bar'>
-        {isVendor && <Link to='/breeder/dashboard'><div className='profile-bar-shop-icon-container'>
+        {isVendor && <Link to='/breeder/dashboard/main'><div className='profile-bar-shop-icon-container'>
            <div 
               className='hover-transparent'
              ></div>

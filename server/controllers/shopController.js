@@ -55,7 +55,8 @@ module.exports = {
         ON c.category_id = l.category_id
         WHERE seller_id = ${shopId};
 
-
+        INSERT INTO shop_views (seller_id)
+        VALUES (${shopId});
       `)
       .then(dbRes => res.status(200).send(dbRes[0]))
       .catch(err => {

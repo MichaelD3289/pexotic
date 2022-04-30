@@ -59,7 +59,7 @@ const [clickedBecomeSeller, setClickedBecomeSeller] = useState(false)
             close={setClickedBecomeSeller} 
           />
         </div> :       
-        <Link to='/breeder/dashboard' className='user-profile-seller-link'>
+        <Link to='/breeder/dashboard/main' className='user-profile-seller-link'>
           <div className='user-profile-seller-dashboard'>
           <h3>Go to</h3>
           <img 

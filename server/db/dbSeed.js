@@ -22,6 +22,7 @@ module.exports = {
       DROP TABLE IF EXISTS order_items CASCADE;
       DROP TABLE IF EXISTS cart_item CASCADE;
       DROP TABLE IF EXISTS viewed_listings CASCADE;
+      DROP TABLE IF EXISTS show_views CASCADE;
 
       -- creating all db tables
       
@@ -65,6 +66,12 @@ module.exports = {
       img_url VARCHAR(150) NULL,
       cover_img_url VARCHAR(150) NULL,
       user_id UUID NOT NULL REFERENCES users(user_id)
+      );
+
+      CREATE TABLE shop_views(
+      shop_view_id SERIAL PRIMARY KEY,
+      seller_id INTEGER NOT NULL REFERENCES sellers(seller_id),
+      created_at TIMESTAMP NOT NULL DEFAULT NOW()
       );
       
       CREATE TABLE orders(
@@ -170,7 +177,7 @@ module.exports = {
       
       CREATE TABLE order_items(
       order_items_id SERIAL PRIMARY KEY,
-      quantity INT NOT NULL,
+      qty INT NOT NULL,
       listing_id INT NOT NULL REFERENCES listings(listing_id),
       order_id INT NOT NULL REFERENCES orders(order_id),
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
