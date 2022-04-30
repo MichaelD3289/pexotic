@@ -27,7 +27,7 @@ module.exports = {
       `)
       .then((dbRes) => {
        
-        const {username, isvendor} = dbRes[0][0];
+        const {username, isvendor, profile_img} = dbRes[0][0];
               
         const token = jwt.sign(
           {
@@ -43,6 +43,7 @@ module.exports = {
             state: dbRes[0][0].state,
             zipcode: dbRes[0][0].zipcode,
             isVendor: isvendor,
+            profilePic: dbRes[0][0].profile_img,
           },
           process.env.JWT_SECRET
         );
@@ -50,7 +51,8 @@ module.exports = {
             token, 
             user: {
               username,
-              isvendor
+              isvendor,
+              profilePic: profile_img
             }
           });
       })

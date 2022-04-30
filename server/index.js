@@ -2,6 +2,12 @@ const express = require('express');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const {uploadFile, deleteFile} = require('./s3');
+const sequelize = require("./sequelize");
+const fs = require('fs');
+
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const app = express();
 
@@ -12,7 +18,7 @@ app.use('/static',express.static(path.join(__dirname, '/assets/static')));
 // controllers
 const { 
   createUser, loginUser, getAllFavorites,
-  addFavorite, removeFavorite 
+  addFavorite, removeFavorite, getProfilePic 
 } = require('./controllers/userController');
 const { fetchCategories } = require('./controllers/categoryController');
 const { 
@@ -23,6 +29,7 @@ getCart, addToCart, removeFromCart, updateCart, clearCart
 } = require('./controllers/cartController');
 const { fetchViewShops, fetchShop } = require('./controllers/shopController');
 const { becomeSeller, getShopDashboardInfo } = require('./controllers/sellerController');
+const { setUserImage, getPriorUserImageKey } = require('./controllers/imgController');
 
 
 // Seed File
@@ -34,13 +41,17 @@ app.post(`/api/seed`, seed)
   app.post(`/api/users/register`, createUser);
   app.post(`/api/users/login`, loginUser);
   app.get('/api/users/verify', verifyToken, (req, res) => {
-    
+    console.log('req.user.profilepic', req.user.profilePic)
+    console.log('req.user.isVendor', req.user.isVendor)
     res.status(200).send({
       token: req.token,
       isVendor: req.user.isVendor,
-      username: req.user.username
+      username: req.user.username,
+      profilePic: req.user.profilePic,
     });
   });
+
+  app.get('/api/user/profilePic', verifyToken, getProfilePic);
 
   app.get(`/api/user/favorites`, verifyToken, getAllFavorites)
   app.post(`/api/user/favorites`, verifyToken, addFavorite)
@@ -82,6 +93,31 @@ app.get('/api/popular-search-terms', getPopularSearchTerms);
 
 app.get('/api/shop/dashboard/info', verifyShopToken, getShopDashboardInfo)
 
+app.post('/api/image/profile/s3/bucket', verifyToken, upload.single('image'), async (req, res) => {
+ const file = req.file
+ try{
+   try{
+     const priorKey = await getPriorUserImageKey(req.user.user_id)
+      if (priorKey) {
+        await deleteFile(priorKey)
+      }
+   } catch(err) {
+     console.log(err)
+   }
+
+   const result = await uploadFile(file)
+   const dbResult = await setUserImage(req.user.user_id, result.Key, result.Location)
+   res.status(200).send(dbResult)
+ } catch(err) {
+    console.log(err)
+    res.status(500).send(err)
+  } finally {
+    try{fs.unlinkSync(file.path)}
+    catch(err){console.log(err)}
+  }
+  
+});
+
 // Verify token
 function verifyToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -96,6 +132,8 @@ function verifyToken(req, res, next) {
 });
 }
 
+
+
 function verifyShopToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -107,11 +145,43 @@ function verifyShopToken(req, res, next) {
     if (!user.isVendor) return res.sendStatus(403);
     req.user = user;
     req.token = token;
+    console.log(user)
     next();
 });
 }
 
+function signNewToken(req, res, next) {
+  const {user_id} = req.user;
+  
+  sequelize.query(`SELECT * FROM users WHERE user_id = '${user_id}'`)
+  .then(dbRes => {
 
+    const body = {
+      user_id: dbRes[0][0].user_id,
+      username: dbRes[0][0].username,
+      email: dbRes[0][0].email,
+      first_name: dbRes[0][0].first_name,
+      last_name: dbRes[0][0].last_name,
+      phone: dbRes[0][0].phone,
+      address_line_one: dbRes[0][0].address_line_one,
+      address_line_two: dbRes[0][0].address_line_two,
+      city: dbRes[0][0].city,
+      state: dbRes[0][0].state,
+      zipcode: dbRes[0][0].zipcode,
+      isVendor: dbRes[0][0].isvendor,
+      profilePic: dbRes[0][0].profile_img,
+    }
+
+
+    const token = jwt.sign(
+      body,
+      process.env.JWT_SECRET
+      
+    );
+    req.user = body
+    req.token = token
+  })
+}
 
 const port = process.env.PORT || 5000;
 

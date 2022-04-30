@@ -42,6 +42,7 @@ module.exports = {
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL,
       profile_img VARCHAR(150) NULL,
+      profile_img_key VARCHAR(100) NULL,
       isVendor BOOLEAN NOT NULL DEFAULT FALSE
       );
       
@@ -65,6 +66,8 @@ module.exports = {
       company_name VARCHAR(50) NOT NULL,
       img_url VARCHAR(150) NULL,
       cover_img_url VARCHAR(150) NULL,
+      img_url_key VARCHAR(100) NULL,
+      cover_img_url_key VARCHAR(100) NULL,
       user_id UUID NOT NULL REFERENCES users(user_id)
       );
 

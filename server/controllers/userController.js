@@ -71,8 +71,8 @@ module.exports = {
               res.sendStatus(500);
             } else if (result) {
               // create token
-              const {username, isvendor} = dbRes[0][0];
-              
+              const {username, isvendor, profile_img} = dbRes[0][0];
+              console.log(profile_img)
               const token = jwt.sign(
                 {
                   user_id: dbRes[0][0].user_id,
@@ -87,10 +87,11 @@ module.exports = {
                   state: dbRes[0][0].state,
                   zipcode: dbRes[0][0].zipcode,
                   isVendor: isvendor,
+                  profilePic: profile_img,
                 },
                 process.env.JWT_SECRET
               );
-              res.status(200).send({ token, username, isvendor });
+              res.status(200).send({ token, username, isvendor, profilePic: profile_img });
             } else {
               res.sendStatus(401);
             }
@@ -145,5 +146,22 @@ module.exports = {
       )
       .then((dbRes) => res.status(200).send(dbRes[0]))
       .catch((err) => res.send(err));
+  },
+  getProfilePic: (req, res) => {
+    const { user_id } = req.user;
+    sequelize
+      .query(
+        `
+      SELECT profile_img FROM users WHERE user_id = '${user_id}';
+      `
+      )
+      .then((dbRes) => {
+        console.log(dbRes[0])
+        res.status(200).send(dbRes[0][0])
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(err);
+      });
   }
 };
