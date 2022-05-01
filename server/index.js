@@ -28,8 +28,10 @@ const {
 getCart, addToCart, removeFromCart, updateCart, clearCart
 } = require('./controllers/cartController');
 const { fetchViewShops, fetchShop } = require('./controllers/shopController');
-const { becomeSeller, getShopDashboardInfo } = require('./controllers/sellerController');
-const { setUserImage, getPriorUserImageKey } = require('./controllers/imgController');
+const { becomeSeller, getShopDashboardInfo, getShopDashboardAccount } = require('./controllers/sellerController');
+const { setUserImage, getPriorUserImageKey, setLogoImage,
+  getPriorLogoImageKey, setCoverImage, getPriorCoverImageKey 
+} = require('./controllers/imgController');
 
 
 // Seed File
@@ -56,6 +58,8 @@ app.post(`/api/seed`, seed)
   app.get(`/api/user/favorites`, verifyToken, getAllFavorites)
   app.post(`/api/user/favorites`, verifyToken, addFavorite)
   app.delete(`/api/user/favorites/:id`, verifyToken, removeFavorite)
+
+  app.get('/api/shop/dashboard/account', verifyShopToken, getShopDashboardAccount)
 
   // /api/users/cart
 
@@ -117,6 +121,56 @@ app.post('/api/image/profile/s3/bucket', verifyToken, upload.single('image'), as
   }
   
 });
+
+app.post('/api/image/shop-cover/s3/bucket', verifyToken, upload.single('image'), async (req, res) => {
+  const file = req.file
+  try{
+    try{
+      const priorKey = await getPriorCoverImageKey(req.user.user_id)
+       if (priorKey) {
+         await deleteFile(priorKey)
+       }
+    } catch(err) {
+      console.log(err)
+    }
+ 
+    const result = await uploadFile(file)
+    const dbResult = await setCoverImage(req.user.user_id, result.Key, result.Location)
+    res.status(200).send(dbResult)
+  } catch(err) {
+     console.log(err)
+     res.status(500).send(err)
+   } finally {
+     try{fs.unlinkSync(file.path)}
+     catch(err){console.log(err)}
+   }
+   
+ });
+
+ app.post('/api/image/shop-logo/s3/bucket', verifyToken, upload.single('image'), async (req, res) => {
+  const file = req.file
+  try{
+    try{
+      const priorKey = await getPriorLogoImageKey(req.user.user_id)
+       if (priorKey) {
+         await deleteFile(priorKey)
+       }
+    } catch(err) {
+      console.log(err)
+    }
+ 
+    const result = await uploadFile(file)
+    const dbResult = await setLogoImage(req.user.user_id, result.Key, result.Location)
+    res.status(200).send(dbResult)
+  } catch(err) {
+     console.log(err)
+     res.status(500).send(err)
+   } finally {
+     try{fs.unlinkSync(file.path)}
+     catch(err){console.log(err)}
+   }
+   
+ });
 
 // Verify token
 function verifyToken(req, res, next) {

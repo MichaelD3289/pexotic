@@ -1,0 +1,114 @@
+#shopAccount {
+  border: 5px solid rgba(0, 0, 0, 0.25);
+}
+
+.shopAccount-cover-img-holder {
+  width: 100%;
+  background-color: #E9ECF2;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  box-shadow: inset 0 -5px 0  rgba(0, 0, 0, 0.17);
+  position: relative;
+}
+
+.shopAccount-cover-img {
+  width: 80%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.shopAccount-shop-info-bar {
+  height: 300px;
+  display: flex;
+  padding: 0 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: -50px;
+}
+
+.shopAccount-shop-info {
+  display: flex;
+  gap: 10px;
+}
+
+.shopAccount-shop-info-left {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.shopAccount-shop-info-right {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.shopAccount-shop-info-right h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.shopAccount-shop-info-logo-container {
+  width: 175px;
+  height: 175px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid rgba(0, 0, 0, 0.17);
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+}
+
+.shopAccount-shop-info-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.shopAccount-trusted-seller {
+  color: #928620;
+  font-weight: 700;
+  margin-top: 25px;
+  font-size: 1.2rem;
+}
+
+.shopAccount-shop-info-guarantees {
+  display: flex;
+  height: 200px;
+  width: fit-content;
+}
+
+.shopAccount-shop-info-live-arrival, .shopAccount-shop-info-overnight-shipping {
+  border: 5px solid #EA823E;
+  height: 100px;
+  width: 165px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  }
+  
+  .shopAccount-shop-info-overnight-shipping {
+    border-color: #3CA836;
+    align-self: flex-end;
+  }
+
+  .shopAccount-shop-info-btns-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    margin-right: 15px;
+  }

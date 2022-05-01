@@ -64,8 +64,8 @@ module.exports = {
       CREATE TABLE sellers(
       seller_id SERIAL PRIMARY KEY,
       company_name VARCHAR(50) NOT NULL,
-      img_url VARCHAR(150) NULL,
-      cover_img_url VARCHAR(150) NULL,
+      img_url VARCHAR(150) NOT NULL DEFAULT '/static/logo-placeholder.jpg',
+      cover_img_url VARCHAR(150) NOT NULL DEFAULT '/static/cover-img-placeholder.jpg',
       img_url_key VARCHAR(100) NULL,
       cover_img_url_key VARCHAR(100) NULL,
       user_id UUID NOT NULL REFERENCES users(user_id)

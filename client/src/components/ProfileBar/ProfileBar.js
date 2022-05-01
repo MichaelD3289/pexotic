@@ -15,7 +15,7 @@ function ProfileBar() {
 const dispatch = useDispatch()
 const [dropdown, setDropdown] = React.useState(false)
 
-const {userInfo: {isVendor}} = useSelector(state => state.currentUser)
+const {userInfo: {isVendor, profilePic}} = useSelector(state => state.currentUser)
 
   return (
     <div className='outline'>
@@ -41,7 +41,7 @@ const {userInfo: {isVendor}} = useSelector(state => state.currentUser)
              ></div>
                <img 
                 className='account-icon' 
-                src={accountIcon} 
+                src={profilePic || accountIcon} 
                 alt="account icon" 
                 />
               <img 

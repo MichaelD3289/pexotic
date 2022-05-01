@@ -18,6 +18,7 @@ import userFiltersReducer from './reducers/userFilters'
 import searchPageListingsReducer from './reducers/searchPageListings'
 import popularSearchTermsReducer from './reducers/popularSearchTerms'
 import shopDashboardInfoReducer from './reducers/shopDashboardInfo'
+import shopDashboardAccountReducer from './reducers/shopDashboardAccount'
 
 const rootReducer = combineReducers({
   // reducers go here
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
   userFilters: userFiltersReducer,
   searchPageListings: searchPageListingsReducer,
   popularSearchTerms: popularSearchTermsReducer,
-  shopDashboardInfo: shopDashboardInfoReducer
+  shopDashboardInfo: shopDashboardInfoReducer,
+  shopDashBoardAccount: shopDashboardAccountReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

@@ -20,44 +20,49 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { saveCurrentUser, unVerifyUser, verifyUser } from './redux/reducers/currentUser'
-import { getAllFavorites } from './redux/reducers/allFavorites'
-import { getUserCart } from './redux/reducers/userCart'
+// import { saveCurrentUser, unVerifyUser, verifyUser } from './redux/reducers/currentUser'
+// import { getAllFavorites } from './redux/reducers/allFavorites'
+// import { getUserCart } from './redux/reducers/userCart'
 
 import LogInPopUp from './components/LogInPopUp/LogInPopUp'
+import useVerifyUser from './hooks/useVerifyUser'
+
 
 function App() {
+const {verify, token} = useVerifyUser()
+useEffect(() => {
+  verify()
+}, [token])
+// const token = useSelector(state => state.currentUser.token) || localStorage.getItem('access_token') || null
 
-const token = useSelector(state => state.currentUser.token) || localStorage.getItem('access_token') || null
+// const dispatch = useDispatch()
 
-const dispatch = useDispatch()
-
-  useEffect(() => {
+//   useEffect(() => {
 
     
-    if(!token) {
-      dispatch(unVerifyUser())
-      return
-    }
+//     if(!token) {
+//       dispatch(unVerifyUser())
+//       return
+//     }
     
-    axios.get('/api/users/verify', {
-      headers: {
-        authorization: `Bearer ${token}`
-        }
-    })
-    .then(res => {
-      
-      axios.defaults.headers.common['authorization'] = `Bearer ${token}`
-      dispatch(verifyUser())
-      dispatch(saveCurrentUser(token, res.data))
-      dispatch(getAllFavorites())
-      dispatch(getUserCart())
-    })
-    .catch(err => {
-      dispatch(unVerifyUser())
-      localStorage.removeItem('access_token')
-    })
-  }, [dispatch, token])
+//     axios.get('/api/users/verify', {
+//       headers: {
+//         authorization: `Bearer ${token}`
+//         }
+//     })
+//     .then(res => {
+//       console.log(res.data)
+//       axios.defaults.headers.common['authorization'] = `Bearer ${token}`
+//       dispatch(verifyUser())
+//       dispatch(saveCurrentUser(token, res.data))
+//       dispatch(getAllFavorites())
+//       dispatch(getUserCart())
+//     })
+//     .catch(err => {
+//       dispatch(unVerifyUser())
+//       localStorage.removeItem('access_token')
+//     })
+//   }, [dispatch, token])
 
   const popUpToggle = useSelector(state => state.accountPopUp);
 

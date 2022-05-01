@@ -14,28 +14,28 @@ function BreederDashboard() {
       <nav id='breeder-dashboard-nav'>
         <NavLink 
           to='/breeder/dashboard/main' 
-          activeclassName='active'
+          activeclassname='active'
           className='breeder-dashboard-nav-link'
         >
           Dashboard
         </NavLink>
         <NavLink 
           to='/breeder/dashboard/listings' 
-          activeclassName='active'
+          activeclassname='active'
           className='breeder-dashboard-nav-link'
         >
           Listings
         </NavLink>
         <NavLink 
           to='/breeder/dashboard/messages'
-          activeclassName='active'
+          activeclassname='active'
           className='breeder-dashboard-nav-link'
         >
           Messages
         </NavLink>
         <NavLink 
           to='/breeder/dashboard/account'
-          activeclassName='active'
+          activeclassname='active'
           className='breeder-dashboard-nav-link'
         >
           Account

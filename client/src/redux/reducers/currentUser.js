@@ -1,7 +1,10 @@
+import axios from 'axios'
+
 // constant type variables
 const SAVE_CURRENT_USER = 'SAVE_CURRENT_USER'
 const UNVERIFY_USER = 'UNVERIFY_USER'
 const VERIFY_USER = 'VERIFY_USER'
+const GET_PROFILE_IMG = 'GET_PROFILE_IMG'
 
 // action functions
 export const saveCurrentUser = (token,user) => {
@@ -12,6 +15,7 @@ export const saveCurrentUser = (token,user) => {
       token,
       username: user.username,
       isVendor: user.isVendor,
+      profilePic: user.profilePic,
     }
   }
 }
@@ -28,12 +32,25 @@ export const verifyUser = () => {
   }
 }
 
+export const getProfileImg = () => dispatch => {
+  axios.get('/api/user/profilePic')
+  .then(res => {
+    dispatch({
+      type: GET_PROFILE_IMG,
+      payload: res.data.profile_img
+      })
+  })
+  .catch(err => console.log(err))
+
+}
+
 const initialState = {
   verified: false,
   token: '',
   userInfo: {
     username: '',
     isVendor: false,
+    profilePic: '',
   }
 }
 
@@ -49,6 +66,7 @@ export default function currentUserReducer(state=initialState, action) {
         userInfo: {
           username: action.payload.username,
           isVendor: action.payload.isVendor,
+          profilePic: ""
         }
       }
     case UNVERIFY_USER:
@@ -61,6 +79,14 @@ export default function currentUserReducer(state=initialState, action) {
       return {
         ...state,
         verified: true
+      }
+    case GET_PROFILE_IMG:
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          profilePic: action.payload
+        }
       }
     // default statement
     default:

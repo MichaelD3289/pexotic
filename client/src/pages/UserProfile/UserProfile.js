@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './UserProfile.css'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import accountIcon from '../../assets/icons/account-icon.svg'
 import CameraIcon from '../../components/CameraIcon/CameraIcon'
@@ -8,15 +9,24 @@ import BreakLine from '../../components/BreakLine/BreakLine'
 import ProfileFavoriteListings from '../../components/ProfileFavoriteListings/ProfileFavoriteListings'
 import BecomeSeller from '../../components/BecomeSeller/BecomeSeller'
 import shopIcon from '../../assets/icons/shop-icon.svg'
+import useVerifyUser from '../../hooks/useVerifyUser'
 
 import {useSelector} from 'react-redux'
 
+import useUploadImage from '../../hooks/useUploadImage'
+
 function UserProfile() {
 const [clickedBecomeSeller, setClickedBecomeSeller] = useState(false)
-  
-  
+
+const {imageFile, submit, fileSelected, getProfileImg, dispatch} = useUploadImage('profile')
+
+
   const favoriteListings = useSelector(state => state.allFavorites)
-  const {userInfo: {username, isVendor}} = useSelector(state => state.currentUser)
+  const {userInfo: {username, isVendor, profilePic}} = useSelector(state => state.currentUser)
+
+  React.useEffect(() => {
+    dispatch(getProfileImg())
+  },[])
 
   return (
     <main id="user-profile-page">
@@ -24,11 +34,22 @@ const [clickedBecomeSeller, setClickedBecomeSeller] = useState(false)
         <div className='user-avatar-section'>
           <div className='user-avatar-image'>
             <img 
-              src={accountIcon} 
+              src={imageFile.preview || profilePic} 
               alt='account icon' 
-              id='user-profile-img' 
+              id={imageFile.isSubmitted ? 'user-profile-img' : 'user-profile-img-uploading'} 
               />
-            <CameraIcon />
+              {!imageFile.isSubmitted && <button 
+              className='submit-photo-btn'
+              onClick={(e) => {
+               submit(e).then(result => {
+                dispatch(getProfileImg(result))
+               })
+
+              }}
+              >
+                Submit
+              </button>}
+            <CameraIcon setImage={fileSelected} />
           </div>
           <div className='user-avatar-name'>
             <h2 className='username-title'>

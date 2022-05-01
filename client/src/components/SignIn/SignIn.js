@@ -32,6 +32,7 @@ function SignIn() {
       axios
       .post('/api/users/login', values)
       .then(({data}) => {
+        console.log(data)
         
         dispatch(saveCurrentUser(data.token, data))
         localStorage.setItem("access_token", data.token);
