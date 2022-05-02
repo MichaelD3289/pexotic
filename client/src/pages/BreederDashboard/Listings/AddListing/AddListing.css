@@ -1,0 +1,133 @@
+#add-listing-pop-up{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.5s ease-in-out;
+  z-index: 9999999;
+}
+
+#add-listing-pop-up.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#add-listing-pop-up.hide {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 0;
+}
+
+.add-listing-pop-up-background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.add-listing-pop-up {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border: 5px solid rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.inputField.add-listing.photo {
+cursor: pointer;
+}
+
+#add-listing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-left {
+ flex: 1;
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.form-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-listing-title {
+  margin : 0 auto;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.add-listing-top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 30px 0;
+  gap: 30px;
+}
+
+.add-listing-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-preview-container {
+  flex: 1;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+}
+
+.photo-preview {
+  width: 90%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.17);
+  display: block;
+  margin: 0 auto;
+}
+
+.photo-input-container {
+  flex: 1;
+}
+
+.prev-arrow, .next-arrow {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.prev-arrow:hover, .next-arrow:hover {
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.prev-arrow:active, .next-arrow:active {
+  transform: scale(0.92);
+}
+

@@ -12,11 +12,11 @@ function useUploadImage(endpoint) {
     isSubmitted: true
   })
   
-  async function postImage({file}) {
+  async function postImage({file, id=''}) {
     const formData = new FormData()
     formData.append('image', file)
     setIsUploading(true)
-    const {data} = await axios.post(`/api/image/${endpoint}/s3/bucket`, formData, {
+    const {data} = await axios.post(`/api/image/${endpoint}/s3/bucket${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -26,9 +26,9 @@ function useUploadImage(endpoint) {
     return data
   }
 
-  const submit = async event => {
-    event.preventDefault()
-    const result = await postImage({file: imageFile.file})
+  const submit = async (event, id) => {
+    event?.preventDefault()
+    const result = await postImage({file: imageFile.file, id})
     setImageFile({
       file: null,
       preview: result.image,

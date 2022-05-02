@@ -129,9 +129,6 @@ function ShopAccount() {
         searchTerm={searchCategory} 
       />
 
-      <BreakLine />
-
-
     </main>
   )
 }
