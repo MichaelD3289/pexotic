@@ -22,7 +22,7 @@ const {
 } = require('./controllers/userController');
 const { fetchCategories } = require('./controllers/categoryController');
 const { 
-  getListing, getPopularListings, fetchViewed, addViewed, fetchListings, getPopularSearchTerms  
+  getListing, getPopularListings, fetchViewed, addViewed, fetchListings, getPopularSearchTerms, addListing, deleteListing  
 } = require('./controllers/listingController');
 const {
 getCart, addToCart, removeFromCart, updateCart, clearCart
@@ -30,7 +30,7 @@ getCart, addToCart, removeFromCart, updateCart, clearCart
 const { fetchViewShops, fetchShop } = require('./controllers/shopController');
 const { becomeSeller, getShopDashboardInfo, getShopDashboardAccount } = require('./controllers/sellerController');
 const { setUserImage, getPriorUserImageKey, setLogoImage,
-  getPriorLogoImageKey, setCoverImage, getPriorCoverImageKey 
+  getPriorLogoImageKey, setCoverImage, getPriorCoverImageKey, setListingImage, getPriorListingImageKey, getAllListingImageKeys 
 } = require('./controllers/imgController');
 
 
@@ -75,6 +75,25 @@ app.post(`/api/seed`, seed)
   // /api/listing
 
   app.get(`/api/listings/:id`, getListing);
+  app.post('/api/listings', verifyShopToken, addListing)
+  app.delete('/api/listings/:id', verifyShopToken, async (req, res, next) => {
+    const {main_photo_key, photo_two_key, photo_three_key, photo_four_key, photo_five_key} = await getAllListingImageKeys(req.params.id)
+
+   async function deleteKey(key) {
+    try {
+      await deleteFile(key);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  deleteKey(main_photo_key)
+  deleteKey(photo_two_key)
+  deleteKey(photo_three_key)
+  deleteKey(photo_four_key)
+  deleteKey(photo_five_key)
+    
+      next()
+  }, deleteListing)
 
   // /api/listing/popular
 
@@ -161,6 +180,31 @@ app.post('/api/image/shop-cover/s3/bucket', verifyToken, upload.single('image'),
  
     const result = await uploadFile(file)
     const dbResult = await setLogoImage(req.user.user_id, result.Key, result.Location)
+    res.status(200).send(dbResult)
+  } catch(err) {
+     console.log(err)
+     res.status(500).send(err)
+   } finally {
+     try{fs.unlinkSync(file.path)}
+     catch(err){console.log(err)}
+   }
+   
+ });
+
+ app.post('/api/image/listing-photo/s3/bucket/:id', verifyToken, upload.single('image'), async (req, res) => {
+  const file = req.file
+  try{
+    try{
+      const priorKey = await getPriorListingImageKey(req.params.id, req.query.type)
+       if (priorKey) {
+         await deleteFile(priorKey)
+       }
+    } catch(err) {
+      console.log(err)
+    }
+ 
+    const result = await uploadFile(file)
+    const dbResult = await setListingImage(req.params.id, result.Key, result.Location, req.query.type)
     res.status(200).send(dbResult)
   } catch(err) {
      console.log(err)

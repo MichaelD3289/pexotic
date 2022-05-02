@@ -14,7 +14,7 @@ export const getShop = (shopId) => dispatch => {
         type: `${GET_SHOP}_FULFILLED`, 
         payload: { 
             shop,
-            shopsListings ,
+            shopsListings,
             shopCategories: [...new Set(shopsListings.map(listing => listing.category_name))]
           }} 
       )

@@ -121,7 +121,12 @@ module.exports = {
       species_id INT NOT NULL REFERENCES species(species_id),
       number_sold INT NOT NULL DEFAULT 0,
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-      modified_at TIMESTAMP NOT NULL
+      modified_at TIMESTAMP NOT NULL,
+      main_photo_key VARCHAR(100) NULL,
+      photo_two_key VARCHAR(100) NULL,
+      photo_three_key VARCHAR(100) NULL,
+      photo_four_key VARCHAR(100) NULL,
+      photo_five_key VARCHAR(100) NULL
       );
       
       CREATE TABLE discounts(

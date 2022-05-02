@@ -105,16 +105,16 @@ module.exports = {
         l.species_id,
         l.seller_id,
         s.company_name,
-        u.state,
-        sp.genus,
-        sp.species
+        u.state
+        --sp.genus,
+        --sp.species
         FROM listings AS l
         JOIN sellers AS s
         ON l.seller_id = s.seller_id
         JOIN users AS u
         ON u.user_id = s.user_id
-        JOIN species AS sp
-        ON l.species_id = sp.species_id
+        --JOIN species AS sp
+        --ON l.species_id = sp.species_id
         WHERE LOWER(l.listing_name) LIKE LOWER('%${q}%')
         AND l.price BETWEEN ${price.min || 0} AND ${price.max || 9999999}
         ${stopLocation}AND LOWER(u.state) IN ('${checkedStates.join("','")}')
@@ -152,5 +152,45 @@ module.exports = {
         `)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err));
+    },
+    addListing: (req, res) => {
+      const { user_id } = req.user;
+      const { title, description, price, shippingPrice, category, qtyInStock} = req.body;
+      
+      const title_esc = sequelize.escape(title);
+      const description_esc = sequelize.escape(description);
+      const price_esc = sequelize.escape(price);
+      const shippingPrice_esc = sequelize.escape(shippingPrice);
+      const category_esc = sequelize.escape(category);
+      const qtyInStock_esc = sequelize.escape(qtyInStock);
+
+      sequelize
+        .query(`
+          INSERT INTO listings (listing_name, description, price, shipping_price, qty_in_stock, category_id, seller_id, modified_at)
+          VALUES(${title_esc}, ${description_esc}, ${price_esc}, ${shippingPrice_esc}, ${qtyInStock_esc}, ${category_esc}, 
+          (SELECT seller_id FROM sellers WHERE user_id = '${user_id}'), NOW())
+          RETURNING listing_id AS id;
+        `)
+        .then(dbRes => res.status(200).send(dbRes[0][0]))
+        .catch(err => {
+          console.log(err)
+          res.status(500).send(err)
+        })
+    },
+    deleteListing: (req, res) => {
+      const { id } = req.params;
+      sequelize
+        .query(`
+        DELETE FROM viewed_listings
+        WHERE listing_id = ${id};
+
+        DELETE FROM listings
+        WHERE listing_id = ${id};
+        `)
+        .then(dbRes => res.status(200).send(dbRes[0]))
+        .catch(err => {
+          console.log(err)
+          res.status(500).send(err)
+        })
     }
 }

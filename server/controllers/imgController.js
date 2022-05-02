@@ -63,5 +63,41 @@ module.exports = {
     WHERE seller_id = (SELECT seller_id FROM sellers WHERE user_id = '${userId}');
     `)
     return result[0][0].cover_img_url_key;
+  },
+  setListingImage: async (listingId, imgKey, imgLocation, column) => {
+    
+
+    const result = await sequelize.query(`
+    UPDATE listings
+    SET ${column}_key = '${imgKey}'
+    WHERE listing_id = '${listingId}';  
+  
+    UPDATE listings
+    SET ${column} = '${imgLocation}'
+    WHERE listing_id = '${listingId}'
+    RETURNING ${column};
+    `)
+    return result[0][0][column];
+  },
+  getPriorListingImageKey: async (listingId, column) => {
+    const result = await sequelize.query(`
+    SELECT ${column}_key
+    FROM listings
+    WHERE listing_id = '${listingId}';
+    `)
+    return result[0][0][column + '_key'];
+  },
+  getAllListingImageKeys: async (listingId) => {
+    const result = await sequelize.query(`
+    SELECT
+    main_photo_key,
+    photo_two_key,
+    photo_three_key,
+    photo_four_key,
+    photo_five_key
+    FROM listings
+    WHERE listing_id = '${listingId}';
+    `)
+    return result[0][0];
   }
 }

@@ -6,8 +6,11 @@ import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
 import OutlineButton from "../../../../components/Buttons/OutlineButton";
 import useUploadImage from "../../../../hooks/useUploadImage";
+import { getShopAccount } from "../../../../redux/reducers/shopDashboardAccount";
+
 
 function AddListing({ show, hide }) {
+
   const [categories, setCategories] = React.useState([]);
   const { imageFile: mainImage, submit: submitMain, fileSelected: mainFileSelected, dispatch } = useUploadImage('listing-photo');
   const { imageFile: imageTwo, submit: submitTwo, fileSelected: fileTwoSelected } = useUploadImage('listing-photo');
@@ -77,13 +80,16 @@ function AddListing({ show, hide }) {
             submitThree(null, `/${res.data.id}?type=photo_three`)
             submitFour(null, `/${res.data.id}?type=photo_four`)
             submitFive(null, `/${res.data.id}?type=photo_five`)
+            hide(false);
           })
           .catch((err) => {
             console.log(err);
             })
-          .finally(() => setSubmitting(false));
+          .finally(() => {           
+            setSubmitting(false)
+            dispatch(getShopAccount())
+          });
         
-
       }}
     >
 
