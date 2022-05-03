@@ -23,7 +23,7 @@ function NavBarCard({cardInfo}) {
       </h4>
       
       <div className='white-bg'>
-        <img className='nav-item-img-b' src={`/static/${img_url.replace('jpg', 'png')}`} alt="" />
+        <img className='nav-item-img-b' src={`${img_url}`} alt="" />
       </div>
       
     </Link>

@@ -26,7 +26,7 @@ function ListingInfoHolder() {
             className='listing-logo-link'
             >
             <img 
-            src={`/static/${shopLogo.replace('jpg', 'png')}`} className='listing-logo' 
+            src={`${shopLogo}`} className='listing-logo' 
             alt={shopName}
             />
           </Link>

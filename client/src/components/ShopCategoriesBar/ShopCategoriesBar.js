@@ -1,11 +1,9 @@
 import React from 'react'
 import './ShopCategoriesBar.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { setSearchTerm } from '../../redux/reducers/currentShop'
+import { useDispatch } from 'react-redux'
 
-function ShopCategoriesBar({shopCategories, ...props}) {
+function ShopCategoriesBar({shopCategories, searchCategory, setSearchTerm, ...props}) {
   const dispatch = useDispatch()
-  const {searchCategory} = useSelector(state => state.currentShop)
   
   return (
     <div id='shop-categories-bar'>

@@ -11,18 +11,18 @@ function AltImageContainer() {
   const listing = useSelector(state => state.currentListing)
 
   const { photoUrls: {altImages, mainPhoto}, name } = listing
-
+  
   return (
 
     <div className='alt-image-container'>
 
-      {altImages.map(image => (
+      {altImages.filter(img => img).map(image => (
         <div
         key={image} 
         className={`alt-image-container-item${image === mainPhoto ? ' main-photo' : ''}`}
         onClick={() => dispatch(setMainListingPhoto(image))}
         >
-          <img src={`/static/${image}`} className='alt-image' alt={name}/>
+          <img src={`${image}`} className='alt-image' alt={name}/>
         </div>
       )) 
       }

@@ -38,7 +38,7 @@ function Listing({ id, title, price, qty, main_photo, isFavorite, ...props }) {
     
           <img 
           className={`popular-listing-img ${qty === 0 ? 'item-out-of-stock' : ''}`} 
-          src={`/static/${main_photo}`} 
+          src={`${main_photo}`} 
           alt={title} 
           onClick={() => dispatch(getListing(id))}/>
           </Link>

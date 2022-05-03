@@ -1,5 +1,6 @@
 #shop-listing-container {
   width: 100%;
+ 
 }
 
 .listing-container {
@@ -9,4 +10,5 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
+  padding: 0 75px;
 }

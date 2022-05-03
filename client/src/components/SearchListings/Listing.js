@@ -8,7 +8,7 @@ import greenCheckMark from '../../assets/icons/checkmark-circle-icon.svg'
 import FavoriteHeart from '../FavoriteHeart/FavoriteHeart'
 
 function Listing({listing, ...props}) {
-  const {
+  let {
     listing_id: id, main_photo: img_url, price, qty, listing_name: title
   } = listing;
 
@@ -38,7 +38,7 @@ function Listing({listing, ...props}) {
       <Link className='search-listing-link' to={`/product/listing/${id}`}>
       <img 
         className='search-listing-img' 
-        src={`/static/${img_url}`} 
+        src={`${img_url}`} 
         alt={title} 
       />
       <h4>{title}</h4>

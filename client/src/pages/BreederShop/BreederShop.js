@@ -5,6 +5,7 @@ import BreakLine from '../../components/BreakLine/BreakLine'
 import OutlineButton from '../../components/Buttons/OutlineButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShop } from '../../redux/reducers/currentShop'
+import { setSearchTerm } from '../../redux/reducers/currentShop'
 
 import ShopCategoriesBar from '../../components/ShopCategoriesBar/ShopCategoriesBar'
 import ShopListings from '../../components/ShopListings/ShopListings'
@@ -24,7 +25,7 @@ function BreederShop() {
   return (
     <main id="breederShop">
       <div className='cover-img-holder'>
-        <img src={`/static/${shop.cover_img_url}`} alt="cover placeholder" className="cover-img" />
+        <img src={`${shop.cover_img_url}`} alt="cover placeholder" className="cover-img" />
       </div>
 
       <div className='shop-info-bar'>
@@ -32,7 +33,7 @@ function BreederShop() {
 
           <div className='shop-info-left'>
             <div className='shop-info-logo-container'>
-               <img src={`/static/${shop.img_url.replace('jpg', 'png')}`} alt="shop logo" className="shop-info-logo" />
+               <img src={`${shop.img_url}`} alt="shop logo" className="shop-info-logo" />
             </div>
           </div>
 
@@ -80,6 +81,8 @@ function BreederShop() {
 
       <ShopCategoriesBar
       shopCategories={shopCategories}
+      searchCategory={searchCategory}
+      setSearchTerm={setSearchTerm}
       />
       <ShopListings 
         shopsListings={shopsListings}

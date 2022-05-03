@@ -24,7 +24,7 @@ function MainProductPhoto() {
       id={id}
       isHovered={isHovered}
       />
-      <img src={`/static/${photoUrls.mainPhoto}`} className='main-photo' alt={name}/>
+      <img src={`${photoUrls.mainPhoto}`} className='main-photo' alt={name}/>
     </div>
   )
 }

@@ -34,7 +34,7 @@ const {imageFile, submit, fileSelected, getProfileImg, dispatch} = useUploadImag
         <div className='user-avatar-section'>
           <div className='user-avatar-image'>
             <img 
-              src={imageFile.preview || profilePic} 
+              src={imageFile.preview || profilePic || accountIcon} 
               alt='account icon' 
               id={imageFile.isSubmitted ? 'user-profile-img' : 'user-profile-img-uploading'} 
               />

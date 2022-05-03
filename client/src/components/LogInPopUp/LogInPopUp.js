@@ -25,6 +25,21 @@ function LogInPopUp({show}) {
   
   return (
     <div id={show ? 'fade-in' : 'fade-out'} className='popup'>
+              {accountSuccess.type === "success" && 
+        <div className='popup-message'>
+          <Success title="Success!">
+            <h3>Your Account has been Created!</h3>
+            <p>Please sign-in using your username and password</p>
+          </Success>
+          </div>}
+
+          {accountSuccess.type === "error" && 
+        <div className='popup-message'>
+          <Error title="Error">
+            <h3>There was a problem on Submission</h3>
+            <p>{accountSuccess.message}</p>
+          </Error>
+          </div>}
       <div 
       className={`popup-background`}
       onClick={() => dispatch(toggleAccountPopUp())}></div>
@@ -52,21 +67,7 @@ function LogInPopUp({show}) {
           {isRegister ? <RegisterUser setIsRegister={handleisRegister} /> : <SignIn />}
         </div>
 
-        {accountSuccess.type === "success" && 
-        <div className='popup-message'>
-          <Success title="Success!">
-            <h3>Your Account has been Created!</h3>
-            <p>Please sign-in using your username and password</p>
-          </Success>
-          </div>}
 
-          {accountSuccess.type === "error" && 
-        <div className='popup-message'>
-          <Error title="Error">
-            <h3>There was a problem on Submission</h3>
-            <p>{accountSuccess.message}</p>
-          </Error>
-          </div>}
       </div>
     
   )

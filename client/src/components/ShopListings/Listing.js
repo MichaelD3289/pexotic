@@ -34,7 +34,7 @@ function Listing({id, img_url, price, qty, title, category, ...props}) {
 
       <img 
         className='shop-listing-img' 
-        src={`/static/${img_url}`} 
+        src={`${img_url}`} 
         alt={title} 
       />
       <h4>{title}</h4>

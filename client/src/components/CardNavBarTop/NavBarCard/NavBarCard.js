@@ -37,7 +37,7 @@ function NavBarCard({id, image_url, image_alt, card_name, qty, price, ...props})
             to={!price ? `/search` : `/product/listing/${id}`}
             className='nav-link'
           >
-            <img className='nav-item-img' src={`/static/${image_url}`} alt={image_alt} />
+            <img className='nav-item-img' src={image_url} alt={image_alt} />
             <h4 className='nav-item-title'>{card_name}</h4>
           </Link>
           {price && 

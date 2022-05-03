@@ -4,7 +4,8 @@ import './ShopAccount.css'
 import BreakLine from '../../../components/BreakLine/BreakLine'
 import OutlineButton from '../../../components/Buttons/OutlineButton'
 import { useDispatch, useSelector } from 'react-redux'
-import { getShopAccount } from '../../../redux/reducers/shopDashboardAccount'
+import { getShopAccount, setShopAccountSearchTerm } from '../../../redux/reducers/shopDashboardAccount'
+
 
 import ShopCategoriesBar from '../../../components/ShopCategoriesBar/ShopCategoriesBar'
 import ShopListings from '../../../components/ShopListings/ShopListings'
@@ -24,8 +25,8 @@ function ShopAccount() {
  
     dispatch(getShopAccount())
   
-    window.scrollTo(0, 0)
-  },[dispatch])
+    // window.scrollTo(0, 0)
+  },[])
   
   return (
     <main id="shopAccount">
@@ -123,6 +124,8 @@ function ShopAccount() {
 
       <ShopCategoriesBar
       shopCategories={shopCategories}
+      searchCategory={searchCategory}
+      setSearchTerm={setShopAccountSearchTerm}
       />
       <ShopListings 
         shopsListings={shopsListings}

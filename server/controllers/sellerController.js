@@ -61,8 +61,6 @@ module.exports = {
   getShopDashboardInfo: (req, res) => {
     let { user_id } = req.user;
 
-    user_id = '7eccef45-f8e1-4ee9-aa8b-3837cbac2919'
-
     sequelize
       .query(`
       --shop views today
