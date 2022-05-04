@@ -43,7 +43,7 @@ function Listing({listing, ...props}) {
       />
       <h4>{title}</h4>
       <div className='search-listing-price-qty-container'>
-        <h5><span>$</span>{price}</h5>
+        <h5><span>$</span>{price?.toFixed(2)}</h5>
         <div className='search-listing-stock-indicator'>
           {qty !== 0 ? 
           <img src={greenCheckMark} 

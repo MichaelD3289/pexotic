@@ -1,10 +1,14 @@
 const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io')
 const path = require('path');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const {uploadFile, deleteFile} = require('./s3');
 const sequelize = require("./sequelize");
 const fs = require('fs');
+const cors = require('cors')
+const moment = require('moment');
 
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
@@ -12,6 +16,7 @@ const upload = multer({ dest: 'uploads/' });
 const app = express();
 
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use('/static',express.static(path.join(__dirname, '/assets/static')));
 
@@ -32,6 +37,7 @@ const { becomeSeller, getShopDashboardInfo, getShopDashboardAccount } = require(
 const { setUserImage, getPriorUserImageKey, setLogoImage,
   getPriorLogoImageKey, setCoverImage, getPriorCoverImageKey, setListingImage, getPriorListingImageKey, getAllListingImageKeys 
 } = require('./controllers/imgController');
+const { createRoom, getAllRooms, getMessages, sendMessage } = require('./controllers/messageController');
 
 
 // Seed File
@@ -281,6 +287,55 @@ function signNewToken(req, res, next) {
   })
 }
 
+const server = http.createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  }
+})
+
+io.on('connection', socket => {
+  console.log('new websocket connection')
+
+  socket.on('create_room', async (data) => {
+    const room = await createRoom(data)
+    socket.emit('room_created', room)
+  })
+
+  socket.on('get_all_rooms', async (data) => {
+    const rooms = await getAllRooms(data)
+    socket.emit('all_rooms', rooms)
+  })
+
+  socket.on('get_messages', async (data) => {
+    console.log(data)
+    const messages = await getMessages(data)
+    const messagesWithUser = messages.map(message => {
+      return {
+        ...message,
+        created_at: moment(message.created_at).format('h:mm a')
+      }
+    })   
+    socket.emit('all_messages', messagesWithUser)
+  })
+
+  socket.on('join_room', (data) => {
+    console.log('room',data)
+    socket.join(data)
+  })
+
+  socket.on('message', async (data) => {
+    const {message, room, sender} = data
+    const dbResult = await sendMessage(data)
+    console.log('dbResult',dbResult)
+    console.log('broadcasted room', room)
+    socket.broadcast.to(room).emit('recieve_message', {dbResult})
+    
+})
+})
+
+
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+
+server.listen(port, () => console.log(`Server started on port ${port}`));

@@ -6,6 +6,7 @@ import OutlineButton from '../../components/Buttons/OutlineButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShop } from '../../redux/reducers/currentShop'
 import { setSearchTerm } from '../../redux/reducers/currentShop'
+import { createSocketRoom } from '../../redux/reducers/messaging'
 
 import ShopCategoriesBar from '../../components/ShopCategoriesBar/ShopCategoriesBar'
 import ShopListings from '../../components/ShopListings/ShopListings'
@@ -14,6 +15,7 @@ function BreederShop() {
 
   const dispatch = useDispatch()
   const {shop, shopsListings, shopCategories, searchCategory} = useSelector(state => state.currentShop)
+  const username = useSelector(state => state.currentUser.userInfo.username)
   
   React.useEffect(() => {
  
@@ -71,6 +73,10 @@ function BreederShop() {
           <OutlineButton
             className='outline-btn green'
             style={{borderColor: "#3CA836"}}
+            onClick={() => {
+              createSocketRoom(`
+              ${shop.seller_id}.${shop.company_name.replace(' ', '_')}.${username}`)
+            }}
           >
             Contact Shop
           </OutlineButton>

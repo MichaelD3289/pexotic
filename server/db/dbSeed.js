@@ -141,10 +141,12 @@ module.exports = {
       
       CREATE TABLE conversation(
       conversation_id SERIAL PRIMARY KEY,
+      room_name VARCHAR(250) NOT NULL,
       user_id UUID NOT NULL REFERENCES users(user_id),
       seller_id UUID NOT NULL REFERENCES users(user_id),
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-      modified_at TIMESTAMP NOT NULL
+      modified_at TIMESTAMP NOT NULL,
+      UNIQUE(user_id, seller_id)
       );
       
       CREATE TABLE message(
@@ -152,7 +154,7 @@ module.exports = {
       sent_by UUID NOT NULL REFERENCES users(user_id),
       received_by UUID NOT NULL REFERENCES users(user_id),
       conversation_id INT NOT NULL REFERENCES conversation(conversation_id),
-      messageSeen BOOLEAN NOT NULL,
+      message_seen BOOLEAN NOT NULL,
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       modified_at TIMESTAMP NOT NULL
       );

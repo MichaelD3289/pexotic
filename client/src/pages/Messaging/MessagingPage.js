@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import './Messages.css'
-import {sendMessage, receiveMessage, socket, getAllSocketRooms, receiveAllSocketRooms, setActiveRoom, getMessages} from '../../../redux/reducers/messaging'
+import './MessagingPage.css'
+import {sendMessage, receiveMessage, socket, getAllSocketRooms, receiveAllSocketRooms, setActiveRoom, getMessages} from '../../redux/reducers/messaging'
 const { useSelector, useDispatch  } = require('react-redux')
 
-function Messages() {
-    const dispatch = useDispatch()
+function MessagingPage() {
+  const dispatch = useDispatch()
   const [message, setMessage] = useState('')
-
-   const username = useSelector(state => state.currentUser.userInfo.username)
+  
+  const username = useSelector(state => state.currentUser.userInfo.username)
   const {rooms, activeRoom} = useSelector(state => state.messaging)
   const currentRoomMessages = rooms.find(room => room.room === activeRoom)?.messages
+  console.log(currentRoomMessages)
 
   useEffect(() => {
-    document.title = 'Pexotic | Breeder | Messages'
-  })
+    document.title = 'Pexotic | Messages'
+  }, [])
 
   useEffect(() => {
     socket.on('recieve_message', (data) => {
@@ -48,15 +49,18 @@ function Messages() {
     return () => socket.off('join_room')
   }, [activeRoom])
 
+  
+
   return (
-    <main id='shop-message-page'>
-      <section id='chat-room-header'>
+    <main id='user-message-page'>
+      <section id='user-chat-room-header'>
         <h2>Messages</h2>
       </section>
-      <section id='chat-room-container'>
-      <h2>Users:</h2>
+      <section id='user-chat-room-container'>
+      <h2>Shops:</h2>
       {rooms.length > 0 && rooms.map(({room}, index) => {
-        return (
+
+       return (
         <div 
           className={`chat-user-room${activeRoom === room ? ' active' : ''}`}
           value={room} 
@@ -69,10 +73,10 @@ function Messages() {
         >
           <h3>{room.split('.')[1].replace('_', ' ')}</h3>
         </div>)
-        })}
+      })}
       </section>
-      <section id='chat-room-message-container'>
-      {currentRoomMessages?.map((message, index) => (
+      <section id='user-chat-room-message-container'>
+          {currentRoomMessages?.map((message, index) => (
             <div 
               className={'chat-user-room-message'
               + (message.username === username ? ' user-message' : ' other-message')}
@@ -81,15 +85,15 @@ function Messages() {
             </div>
           ))}
       </section>
-      <section id='chat-room-footer'>
+      <section id='user-chat-room-footer'>
         <input
           type='text'
           placeholder='Type a message...'
-          id='chat-room-message-input'
+          id='user-chat-room-message-input'
           onChange={(e) => setMessage(e.target.value)}
         />
         <button
-          id='chat-room-send-button'
+          id='user-chat-room-send-button'
           onClick={() => {
             sendMessage(message, activeRoom, username)
           }}
@@ -99,4 +103,4 @@ function Messages() {
   )
 }
 
-export default Messages
+export default MessagingPage

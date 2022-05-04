@@ -15,6 +15,7 @@ import Dashboard from './pages/BreederDashboard/Dashboard/Dashboard'
 import Listings from './pages/BreederDashboard/Listings/Listings'
 import Messages from './pages/BreederDashboard/Messages/Messages'
 import ShopAccount from './pages/BreederDashboard/ShopAccount/ShopAccount'
+import MessagingPage from './pages/Messaging/MessagingPage'
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -84,6 +85,7 @@ useEffect(() => {
           <Route path='/checkout/cart' element={<ShoppingCart />} />
           <Route path='/product/listing/:id' element={<Listing />} />
           <Route path='/search' element={<SearchPage />} />
+          <Route path='/user/messages' element={<MessagingPage />} />
       </Routes>
         <Footer />
       </div>
