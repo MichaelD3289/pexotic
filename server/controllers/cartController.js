@@ -29,7 +29,6 @@ module.exports = {
         res.status(200).send(cart[0]);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).send(err);
       });
   },
@@ -109,7 +108,6 @@ module.exports = {
         res.status(200).send(cart[0]);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).send(err);
       })
 
@@ -134,7 +132,6 @@ module.exports = {
         res.status(200).send(cart[0]);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).send(err);
       })
   },
@@ -152,7 +149,6 @@ module.exports = {
         res.sendStatus(200);
       })
       .catch(err => {
-        console.log(err);
         res.status(500).send(err);
       })
   }

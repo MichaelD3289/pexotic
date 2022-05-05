@@ -10,7 +10,7 @@ function MessagingPage() {
   const username = useSelector(state => state.currentUser.userInfo.username)
   const {rooms, activeRoom} = useSelector(state => state.messaging)
   const currentRoomMessages = rooms.find(room => room.room === activeRoom)?.messages
-  console.log(currentRoomMessages)
+  
 
   useEffect(() => {
     document.title = 'Pexotic | Messages'

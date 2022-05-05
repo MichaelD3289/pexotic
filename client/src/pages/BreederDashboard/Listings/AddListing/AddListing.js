@@ -32,7 +32,7 @@ function AddListing({ show, hide }) {
         setCategories(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        
         setCategories(["Error Retrieving Categories"]);
       });
   }, []);
@@ -74,7 +74,7 @@ function AddListing({ show, hide }) {
           qtyInStock: values.qtyInStock,
         })
           .then((res) => {
-            console.log(res.data);     
+               
             submitMain(null, `/${res.data.id}?type=main_photo`)
             submitTwo(null, `/${res.data.id}?type=photo_two`)
             submitThree(null, `/${res.data.id}?type=photo_three`)

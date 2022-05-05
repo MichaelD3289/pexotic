@@ -43,7 +43,6 @@ module.exports = {
       .catch((err) => err);
   },
   getMessages: async (data) => {
-    console.log(data)
     return sequelize
       .query(
       `

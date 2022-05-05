@@ -23,7 +23,7 @@ function useVerifyUser() {
         }
     })
     .then(res => {
-      console.log(res.data)
+      
       axios.defaults.headers.common['authorization'] = `Bearer ${token}`
       dispatch(verifyUser())
       dispatch(saveCurrentUser(token, res.data))

@@ -5,7 +5,7 @@ const FETCH_SEARCHED_LISTINGS = 'FETCH_SEARCHED_LISTINGS'
 export const fetchSearchedListings = (body) => dispatch => {
   axios.post(`/api/search?q=${body.search}`, body)
     .then(res => {
-      console.log(res.data)
+      
       dispatch({
         type: FETCH_SEARCHED_LISTINGS,
         payload: res.data

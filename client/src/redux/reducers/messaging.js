@@ -3,7 +3,7 @@ export const socket = io.connect('http://localhost:5000')
 
 
 export const createSocketRoom = (room) => {
-  console.log('creating socket room')
+  
   socket.emit('create_room', room.trim())
 }
 

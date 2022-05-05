@@ -8,7 +8,7 @@ const ADD_OR_DELETE_FAVORITE = 'ADD_OR_DELETE_FAVORITE'
 export const getAllFavorites = () => dispatch => {
   axios.get('/api/user/favorites')
     .then(res => {
-      console.log(res.data)
+      
       dispatch({
         type: GET_ALL_FAVORITES,
         payload: res.data

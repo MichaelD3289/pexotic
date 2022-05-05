@@ -33,7 +33,7 @@ module.exports = {
           .catch(err => console.log(err));
     },
     fetchViewed: (req, res) => {
-      console.log(req.user)
+
         const { limit } = req.query;
         const { user_id } = req.user;
       // console.log('user_id', user_id);
@@ -55,16 +55,16 @@ module.exports = {
         LIMIT ${limit};
         `)
         .then(dbRes => {
-          console.log(dbRes)
+          
           res.status(200).send(dbRes[0])
         })
         .catch(err => {
-          console.log(err)
+          
           res.status(500).send(err)
         })
     },
     addViewed: (req, res) => {
-      console.log(req.body)
+     
       const { listingId } = req.body;
       const { user_id } = req.user;
       
@@ -77,7 +77,6 @@ module.exports = {
         `)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => {
-          console.log(err);
           res.status(500).send(err);
         });
 
@@ -129,13 +128,10 @@ module.exports = {
         ;
         `)
         .then(dbRes => {
-          // if(dbRes[0].length === 0) {
-          //   res.status(200).send({'message': 'No results found'})
-          // } 
           res.status(200).send(dbRes[0])
         })
         .catch(err => {
-          console.log(err);
+         
           res.status(500).send(err);
         });
       
@@ -173,7 +169,6 @@ module.exports = {
         `)
         .then(dbRes => res.status(200).send(dbRes[0][0]))
         .catch(err => {
-          console.log(err)
           res.status(500).send(err)
         })
     },

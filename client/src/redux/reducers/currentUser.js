@@ -8,7 +8,7 @@ const GET_PROFILE_IMG = 'GET_PROFILE_IMG'
 
 // action functions
 export const saveCurrentUser = (token,user) => {
-  console.log(user)
+  
   return {
     type: SAVE_CURRENT_USER,
     payload: {

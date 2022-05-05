@@ -49,8 +49,7 @@ app.post(`/api/seed`, seed)
   app.post(`/api/users/register`, createUser);
   app.post(`/api/users/login`, loginUser);
   app.get('/api/users/verify', verifyToken, (req, res) => {
-    console.log('req.user.profilepic', req.user.profilePic)
-    console.log('req.user.isVendor', req.user.isVendor)
+
     res.status(200).send({
       token: req.token,
       isVendor: req.user.isVendor,
@@ -138,7 +137,7 @@ app.post('/api/image/profile/s3/bucket', verifyToken, upload.single('image'), as
    const dbResult = await setUserImage(req.user.user_id, result.Key, result.Location)
    res.status(200).send(dbResult)
  } catch(err) {
-    console.log(err)
+    
     res.status(500).send(err)
   } finally {
     try{fs.unlinkSync(file.path)}
@@ -163,7 +162,7 @@ app.post('/api/image/shop-cover/s3/bucket', verifyToken, upload.single('image'),
     const dbResult = await setCoverImage(req.user.user_id, result.Key, result.Location)
     res.status(200).send(dbResult)
   } catch(err) {
-     console.log(err)
+     
      res.status(500).send(err)
    } finally {
      try{fs.unlinkSync(file.path)}
@@ -188,7 +187,7 @@ app.post('/api/image/shop-cover/s3/bucket', verifyToken, upload.single('image'),
     const dbResult = await setLogoImage(req.user.user_id, result.Key, result.Location)
     res.status(200).send(dbResult)
   } catch(err) {
-     console.log(err)
+     
      res.status(500).send(err)
    } finally {
      try{fs.unlinkSync(file.path)}
@@ -213,7 +212,7 @@ app.post('/api/image/shop-cover/s3/bucket', verifyToken, upload.single('image'),
     const dbResult = await setListingImage(req.params.id, result.Key, result.Location, req.query.type)
     res.status(200).send(dbResult)
   } catch(err) {
-     console.log(err)
+     
      res.status(500).send(err)
    } finally {
      try{fs.unlinkSync(file.path)}
@@ -249,7 +248,6 @@ function verifyShopToken(req, res, next) {
     if (!user.isVendor) return res.sendStatus(403);
     req.user = user;
     req.token = token;
-    console.log(user)
     next();
 });
 }
@@ -295,7 +293,6 @@ const io = new Server(server, {
 })
 
 io.on('connection', socket => {
-  console.log('new websocket connection')
 
   socket.on('create_room', async (data) => {
     const room = await createRoom(data)
@@ -313,7 +310,6 @@ io.on('connection', socket => {
   // })
 
   socket.on('get_messages', async (data) => {
-    console.log(data)
     const messages = await getMessages(data)
     const messagesWithUser = messages.map(message => {
       return {
@@ -325,15 +321,12 @@ io.on('connection', socket => {
   })
 
   socket.on('join_room', (data) => {
-    console.log('room',data)
     socket.join(data)
   })
 
   socket.on('message', async (data) => {
     const {message, room, sender} = data
     const dbResult = await sendMessage(data)
-    console.log('dbResult',dbResult)
-    console.log('broadcasted room', room)
     socket.broadcast.to(room).emit('recieve_message', {dbResult})
     
 })

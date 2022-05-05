@@ -156,11 +156,9 @@ module.exports = {
       `
       )
       .then((dbRes) => {
-        console.log(dbRes[0])
         res.status(200).send(dbRes[0][0])
       })
       .catch((err) => {
-        console.log(err);
         res.status(500).send(err);
       });
   }

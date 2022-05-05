@@ -55,7 +55,7 @@ export const addItemToCart = (listingID, qty) => dispatch => {
 export const updateItemInCart = (cartItemId, qty) => dispatch => {
   axios.put(`/api/user/cart/item/${cartItemId}`, {qty: qty})
     .then(res => {
-      console.log(res.data)
+      
       dispatch({
         type: UPDATE_ITEM_IN_CART,
         payload: res.data
