@@ -1,11 +1,12 @@
 .listing-info-holder {
   height: 550px;
-  width: 100%;
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  margin: 0 auto;
 }
 
 .listing-info-holder-top {
@@ -57,7 +58,7 @@
 .listing-guarantees-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap:40px;
 }
 
 .live-arrival, .overnight-shipping {
