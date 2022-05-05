@@ -1,0 +1,23 @@
+{
+  "name": "pexotic",
+  "version": "1.0.0",
+  "description": "<br><br> <img src=\"./client/src/assets/images/pexotic.svg\" alt=\"logo\" width=\"275\"> <br>",
+  "main": "",
+  "scripts": {
+    "start": "npm start --prefix server",
+    "install-client": "cd client && npm install && npm run build && cd ..",
+    "install-server": "cd server && npm install && cd ..",
+    "heroku-postbuild": "npm run install-client && npm run install-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelD3289/pexotic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelD3289/pexotic/issues"
+  },
+  "homepage": "https://github.com/MichaelD3289/pexotic#readme"
+}
