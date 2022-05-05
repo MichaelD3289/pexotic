@@ -46,10 +46,10 @@
   grid-area: messages;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  align-items: start;
   gap: 10px;
-  padding: 0 30px;
+  padding: 15px 30px;
   border-right: 5px solid #328c2d;
   overflow-y: scroll;
   box-shadow: inset 15px 0 10px -10px rgba(0, 0, 0, 0.5);

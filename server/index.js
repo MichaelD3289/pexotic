@@ -307,6 +307,11 @@ io.on('connection', socket => {
     socket.emit('all_rooms', rooms)
   })
 
+  // socket.on('get_shop_messages', async (data) => {
+  //   const messages = await getShopMessages(data)
+  //   socket.emit('shop_messages', messages)
+  // })
+
   socket.on('get_messages', async (data) => {
     console.log(data)
     const messages = await getMessages(data)

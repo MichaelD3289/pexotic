@@ -68,7 +68,7 @@ module.exports = {
       .catch((err) => err);
   },
   sendMessage: async (data) => {
-    console.log(data)
+    
     return sequelize
       .query(
       `
@@ -81,6 +81,10 @@ module.exports = {
         WHERE username = '${data.sender}'
       ), NOW(), '${data.message}', FALSE)
       RETURNING *;
+
+      UPDATE conversation
+      SET modified_at = NOW()
+      WHERE room_name = '${data.room.replace('\'', '"')}';
       `
       )
       .then((dbRes) => {

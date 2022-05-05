@@ -46,7 +46,7 @@ function MessagingPage() {
       dispatch(getMessages(activeRoom))
       dispatch(setActiveRoom(activeRoom))
       socket.emit('join_room', activeRoom)
-    return () => socket.off('join_room')
+    // return () => socket.off('join_room')
   }, [activeRoom])
 
   

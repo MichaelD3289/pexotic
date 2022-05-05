@@ -34,36 +34,6 @@ const {verify, token} = useVerifyUser()
 useEffect(() => {
   verify()
 }, [token])
-// const token = useSelector(state => state.currentUser.token) || localStorage.getItem('access_token') || null
-
-// const dispatch = useDispatch()
-
-//   useEffect(() => {
-
-    
-//     if(!token) {
-//       dispatch(unVerifyUser())
-//       return
-//     }
-    
-//     axios.get('/api/users/verify', {
-//       headers: {
-//         authorization: `Bearer ${token}`
-//         }
-//     })
-//     .then(res => {
-//       console.log(res.data)
-//       axios.defaults.headers.common['authorization'] = `Bearer ${token}`
-//       dispatch(verifyUser())
-//       dispatch(saveCurrentUser(token, res.data))
-//       dispatch(getAllFavorites())
-//       dispatch(getUserCart())
-//     })
-//     .catch(err => {
-//       dispatch(unVerifyUser())
-//       localStorage.removeItem('access_token')
-//     })
-//   }, [dispatch, token])
 
   const popUpToggle = useSelector(state => state.accountPopUp);
 

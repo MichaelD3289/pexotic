@@ -8,7 +8,6 @@ import Listing from './Listing'
 function ProfileFavoriteListings(props) {
 
   
-  
   return (
     <section id='profile-favorite-listings'>
       <h2 
@@ -22,7 +21,7 @@ function ProfileFavoriteListings(props) {
           id={listing.listing_id}
           title={listing.listing_name}
           price={listing.price}
-          qty={listing.qty_in_stock}
+          qty={listing.qty}
           main_photo={listing.main_photo}
           isFavorite={listing.isFavorite}
           />

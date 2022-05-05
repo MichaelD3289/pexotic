@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Messages.css'
-import {sendMessage, receiveMessage, socket, getAllSocketRooms, receiveAllSocketRooms, setActiveRoom, getMessages} from '../../../redux/reducers/messaging'
+import {sendMessage, receiveMessage, socket, getAllSocketRooms, receiveAllSocketRooms, setActiveRoom, getShopMessages} from '../../../redux/reducers/messaging'
 const { useSelector, useDispatch  } = require('react-redux')
 
 function Messages() {
@@ -42,7 +42,7 @@ function Messages() {
 
   useEffect(() => {
     
-      dispatch(getMessages(activeRoom))
+      dispatch(getShopMessages(activeRoom))
       dispatch(setActiveRoom(activeRoom))
       socket.emit('join_room', activeRoom)
     return () => socket.off('join_room')
@@ -63,11 +63,11 @@ function Messages() {
           key={room}
           onClick={() => {
             socket.emit('join_room', room)
-            dispatch(getMessages(room))
+            dispatch(getShopMessages(room))
             dispatch(setActiveRoom(room))
           }}
         >
-          <h3>{room.split('.')[1].replace('_', ' ')}</h3>
+          <h3>{room.split('.')[2]}</h3>
         </div>)
         })}
       </section>

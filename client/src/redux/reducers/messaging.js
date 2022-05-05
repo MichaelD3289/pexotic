@@ -53,6 +53,16 @@ export const getMessages = (room) => dispatch => {
   })
 }
 
+export const getShopMessages = (shop) => dispatch => {
+  socket.emit('get_shop_messages', {shop})
+  socket.on('all_shop_messages', (data) => {
+    dispatch({
+      type: 'RECEIVE_ALL_SHOP_MESSAGES',
+      payload: {shop, data}
+    })
+  })
+}
+
 export const setActiveRoom = (room) => dispatch => {
   dispatch({
     type: 'SET_ACTIVE_ROOM',
