@@ -38,7 +38,7 @@ function CartListings(props) {
         <Link to={`/product/listing/${listing_id}`}>
         <img 
           className="cart-listing-image" 
-          src={`/static/${main_photo}`} 
+          src={`${main_photo}`} 
           alt={listing_name} 
         /></Link>
       </div>
