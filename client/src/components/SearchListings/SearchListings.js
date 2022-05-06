@@ -13,7 +13,7 @@ function SearchListings() {
       <div className='search-listings-listing-container'>
         {searchPageListings.length === 0 && <h2 className='no-listings-found'>No Listings Found.</h2>}
         {searchPageListings.map(listing => (
-          <Listing key={listing.id} listing={listing} />
+          <Listing key={listing.listing_id + 'search-listing'} listing={listing} />
         ))}
 
       </div>

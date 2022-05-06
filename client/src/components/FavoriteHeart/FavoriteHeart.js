@@ -14,7 +14,7 @@ function FavoriteHeart({id, isHovered, style, ...props}) {
 
   React.useEffect(() => {
     setIsFavorited(favoriteList.includes(id))
-  }, [])
+  }, [favoriteList])
 
   const toggleFavorite = (id, action) => {
     setIsFavorited(!isFavorited)

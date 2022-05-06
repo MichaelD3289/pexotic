@@ -32,7 +32,7 @@ function ShoppingCart() {
           </button>}
         </div>
         {cart.length === 0 && 
-        <h2 class='empty-cart'>
+        <h2 className='empty-cart'>
           Your cart is empty
         </h2>}
         {cart.length > 0 && cart.map(listing => (
