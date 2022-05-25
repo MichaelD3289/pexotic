@@ -19,6 +19,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/static',express.static(path.join(__dirname, '/assets/static')));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // controllers
 const { 
@@ -45,6 +46,7 @@ const { seed } = require('./db/dbSeed')
 app.post(`/api/seed`, seed)
 
 // ENDPOINTS
+
   // api/users
   app.post(`/api/users/register`, createUser);
   app.post(`/api/users/login`, loginUser);
@@ -220,6 +222,10 @@ app.post('/api/image/shop-cover/s3/bucket', verifyToken, upload.single('image'),
    }
    
  });
+
+ app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 // Verify token
 function verifyToken(req, res, next) {

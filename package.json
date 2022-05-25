@@ -2,7 +2,7 @@
   "name": "pexotic",
   "version": "1.0.0",
   "description": "<br><br> <img src=\"./client/src/assets/images/pexotic.svg\" alt=\"logo\" width=\"275\"> <br>",
-  "main": "",
+  "main": "./server/index.js",
   "scripts": {
     "start": "npm start --prefix server",
     "install-client": "cd client && npm install && npm run build && cd ..",
